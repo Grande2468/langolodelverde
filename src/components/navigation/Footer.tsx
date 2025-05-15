@@ -122,13 +122,19 @@ const Footer = () => {
           <p className="text-primary-300 text-sm">
             &copy; {currentYear} GreenPower Attrezzature. Tutti i diritti riservati.
           </p>
-          <div className="flex gap-6 mt-4 md:mt-0">
-            <a href="#" className="text-primary-300 hover:text-white text-sm transition-colors">
+          <div className="flex gap-4 md:gap-6 mt-4 md:mt-0">
+            <NavLink 
+              to="/privacy-policy" 
+              className="text-primary-300 hover:text-white text-sm transition-colors"
+            >
               Informativa sulla Privacy
-            </a>
-            <a href="#" className="text-primary-300 hover:text-white text-sm transition-colors">
-              Termini di Servizio
-            </a>
+            </NavLink>
+            <NavLink 
+              to="/cookie-policy" 
+              className="text-primary-300 hover:text-white text-sm transition-colors"
+            >
+              Cookie Policy
+            </NavLink>
           </div>
         </div>
       </div>
