@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
-import { Menu, X, Leaf } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
+import logo from '../../assets/images/logo.png';
 
 interface NavbarProps {
   isScrolled: boolean;
@@ -26,9 +27,9 @@ const Navbar = ({ isScrolled }: NavbarProps) => {
 
   const navItems = [
     { name: 'Home', path: '/' },
-    { name: 'Chi Siamo', path: '/about' },
-    { name: 'Prodotti', path: '/products' },
-    { name: 'Contatti', path: '/contact' },
+    { name: 'Chi Siamo', path: '/chi-siamo' },
+    { name: 'Prodotti', path: '/prodotti' },
+    { name: 'Contatti', path: '/contatti' },
   ];
   
   return (
@@ -40,9 +41,15 @@ const Navbar = ({ isScrolled }: NavbarProps) => {
       <div className="container mx-auto px-4 md:px-6">
         <div className="flex justify-between items-center">
           <NavLink to="/" className="flex items-center gap-2">
-            <Leaf className="h-8 w-8 text-primary-600" strokeWidth={2} />
-            <span className="font-display text-xl font-bold text-primary-800">
-              GreenPower
+            <img 
+              src={logo}
+              alt="L'angolo del verde logo"
+              className="h-8 w-8 object-contain"
+            />
+            <span className={`font-display text-xl font-bold ${
+              isScrolled ? 'text-primary-800' : 'text-white'
+            }`}>
+              L'angolo del verde
             </span>
           </NavLink>
           

@@ -6,8 +6,8 @@ const PrivacyPolicyPage = () => {
   return (
     <>
       <Helmet>
-        <title>Privacy Policy | GreenPower Attrezzature</title>
-        <meta name="description" content="Informativa sulla privacy del sito GreenPower Attrezzature." />
+        <title>Privacy Policy | L'angolo del verde</title>
+        <meta name="description" content="Informativa sulla privacy del sito L'angolo del verde." />
       </Helmet>
       
       <div className="pt-24 bg-primary-900 text-white">
@@ -22,7 +22,7 @@ const PrivacyPolicyPage = () => {
       <Section>
         <div className="prose prose-lg max-w-3xl mx-auto">
           <p>
-            Benvenuto/a nell'Informativa sulla Privacy di GreenPower Attrezzature (di seguito "noi", "nostro", o "Sito"). La tua privacy è importante per noi. Questa informativa spiega quali dati personali raccogliamo dagli utenti e come li utilizziamo.
+            Benvenuto/a nell'Informativa sulla Privacy de L'angolo del verde (di seguito "noi", "nostro", o "Sito"). La tua privacy è importante per noi. Questa informativa spiega quali dati personali raccogliamo dagli utenti e come li utilizziamo.
           </p>
           <p>
             Ti invitiamo a leggere attentamente questi termini prima di fornirci i tuoi dati personali su questo sito web. Gli utenti di età inferiore ai quattordici anni non dovrebbero fornire dati personali senza il consenso dei genitori o dei tutori.
@@ -30,10 +30,10 @@ const PrivacyPolicyPage = () => {
 
           <h2>Titolare del Trattamento dei Dati</h2>
           <p>
-            <strong>Nome Azienda/Persona:</strong> [IL TUO NOME AZIENDA O NOME PERSONALE QUI]<br />
-            <strong>Sede Legale/Indirizzo:</strong> [IL TUO INDIRIZZO QUI]<br />
-            <strong>Email di Contatto:</strong> [LA TUA EMAIL DI CONTATTO QUI, es. privacy@greenpowerattrezzature.it]<br />
-            {/* <strong>Partita IVA/Codice Fiscale:</strong> [SE APPLICABILE] */}
+            <strong>Nome Azienda/Persona:</strong> L'angolo del verde<br />
+            <strong>Sede Legale/Indirizzo:</strong> Via Ceraselle, n 78, 81059 Caianello (CE)<br />
+            <strong>Email di Contatto:</strong> antoniogrande2014@gmail.com<br />
+            <strong>Partita IVA:</strong> 04874830617
           </p>
 
           <h2>Quali Dati Personali Raccogliamo e Perché</h2>
@@ -150,7 +150,10 @@ const PrivacyPolicyPage = () => {
             <li><strong>Hosting Provider:</strong> Come Vercel, che ospita il nostro sito. Consulta la loro <a href="https://vercel.com/legal/privacy-policy" target="_blank" rel="noopener noreferrer" className="text-primary-600 hover:underline">Privacy Policy di Vercel</a>.</li>
             <li><strong>Servizi di Mappe:</strong> Come OpenStreetMap.</li>
             <li><strong>Servizi di Font:</strong> Come Google Fonts.</li>
-             {/* Aggiungi altri fornitori se pertinenti */}
+            <li><em>Google Fonts:</em> Per visualizzare caratteri personalizzati. Google potrebbe raccogliere il tuo indirizzo IP. Per maggiori informazioni, consulta la privacy policy di Google.</li>
+            <li><em>OpenStreetMap (tramite React Leaflet):</em> Per visualizzare mappe interattive. I server di OpenStreetMap potrebbero registrare il tuo indirizzo IP per scopi tecnici.</li>
+            <li><em>Cloudinary:</em> Per la gestione e l'ottimizzazione delle immagini del sito. Cloudinary potrebbe raccogliere informazioni tecniche come il tuo indirizzo IP e user agent per fornire il servizio di content delivery. Per maggiori informazioni, consulta la <a href="https://cloudinary.com/privacy" className="text-primary-600 hover:underline" target="_blank" rel="noopener noreferrer">privacy policy di Cloudinary</a>.</li>
+            <li><em>Vercel Analytics (se attivato):</em> Vercel potrebbe raccogliere dati analitici anonimizzati sull'utilizzo del sito. Controlla la documentazione di Vercel per i dettagli specifici sulla loro raccolta dati quando Vercel Analytics è abilitato.</li>
           </ul>
 
           <h2>Sicurezza dei Dati</h2>
@@ -174,24 +177,21 @@ const PrivacyPolicyPage = () => {
             Non raccogliamo consapevolmente informazioni di identificazione personale da minori di 18 anni. Se sei un genitore o tutore e sei consapevole che tuo figlio ci ha fornito Dati Personali, ti preghiamo di contattarci. Se veniamo a conoscenza del fatto che abbiamo raccolto Dati Personali da minori senza la verifica del consenso dei genitori, adottiamo misure per rimuovere tali informazioni dai nostri server.
           </p>
 
-          <h2>Modifiche a Questa Informativa sulla Privacy</h2>
+          <h3>Modifiche a Questa Informativa sulla Privacy</h3>
           <p>
             Potremmo aggiornare la nostra Informativa sulla Privacy di volta in volta. Ti informeremo di eventuali modifiche pubblicando la nuova Informativa sulla Privacy su questa pagina.
           </p>
           <p>
-            Ti informeremo via email e/o un avviso ben visibile sul nostro Sito, prima che la modifica diventi effettiva e aggiorneremo la "data di ultimo aggiornamento" in cima a questa Informativa sulla Privacy.
+             Ti consigliamo di rivedere periodicamente questa Informativa sulla Privacy per eventuali modifiche. Le modifiche a questa Informativa sulla Privacy entrano in vigore quando vengono pubblicate su questa pagina.
           </p>
-          <p>
-            Si consiglia di rivedere periodicamente la presente Informativa sulla Privacy per eventuali modifiche. Le modifiche alla presente Informativa sulla Privacy entrano in vigore nel momento in cui vengono pubblicate su questa pagina.
-          </p>
-
           <h2>Contattaci</h2>
           <p>
-            Se hai domande sulla presente Informativa sulla Privacy, ti preghiamo di contattarci:
+            Se hai domande su questa Informativa sulla Privacy, puoi contattarci:
           </p>
           <ul>
-            <li>Tramite email: [LA TUA EMAIL DI CONTATTO QUI, es. privacy@greenpowerattrezzature.it]</li>
-            {/* Aggiungi altri metodi di contatto se lo desideri */}
+            <li>Tramite email: antoniogrande2014@gmail.com</li>
+            <li>Tramite telefono: 320 6658669</li>
+            <li>Visitando questa pagina sul nostro sito web: [LINK ALLA PAGINA CONTATTI]</li>
           </ul>
         </div>
       </Section>

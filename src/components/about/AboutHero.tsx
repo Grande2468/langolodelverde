@@ -1,20 +1,22 @@
 import Section from '../ui/Section';
 import { motion } from 'framer-motion';
-import AnimatedText from '../ui/AnimatedText';
+import { AdvancedImage } from '@cloudinary/react';
+import cloudinaryInstance from '../../services/cloudinary';
+import { fill } from '@cloudinary/url-gen/actions/resize';
+import { autoGravity } from '@cloudinary/url-gen/qualifiers/gravity';
+import { format, quality } from '@cloudinary/url-gen/actions/delivery';
 
 const AboutHero = () => {
+  const aboutImage = cloudinaryInstance.image('DSC03900_llw1de');
+  aboutImage
+    .resize(fill().width(800).height(600).gravity(autoGravity()))
+    .delivery(format('auto'))
+    .delivery(quality('auto'));
+
   return (
-    <Section className="pt-32 md:pt-40 pb-20">
+    <Section background="light">
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
         <div>
-          <AnimatedText as="h1" className="text-3xl md:text-4xl lg:text-5xl font-display font-bold mb-6">
-            Chi è GreenPower Equipment
-          </AnimatedText>
-          
-          <AnimatedText delay={0.2} className="text-lg text-gray-600 mb-8">
-            Da oltre trent\'anni, forniamo attrezzature di alta qualità per il giardinaggio e il paesaggio sia a professionisti che ad appassionati. Il nostro impegno per la qualità, la durabilità e un servizio eccellente ci ha reso un nome affidabile nel settore.
-          </AnimatedText>
-          
           <motion.div
             className="space-y-6"
             initial={{ opacity: 0, y: 20 }}
@@ -23,17 +25,17 @@ const AboutHero = () => {
           >
             <div className="flex gap-4 items-center">
               <div className="h-14 w-14 rounded-full bg-primary-100 flex items-center justify-center flex-shrink-0">
-                <span className="text-primary-700 text-2xl font-bold">35+</span>
+                <span className="text-primary-700 text-2xl font-bold">10+</span>
               </div>
               <div>
                 <h3 className="font-semibold text-lg mb-1">Anni di Esperienza</h3>
-                <p className="text-gray-600">Al servizio di giardinieri professionisti e appassionati dal 1985</p>
+                <p className="text-gray-600">Al servizio di giardinieri professionisti e appassionati</p>
               </div>
             </div>
             
             <div className="flex gap-4 items-center">
               <div className="h-14 w-14 rounded-full bg-primary-100 flex items-center justify-center flex-shrink-0">
-                <span className="text-primary-700 text-2xl font-bold">500+</span>
+                <span className="text-primary-700 text-2xl font-bold">200+</span>
               </div>
               <div>
                 <h3 className="font-semibold text-lg mb-1">Prodotti Premium</h3>
@@ -43,7 +45,7 @@ const AboutHero = () => {
             
             <div className="flex gap-4 items-center">
               <div className="h-14 w-14 rounded-full bg-primary-100 flex items-center justify-center flex-shrink-0">
-                <span className="text-primary-700 text-2xl font-bold">10k+</span>
+                <span className="text-primary-700 text-2xl font-bold">400+</span>
               </div>
               <div>
                 <h3 className="font-semibold text-lg mb-1">Clienti Soddisfatti</h3>
@@ -59,10 +61,10 @@ const AboutHero = () => {
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8 }}
         >
-          <img 
-            src="https://images.pexels.com/photos/1480690/pexels-photo-1480690.jpeg" 
-            alt="Negozio GreenPower" 
+          <AdvancedImage 
+            cldImg={aboutImage}
             className="w-full h-auto rounded-xl"
+            alt="L'angolo del verde - La nostra storia"
           />
         </motion.div>
       </div>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>[URL_DEL_TUO_SITO]/</loc>
+    <lastmod>2023-10-27</lastmod> <!-- Sostituisci con la data di ultima modifica -->
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <!-- Aggiungi qui altre URL del tuo sito -->
+  <!-- Esempio:
+  <url>
+    <loc>[URL_DEL_TUO_SITO]/prodotti</loc>
+    <lastmod>2023-10-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>[URL_DEL_TUO_SITO]/contatti</loc>
+    <lastmod>2023-10-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  -->
+</urlset> 

@@ -42,7 +42,7 @@ const Layout = () => {
       <CookieConsent
         location="bottom"
         buttonText="Capito!"
-        cookieName="greenpowerCookieConsent"
+        cookieName="langolodelverdeCookieConsent"
         style={{ background: "#2B373B", fontSize: "14px" }}
         buttonStyle={{ color: "#4e503b", background: "#F0EFEB", fontSize: "14px", borderRadius: "3px" }}
         expires={150}

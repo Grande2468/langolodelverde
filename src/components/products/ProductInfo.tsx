@@ -35,7 +35,7 @@ const ProductInfo = () => {
             Attrezzature Premium per Ogni Esigenza di Giardinaggio
           </h2>
           <p className="text-gray-600 mb-6">
-            In GreenPower, comprendiamo che diversi progetti di giardinaggio e paesaggistica richiedono strumenti specifici. Ecco perché offriamo una gamma completa di attrezzature adatte sia a professionisti che ad appassionati.
+            Da L'angolo del verde, comprendiamo che diversi progetti di giardinaggio e paesaggistica richiedono strumenti specifici. Ecco perché offriamo una gamma completa di attrezzature adatte sia a professionisti che ad appassionati.
           </p>
           <p className="text-gray-600 mb-6">
             La nostra selezione include marchi premium noti per la loro affidabilità, prestazioni e caratteristiche innovative. Ogni prodotto nel nostro showroom è stato attentamente selezionato per garantire che soddisfi i nostri elevati standard.
@@ -91,30 +91,6 @@ const ProductInfo = () => {
             </div>
           </div>
         </motion.div>
-      </div>
-      
-      <SectionHeading 
-        title="I Nostri Servizi" 
-        subtitle="Oltre a vendere attrezzature, forniamo servizi completi per supportare le tue esigenze di giardinaggio"
-      />
-      
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-        {services.map((service, index) => (
-          <motion.div
-            key={index}
-            className="bg-white p-6 rounded-xl shadow-md"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: index * 0.1 }}
-          >
-            <div className="mb-4 p-3 bg-primary-100 text-primary-700 rounded-full w-fit">
-              {service.icon}
-            </div>
-            <h3 className="text-xl font-semibold mb-3">{service.title}</h3>
-            <p className="text-gray-600">{service.description}</p>
-          </motion.div>
-        ))}
       </div>
     </Section>
   );

@@ -55,7 +55,7 @@ const OurValues = () => {
     <Section background="white">
       <SectionHeading 
         title="I Nostri Valori" 
-        subtitle="I principi che guidano tutto ciò che facciamo in GreenPower"
+        subtitle="I principi che guidano tutto ciò che facciamo a L'angolo del verde"
       />
       
       <motion.div 

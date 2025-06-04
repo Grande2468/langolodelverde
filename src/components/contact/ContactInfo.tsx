@@ -5,17 +5,17 @@ const contactItems = [
   {
     icon: <MapPin className="h-6 w-6" />,
     title: 'Indirizzo',
-    details: ['Via Giardino 1234', 'Milano, Italia 20100'],
+    details: ['Via Ceraselle, n 78', '81059 Caianello (CE)'],
   },
   {
     icon: <Phone className="h-6 w-6" />,
     title: 'Telefono',
-    details: ['+39 02 1234 5678', 'Numero verde: 800 123 456'],
+    details: ['320 6658669'],
   },
   {
     icon: <Mail className="h-6 w-6" />,
     title: 'Email',
-    details: ['info@greenpower.com', 'supporto@greenpower.com'],
+    details: ['antoniogrande2014@gmail.com'],
   },
   {
     icon: <Clock className="h-6 w-6" />,

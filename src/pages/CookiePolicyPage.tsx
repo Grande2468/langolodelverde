@@ -6,8 +6,8 @@ const CookiePolicyPage = () => {
   return (
     <>
       <Helmet>
-        <title>Cookie Policy | GreenPower Attrezzature</title>
-        <meta name="description" content="Informativa sull'uso dei cookie del sito GreenPower Attrezzature." />
+        <title>Cookie Policy | L'angolo del verde</title>
+        <meta name="description" content="Informativa sull'uso dei cookie del sito L'angolo del verde." />
       </Helmet>
       
       <div className="pt-24 bg-primary-900 text-white">
@@ -22,7 +22,7 @@ const CookiePolicyPage = () => {
       <Section>
         <div className="prose prose-lg max-w-3xl mx-auto">
           <p>
-            Benvenuto/a nella Cookie Policy di GreenPower Attrezzature (di seguito "noi", "nostro", o "Sito"). Questa policy fornisce informazioni dettagliate su come e perché utilizziamo i cookie sul nostro sito web [IL TUO DOMINIO QUI, es. www.greenpowerattrezzature.it] e su qualsiasi altro sito web, applicazione mobile o servizio che collega a questa Cookie Policy.
+            Benvenuto/a nella Cookie Policy de L'angolo del verde (di seguito "noi", "nostro", o "Sito"). Questa policy fornisce informazioni dettagliate su come e perché utilizziamo i cookie sul nostro sito web [IL TUO DOMINIO QUI, es. www.langolodelverde.it] e su qualsiasi altro sito web, applicazione mobile o servizio che collega a questa Cookie Policy.
           </p>
 
           <h2>Cosa sono i Cookie?</h2>
@@ -38,7 +38,7 @@ const CookiePolicyPage = () => {
             <li>
               <strong>Cookie Tecnici (Essenziali):</strong> Questi cookie sono strettamente necessari per fornirti i servizi disponibili attraverso il nostro Sito e per utilizzare alcune delle sue funzionalità, come l'accesso ad aree sicure. Poiché questi cookie sono strettamente necessari per erogare il Sito, non puoi rifiutarli senza impattare sul funzionamento del nostro Sito. Puoi bloccarli o eliminarli modificando le impostazioni del tuo browser, come descritto di seguito nella sezione "Come puoi controllare i cookie?".
               <ul>
-                <li><em>greenpowerCookieConsent:</em> Utilizzato per memorizzare le tue preferenze di consenso ai cookie. Durata: 150 giorni.</li>
+                <li><em>langolodelverdeCookieConsent:</em> Utilizzato per memorizzare le tue preferenze di consenso ai cookie. Durata: 150 giorni.</li>
                 {/* Aggiungi altri cookie tecnici se ne usi */}
               </ul>
             </li>
@@ -107,7 +107,7 @@ const CookiePolicyPage = () => {
 
           <h2>Dove puoi ottenere ulteriori informazioni?</h2>
           <p>
-            Se hai domande sul nostro utilizzo dei cookie o di altre tecnologie, ti preghiamo di inviarci un'email a [LA TUA EMAIL DI CONTATTO QUI, es. info@greenpowerattrezzature.it].
+            Se hai domande sul nostro utilizzo dei cookie o di altre tecnologie, ti preghiamo di inviarci un'email a antoniogrande2014@gmail.com.
           </p>
         </div>
       </Section>

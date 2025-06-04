@@ -9,8 +9,8 @@ const ContactPage = () => {
   return (
     <>
       <Helmet>
-        <title>Contattaci | GreenPower Attrezzature</title>
-        <meta name="description" content="Mettiti in contatto con GreenPower Attrezzature. Visita il nostro showroom, chiamaci o invia un messaggio per informazioni sui nostri attrezzi da giardinaggio e paesaggistica." />
+        <title>Contattaci | L'angolo del verde</title>
+        <meta name="description" content="Mettiti in contatto con L'angolo del verde. Visita il nostro showroom, chiamaci o invia un messaggio per informazioni sui nostri attrezzi da giardinaggio e paesaggistica." />
       </Helmet>
       
       <div className="pt-24 bg-primary-900 text-white">
@@ -26,7 +26,7 @@ const ContactPage = () => {
               Vuoi più informazioni sui nostri prodotti o vuoi acquistarne uno? Contattaci direttamente!
             </p>
             <Button 
-              href="#"
+              href="https://wa.me/393206658669"
               size="lg"
               className="bg-green-500 hover:bg-green-600 text-white mx-auto"
             >

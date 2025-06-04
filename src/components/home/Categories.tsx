@@ -1,50 +1,36 @@
 import { motion } from 'framer-motion';
 import Section, { SectionHeading } from '../ui/Section';
 import { Link } from 'react-router-dom';
-import { Scissors, Tractor, Shovel, Wrench, SprayCan as Spray, Wind } from 'lucide-react';
+import { Tractor, Shovel, Wrench, Hammer } from 'lucide-react';
 
 const categories = [
   {
-    id: 'brush-cutters',
-    name: 'Decespugliatori',
-    icon: <Scissors className="h-6 w-6" />,
-    description: 'Decespugliatori professionali per tutti i tipi di vegetazione',
-    image: 'https://images.pexels.com/photos/91793/pexels-photo-91793.jpeg',
-  },
-  {
-    id: 'rotary-tillers',
-    name: 'Motozappe',
+    id: 'motocoltivatori-tosaerba',
+    name: 'Motocoltivatori e Tosaerba',
     icon: <Tractor className="h-6 w-6" />,
-    description: 'Motozappe ad alte prestazioni per una perfetta preparazione del terreno',
-    image: 'https://images.pexels.com/photos/7728087/pexels-photo-7728087.jpeg',
+    description: 'Motocoltivatori professionali e tosaerba per la cura del tuo terreno',
+    image: 'https://images.pexels.com/photos/3276875/pexels-photo-3276875.jpeg',
   },
   {
-    id: 'gardening-tools',
-    name: 'Attrezzi da Giardinaggio',
+    id: 'attrezzatura-giardino',
+    name: 'Attrezzatura da Giardino',
     icon: <Shovel className="h-6 w-6" />,
-    description: 'Utensili manuali essenziali per lavori di giardinaggio di precisione',
-    image: 'https://images.pexels.com/photos/296230/pexels-photo-296230.jpeg',
-  },
-  {
-    id: 'maintenance',
-    name: 'Manutenzione',
-    icon: <Wrench className="h-6 w-6" />,
-    description: 'Parti e accessori per mantenere le tue attrezzature funzionanti',
-    image: 'https://images.pexels.com/photos/5691868/pexels-photo-5691868.jpeg',
-  },
-  {
-    id: 'sprayers',
-    name: 'Spruzzatori',
-    icon: <Spray className="h-6 w-6" />,
-    description: 'Spruzzatori professionali per un trattamento efficiente delle piante',
-    image: 'https://images.pexels.com/photos/96715/pexels-photo-96715.jpeg',
-  },
-  {
-    id: 'blowers',
-    name: 'Soffiatori',
-    icon: <Wind className="h-6 w-6" />,
-    description: 'Soffiatori potenti per una rapida pulizia del giardino',
+    description: 'Decespugliatori, soffiatori e altri attrezzi per la manutenzione del giardino',
     image: 'https://images.pexels.com/photos/589/garden-gardening-grass-mow.jpg',
+  },
+  {
+    id: 'ricambi',
+    name: 'Ricambi',
+    icon: <Wrench className="h-6 w-6" />,
+    description: 'Ricambi originali per mantenere le tue attrezzature sempre efficienti',
+    image: 'https://images.pexels.com/photos/162553/keys-workshop-mechanic-tools-162553.jpeg',
+  },
+  {
+    id: 'utensileria',
+    name: 'Utensileria',
+    icon: <Hammer className="h-6 w-6" />,
+    description: 'Utensili e accessori professionali per ogni tipo di lavorazione',
+    image: 'https://images.pexels.com/photos/175039/pexels-photo-175039.jpeg',
   },
 ];
 
@@ -72,7 +58,7 @@ const Categories = () => {
       />
       
       <motion.div 
-        className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8"
+        className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8"
         variants={container}
         initial="hidden"
         whileInView="show"
@@ -84,7 +70,7 @@ const Categories = () => {
             variants={item}
           >
             <Link 
-              to={`/products#${category.id}`} 
+              to={`/prodotti#${category.id}`} 
               className="block h-full group"
             >
               <div className="bg-white rounded-xl overflow-hidden shadow-md transition-all h-full hover:shadow-lg relative flex flex-col">

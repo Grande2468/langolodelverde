@@ -86,7 +86,7 @@ const FeaturedProducts = () => {
                     {product.description}
                   </p>
                   <div className="mt-auto">
-                    <Button to="/products">Vedi Dettagli</Button>
+                    <Button to="/prodotti">Vedi Dettagli</Button>
                   </div>
                 </div>
               </motion.div>
