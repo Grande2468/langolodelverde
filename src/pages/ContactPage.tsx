@@ -3,7 +3,7 @@ import Section from '../components/ui/Section';
 import ContactInfo from '../components/contact/ContactInfo';
 import MapSection from '../components/contact/MapSection';
 import { Helmet } from 'react-helmet';
-import Button from '../components/ui/Button';
+import { Phone, MessageCircle } from 'lucide-react';
 
 const ContactPage = () => {
   return (
@@ -25,13 +25,24 @@ const ContactPage = () => {
             <p className="text-xl text-primary-100 mb-8">
               Vuoi più informazioni sui nostri prodotti o vuoi acquistarne uno? Contattaci direttamente!
             </p>
-            <Button 
-              href="https://wa.me/393206658669"
-              size="lg"
-              className="bg-green-500 hover:bg-green-600 text-white mx-auto"
-            >
-              Contattaci su WhatsApp
-            </Button>
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mt-8">
+              <a 
+                href="tel:3206658669"
+                className="inline-flex items-center justify-center gap-2 px-6 py-3 text-lg font-semibold bg-primary-600 text-white rounded-lg hover:bg-primary-700 transition-colors duration-300 w-full sm:w-auto"
+              >
+                <Phone className="h-5 w-5" />
+                320 665 8669
+              </a>
+              <a 
+                href="https://wa.me/393206658669"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center gap-2 px-6 py-3 text-lg font-semibold bg-primary-600 text-white rounded-lg hover:bg-primary-700 transition-colors duration-300 w-full sm:w-auto"
+              >
+                <MessageCircle className="h-5 w-5" />
+                Contattaci su WhatsApp
+              </a>
+            </div>
           </div>
         </div>
       </div>

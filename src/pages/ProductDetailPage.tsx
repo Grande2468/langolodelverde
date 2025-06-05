@@ -56,9 +56,9 @@ const ProductDetailPage: React.FC = () => {
     img.src = 'https://res.cloudinary.com/dut9zxpsq/image/upload/v1/default-product';
   };
 
-  const numeroWhatsApp = '3206658669';
+  const numeroWhatsApp = '320 665 8669';
   const messaggioWhatsApp = `Ciao, sarei interessato al prodotto: ${product.name} (ID: ${product.id}). Potrei avere maggiori informazioni?`;
-  const linkWhatsApp = `https://wa.me/${numeroWhatsApp}?text=${encodeURIComponent(messaggioWhatsApp)}`;
+  const linkWhatsApp = `https://wa.me/393206658669?text=${encodeURIComponent(messaggioWhatsApp)}`;
 
   return (
     <Section className="py-8 md:py-12">

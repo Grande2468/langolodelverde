@@ -1,7 +1,7 @@
 import Section from '../ui/Section';
 import Button from '../ui/Button';
 import { motion } from 'framer-motion';
-import { PhoneCall } from 'lucide-react';
+import { PhoneCall, Phone } from 'lucide-react';
 
 const CtaSection = () => {
   return (
@@ -29,15 +29,13 @@ const CtaSection = () => {
               Contattaci
             </Button>
             
-            <Button 
-              href="tel:+3902123456789" 
-              size="lg"
-              variant="outline"
-              className="bg-white/10 border-white text-white hover:bg-white/20"
+            <a 
+              href="tel:3206658669" 
+              className="inline-flex items-center justify-center gap-2 px-6 py-3 text-lg font-semibold text-white bg-primary-600 rounded-lg hover:bg-primary-700 transition-colors duration-300"
             >
-              <PhoneCall className="mr-2 h-5 w-5" />
-              +39 02 1234 5678
-            </Button>
+              <Phone className="h-5 w-5" />
+              320 665 8669
+            </a>
           </div>
         </motion.div>
       </div>
