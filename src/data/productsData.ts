@@ -466,6 +466,20 @@ export const allProducts: Product[] = [
     fullDescription: 'Trapano avvitatore Makota potente e versatile, dotato di attacco per bussole che permette di utilizzare punte e accessori per svitare e stringere dadi e bulloni. Ideale per lavori di falegnameria, meccanica e manutenzione, garantisce prestazioni elevate e comodità d\'uso.',
     price: '€ 70'
   },
-  
+  {
+    id: 'ut-set-chiavi-unique-04520392408345692',
+    name: 'Mini Motoseghe Makota – Tre Grandezze',
+    categoryId: 'utensileria',
+    images: ['DSC03464_c8hcmy',
+      'DSC03463_wx5hmj',
+      'DSC03475_itorc5',
+      'DSC03473_e2jyfs',
+      'DSC03486_d2peqr',
+      'DSC03488_z6bpkl',
+    ],
+    shortDescription: 'Set di 3 mini motoseghe Makota a batteria, ideali per potatura rapida e precisa. Disponibili in tre misure per adattarsi a ogni esigenza di taglio. Design compatto, leggera e maneggevole, perfetta per giardinaggio e cura degli alberi.',
+    fullDescription: 'Set di 3 mini motoseghe Makota a batteria, ideali per potatura rapida e precisa. Disponibili in tre misure per adattarsi a ogni esigenza di taglio. Design compatto, leggera e maneggevole, perfetta per giardinaggio e cura degli alberi.',
+    price: '€ 25 - €45 - €50'
+  },
   
 ]; 

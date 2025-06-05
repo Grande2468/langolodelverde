@@ -22,7 +22,7 @@ const CtaSection = () => {
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button 
-              to="/contact" 
+              to="/contatti" 
               size="lg"
               className="bg-primary-600 text-white hover:bg-primary-700"
             >

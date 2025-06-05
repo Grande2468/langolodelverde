@@ -13,14 +13,14 @@ const Hero = () => {
   
   // Ottimizzazione per desktop
   heroImage
-    .resize(fill().width(1920).height(800))
+    .resize(fill().width(1920).height(800).gravity(autoGravity()))
     .delivery(format(auto()))
     .delivery(quality(autoQuality()));
 
-  // Ottimizzazione per mobile
+  // Ottimizzazione per mobile - usiamo un'altezza minore e gravità automatica
   const heroImageMobile = cloudinaryInstance.image('DSC03943_sxkqll');
   heroImageMobile
-    .resize(fill().width(640).height(800))
+    .resize(fill().width(640).height(600).gravity(autoGravity()))
     .delivery(format(auto()))
     .delivery(quality(autoQuality()));
 
@@ -28,7 +28,7 @@ const Hero = () => {
   const fallbackImage = "https://images.pexels.com/photos/2132250/pexels-photo-2132250.jpeg";
 
   return (
-    <div className="relative h-screen min-h-[600px] flex items-center justify-center overflow-hidden">
+    <div className="relative h-[90vh] md:h-screen min-h-[500px] md:min-h-[600px] flex items-center justify-center overflow-hidden">
       {/* Desktop Image */}
       <div className="absolute inset-0 hidden md:block">
         <AdvancedImage
@@ -48,7 +48,7 @@ const Hero = () => {
         <AdvancedImage
           cldImg={heroImageMobile}
           plugins={[lazyload()]}
-          className="w-full h-full object-cover"
+          className="w-full h-full object-cover object-center"
           alt="L'angolo del verde - Attrezzature per giardinaggio"
           onError={(e: React.SyntheticEvent<HTMLImageElement, Event>) => {
             const imgElement = e.currentTarget;
