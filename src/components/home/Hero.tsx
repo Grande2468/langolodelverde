@@ -70,7 +70,7 @@ const Hero = () => {
           </Button>
           <Button 
             to="/contatti" 
-            className="bg-white text-primary-900 hover:bg-primary-100 transition-colors duration-300"
+            className="border-2 border-white text-white hover:bg-white hover:text-primary-900 transition-all duration-300"
             size="lg"
           >
             Contattaci
