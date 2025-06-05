@@ -14,7 +14,7 @@ const PrivacyPolicyPage = () => {
         <div className="container mx-auto px-4 py-16 md:py-20">
           <div className="max-w-3xl">
             <h1 className="text-4xl md:text-5xl font-display font-bold mb-6">Informativa sulla Privacy</h1>
-            <p className="text-xl text-primary-100">Ultimo aggiornamento: [DATA ODIERNA]</p>
+            <p className="text-xl text-primary-100">Ultimo aggiornamento: 13 Marzo 2024</p>
           </div>
         </div>
       </div>
@@ -191,7 +191,7 @@ const PrivacyPolicyPage = () => {
           <ul>
             <li>Tramite email: antoniogrande2014@gmail.com</li>
             <li>Tramite telefono: 320 6658669</li>
-            <li>Visitando questa pagina sul nostro sito web: [LINK ALLA PAGINA CONTATTI]</li>
+            <li>Visitando questa pagina sul nostro sito web: <a href="/contatti" className="text-primary-600 hover:underline">Pagina Contatti</a></li>
           </ul>
         </div>
       </Section>

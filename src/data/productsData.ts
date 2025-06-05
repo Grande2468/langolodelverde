@@ -40,8 +40,8 @@ export const productCategories: ProductCategory[] = [
 export const allProducts: Product[] = [
   // Categoria: motocoltivatori-tosaerba
   {
-    id: 'mt-motocoltivatore-001',
-    name: 'Motozappa hp 6.5',
+    id: 'moto-001-motocoltivatore-xp200',
+    name: 'Motocoltivatore Professionale XP200',
     categoryId: 'motocoltivatori-tosaerba',
     images: ['B-002-e1530044457886-125x125_2x_xnkidy'],
     shortDescription: 'Motozappa hp 6.5 – cc 196 – motore benzina 4 tempi – larghezza fresa mm 360',
@@ -49,8 +49,8 @@ export const allProducts: Product[] = [
     price: '€ 899,00'
   },
   {
-    id: 'ts-garden-master-002',
-    name: 'Motocoltivatore hp 6.5',
+    id: 'moto-002-tosaerba-garden-master',
+    name: 'Tosaerba Elettrico Garden Master',
     categoryId: 'motocoltivatori-tosaerba',
     images: ['Trattore-B001-e1530043946669-220x220_2x_xqobel'],
     shortDescription: 'Motocoltivatore hp 6.5 – cc 196 – motore a benzina – larghezza fresa mm 500 – fresa posteriore',
@@ -58,7 +58,7 @@ export const allProducts: Product[] = [
     price: '€ 275,00'
   },
   {
-    id: 'hyugiu-220x220_2x_cg0hed8e',
+    id: 'moto-003-motocarriola-d30md',
     name: 'Motocarriola D30MD',
     categoryId: 'motocoltivatori-tosaerba',
     images: ['Immagine-WhatsApp-2024-02-08-ore-15.57.23_47219f59-220x220_2x_rlfxgc'],
@@ -67,7 +67,7 @@ export const allProducts: Product[] = [
     price: '€ 1.299,00'
   },
   {
-    id: 'Immagine-WhatsApp-2023-11-12-ore-17.07.57_310a2150-e1723734235216-400x400_ohg61e',
+    id: 'moto-004-rasaerba-yh107',
     name: 'RASAERBA UOMO A BORDO YH107',
     categoryId: 'motocoltivatori-tosaerba',
     images: ['Immagine-WhatsApp-2023-11-12-ore-17.07.57_310a2150-e1723734235216-400x400_ohg61e'],
@@ -76,7 +76,7 @@ export const allProducts: Product[] = [
     price: '€ 2.499,00'
   },
   {
-    id: 'ts-gardden-master-002',
+    id: 'moto-005-motozappa-hp4',
     name: 'Motozappa hp 4',
     categoryId: 'motocoltivatori-tosaerba',
     images: ['B-003-e1530044176939-125x125_2x_imbmlt'],
@@ -88,7 +88,7 @@ export const allProducts: Product[] = [
 
   // Categoria: attrezzatura-giardino
   {
-    id: 'ag-set-base-003',
+    id: 'attg-001-tagliasiepi-makota',
     name: 'Tagliasiepi Makota',
     categoryId: 'attrezzatura-giardino',
     images: ['DSC03908_fs8dwv'],
@@ -101,12 +101,12 @@ export const allProducts: Product[] = [
     name: 'Pompa a mano per irrorazione',
     categoryId: 'attrezzatura-giardino',
     images: ['20250528_094241_feyvkg'],
-    shortDescription: 'Pompa manuale per irrorazione di liquidi, ideale per trattamenti di piante e orti. Dotata di serbatoio resistente e lancia regolabile, permette una distribuzione uniforme e precisa senza l’uso di elettricità o carburante.',
-    fullDescription: 'Pompa manuale per irrorazione di liquidi, ideale per trattamenti di piante e orti. Dotata di serbatoio resistente e lancia regolabile, permette una distribuzione uniforme e precisa senza l’uso di elettricità o carburante.',
+    shortDescription: 'Pompa manuale per irrorazione di liquidi, ideale per trattamenti di piante e orti. Dotata di serbatoio resistente e lancia regolabile, permette una distribuzione uniforme e precisa senza l\'uso di elettricità o carburante.',
+    fullDescription: 'Pompa manuale per irrorazione di liquidi, ideale per trattamenti di piante e orti. Dotata di serbatoio resistente e lancia regolabile, permette una distribuzione uniforme e precisa senza l\'uso di elettricità o carburante.',
     price: '€ 60'
   },
   {
-    id: 'WhatsApp_Image_2024-08-01_at_09.30.22-removebg-preview-250x250_uociaf',
+    id: 'attg-002-motosega-carving',
     name: 'Motosega da potatura Carving CS 3100',
     categoryId: 'attrezzatura-giardino',
     images: ['WhatsApp_Image_2024-08-01_at_09.30.22-removebg-preview-250x250_uociaf'],
@@ -115,7 +115,7 @@ export const allProducts: Product[] = [
     price: '€ 299,00'
   },
   {
-    id: '20210630_113227-scaled-220x220_2x_k7mwsz',
+    id: 'attg-003-motosega-cc38',
     name: 'Motosega da taglio CC 38',
     categoryId: 'attrezzatura-giardino',
     images: ['20210630_113227-scaled-220x220_2x_k7mwsz'],
@@ -124,7 +124,7 @@ export const allProducts: Product[] = [
     price: '€ 199,00'
   },
   {
-    id: '20210630_113306-removebg-preview-400x400_dbnq9q',
+    id: 'attg-004-motosega-cc65',
     name: 'Motosega da taglio cc 65',
     categoryId: 'attrezzatura-giardino',
     images: ['20210630_113306-removebg-preview-400x400_dbnq9q'],
@@ -133,7 +133,7 @@ export const allProducts: Product[] = [
     price: '€ 199,00'
   },
   {
-    id: 'ru-lama-ts-univ-434343005',
+    id: 'attg-005-asta-telescopica',
     name: 'Asta telescopica Makota',
     categoryId: 'attrezzatura-giardino',
     images: ['DSC03919_q0lzxm'],
@@ -142,7 +142,7 @@ export const allProducts: Product[] = [
     price: '€ 75'
   },
   {
-    id: 'ru-lama-ts-univ-003125',
+    id: 'attg-006-soffiatore-miscela',
     name: 'Soffiatore a miscela',
     categoryId: 'attrezzatura-giardino',
     images: ['DSC03925_ujil3g'],
@@ -153,7 +153,7 @@ export const allProducts: Product[] = [
 
   // Categoria: ricambi
   {
-    id: 'ru-lama-ts-univ-005',
+    id: 'rica-001-disco-decespugliatore',
     name: 'Disco per decespugliatore',
     categoryId: 'ricambi',
     images: ['20250528_095954_wrcdp9'],
@@ -162,7 +162,7 @@ export const allProducts: Product[] = [
     price: '€ 8'
   },
   {
-    id: 'ru-filtro-aria-007',
+    id: 'rica-002-filo-decespugliatore',
     name: 'Filo per decespugliatore',
     categoryId: 'ricambi',
     images: ['20250528_100030_ctnbzh'],
@@ -171,7 +171,7 @@ export const allProducts: Product[] = [
     price: '€ 2'
   },
   {
-    id: 'ru-filtro-aria-006',
+    id: 'rica-003-bobina-filo',
     name: 'Bobina di filo per decespugliatore',
     categoryId: 'ricambi',
     images: ['20250528_100124_lzbiqy'],
@@ -180,7 +180,7 @@ export const allProducts: Product[] = [
     price: '€ 10'
   },
   {
-    id: 'ru-filtro-aria-008',
+    id: 'rica-004-batteria-makota',
     name: 'Batteria di ricambio Makota 6000 mAh',
     categoryId: 'ricambi',
     images: ['20250528_100405_xst38r'],
@@ -200,7 +200,7 @@ export const allProducts: Product[] = [
 
   // Categoria: utensileria
   {
-    id: 'ut-set-chiavi-004548',
+    id: 'uten-001-set-giraviti',
     name: 'Set di giraviti con attacco per chiave',
     categoryId: 'utensileria',
     images: ['20250528_095611_xbdbzp'],
@@ -209,7 +209,7 @@ export const allProducts: Product[] = [
     price: '€ 5'
   },
   {
-    id: 'ut-set-chiavi-23008',
+    id: 'uten-002-maschera-protettiva',
     name: 'Maschera protettiva con visiera',
     categoryId: 'utensileria',
     images: ['20250528_095942_evqm1i'],
@@ -218,7 +218,7 @@ export const allProducts: Product[] = [
     price: '€ 5'
   },
   {
-    id: 'ut-set-chiavi-0023548',
+    id: 'uten-003-cacciaviti-isolati',
     name: 'Set di cacciaviti isolati',
     categoryId: 'utensileria',
     images: ['20250528_095249_xhoxbn'],
@@ -227,7 +227,7 @@ export const allProducts: Product[] = [
     price: '€ 10'
   },
   {
-    id: 'ut-set-chiavi-002328',
+    id: 'uten-004-pistola-gonfiaggio',
     name: 'Pistola gonfiagomme ad aria',
     categoryId: 'utensileria',
     images: ['20250528_095547_cqxukt'],
@@ -236,7 +236,7 @@ export const allProducts: Product[] = [
     price: '€ 8'
   },
   {
-    id: 'ut-set-chiavi-034308',
+    id: 'uten-005-forbici-pota',
     name: 'Forbici da pota',
     categoryId: 'utensileria',
     images: ['20250528_095413_yhrhia', '20250528_095422_sionl8'],
@@ -245,7 +245,7 @@ export const allProducts: Product[] = [
     price: '€ 2 - € 6'
   },
   {
-    id: 'ut-set-chiavi-00824543',
+    id: 'uten-006-punte-trapano',
     name: 'Punte per trapano',
     categoryId: 'utensileria',
     images: ['20250528_095524_wyspk5'],
@@ -254,8 +254,8 @@ export const allProducts: Product[] = [
     price: '€ 10'
   },
   {
-    id: 'ut-set-chiavi-unique-001',
-    name: 'Fasce di sollevamento',
+    id: 'uten-007-pistola-ingrassatrice',
+    name: 'Pistola ingrassatrice',
     categoryId: 'utensileria',
     images: ['20250528_095204_a6an86', '20250528_095504_j4t4wb'],
     shortDescription: 'Fasce robuste in poliestere per sollevamento carichi',
@@ -263,7 +263,7 @@ export const allProducts: Product[] = [
     price: '€ 3 - € 12'
   },
   {
-    id: 'ut-set-chiavi-unique-002',
+    id: 'uten-008-fasce-sollevamento',
     name: 'Pistola ingrassatrice',
     categoryId: 'utensileria',
     images: ['20250528_095214_t0i0o4'],
@@ -305,8 +305,8 @@ export const allProducts: Product[] = [
     name: 'Tagliaerba manuale Makota',
     categoryId: 'utensileria',
     images: ['20250528_084937_gemhrc'],
-    shortDescription: 'Tagliaerba manuale Makota, pratico e silenzioso, ideale per la cura di piccoli giardini e spazi verdi. Dotato di lame affilate per un taglio preciso e uniforme, funziona senza elettricità o carburante, garantendo un utilizzo ecologico ed economico. Struttura leggera e maneggevole per il massimo comfort durante l’uso.',
-    fullDescription: 'Tagliaerba manuale Makota, pratico e silenzioso, ideale per la cura di piccoli giardini e spazi verdi. Dotato di lame affilate per un taglio preciso e uniforme, funziona senza elettricità o carburante, garantendo un utilizzo ecologico ed economico. Struttura leggera e maneggevole per il massimo comfort durante l’uso.',
+    shortDescription: 'Tagliaerba manuale Makota, pratico e silenzioso, ideale per la cura di piccoli giardini e spazi verdi. Dotato di lame affilate per un taglio preciso e uniforme, funziona senza elettricità o carburante, garantendo un utilizzo ecologico ed economico. Struttura leggera e maneggevole per il massimo comfort durante l\'uso.',
+    fullDescription: 'Tagliaerba manuale Makota, pratico e silenzioso, ideale per la cura di piccoli giardini e spazi verdi. Dotato di lame affilate per un taglio preciso e uniforme, funziona senza elettricità o carburante, garantendo un utilizzo ecologico ed economico. Struttura leggera e maneggevole per il massimo comfort durante l\'uso.',
     price: '€ 55'
   },
   {
@@ -314,8 +314,8 @@ export const allProducts: Product[] = [
     name: 'Pistola Termica Makota',
     categoryId: 'utensileria',
     images: ['20250528_092704_empkcf'],
-    shortDescription: 'Pistola ad aria calda professionale Makita, ideale per lavori di saldatura, decapaggio vernici, piegatura tubi e termoretrazione. Offre regolazione precisa della temperatura e del flusso d’aria per adattarsi a diverse applicazioni con massima efficienza e sicurezza.',
-    fullDescription: 'Pistola ad aria calda professionale Makita, ideale per lavori di saldatura, decapaggio vernici, piegatura tubi e termoretrazione. Offre regolazione precisa della temperatura e del flusso d’aria per adattarsi a diverse applicazioni con massima efficienza e sicurezza.',
+    shortDescription: 'Pistola ad aria calda professionale Makita, ideale per lavori di saldatura, decapaggio vernici, piegatura tubi e termoretrazione. Offre regolazione precisa della temperatura e del flusso d\'aria per adattarsi a diverse applicazioni con massima efficienza e sicurezza.',
+    fullDescription: 'Pistola ad aria calda professionale Makita, ideale per lavori di saldatura, decapaggio vernici, piegatura tubi e termoretrazione. Offre regolazione precisa della temperatura e del flusso d\'aria per adattarsi a diverse applicazioni con massima efficienza e sicurezza.',
     price: '€ 55'
   },
   {
@@ -341,8 +341,8 @@ export const allProducts: Product[] = [
     name: 'Ingrassatore a mano',
     categoryId: 'utensileria',
     images: ['DSC03933_gng9o7'],
-    shortDescription: 'Ingrassatore manuale per lubrificare in modo preciso cuscinetti, ingranaggi e componenti meccanici. Ideale per officine, manutenzione agricola o fai-da-te. Facile da usare e resistente all’usura.',
-    fullDescription: 'Ingrassatore manuale per lubrificare in modo preciso cuscinetti, ingranaggi e componenti meccanici. Ideale per officine, manutenzione agricola o fai-da-te. Facile da usare e resistente all’usura.',
+    shortDescription: 'Ingrassatore manuale per lubrificare in modo preciso cuscinetti, ingranaggi e componenti meccanici. Ideale per officine, manutenzione agricola o fai-da-te. Facile da usare e resistente all\'usura.',
+    fullDescription: 'Ingrassatore manuale per lubrificare in modo preciso cuscinetti, ingranaggi e componenti meccanici. Ideale per officine, manutenzione agricola o fai-da-te. Facile da usare e resistente all\'usura.',
     price: '€ 50'
   },
   {
@@ -435,8 +435,8 @@ export const allProducts: Product[] = [
     images: ['20250528_091431_qnonsw',
       '20250528_091350_vbadsu',
     ],
-    shortDescription: 'Pistola per idropulitrice Makota, progettata per garantire un getto d’acqua potente e regolabile, ideale per la pulizia di superfici esterne, veicoli, attrezzi da giardino e pavimenti. Realizzata con materiali resistenti per un uso intenso e duraturo.',
-    fullDescription: 'Pistola per idropulitrice Makota, progettata per garantire un getto d’acqua potente e regolabile, ideale per la pulizia di superfici esterne, veicoli, attrezzi da giardino e pavimenti. Realizzata con materiali resistenti per un uso intenso e duraturo.',
+    shortDescription: 'Pistola per idropulitrice Makota, progettata per garantire un getto d\'acqua potente e regolabile, ideale per la pulizia di superfici esterne, veicoli, attrezzi da giardino e pavimenti. Realizzata con materiali resistenti per un uso intenso e duraturo.',
+    fullDescription: 'Pistola per idropulitrice Makota, progettata per garantire un getto d\'acqua potente e regolabile, ideale per la pulizia di superfici esterne, veicoli, attrezzi da giardino e pavimenti. Realizzata con materiali resistenti per un uso intenso e duraturo.',
     price: '€ 25'
   },
   {
@@ -462,10 +462,10 @@ export const allProducts: Product[] = [
     name: 'Trapano avvitatore Makota con attacco bussola',
     categoryId: 'utensileria',
     images: ['20250528_093042_t6ihne'],
-    shortDescription: 'Trapano avvitatore Makota potente e versatile, dotato di attacco per bussole che permette di utilizzare punte e accessori per svitare e stringere dadi e bulloni. Ideale per lavori di falegnameria, meccanica e manutenzione, garantisce prestazioni elevate e comodità d’uso.',
-    fullDescription: 'Trapano avvitatore Makota potente e versatile, dotato di attacco per bussole che permette di utilizzare punte e accessori per svitare e stringere dadi e bulloni. Ideale per lavori di falegnameria, meccanica e manutenzione, garantisce prestazioni elevate e comodità d’uso.',
+    shortDescription: 'Trapano avvitatore Makota potente e versatile, dotato di attacco per bussole che permette di utilizzare punte e accessori per svitare e stringere dadi e bulloni. Ideale per lavori di falegnameria, meccanica e manutenzione, garantisce prestazioni elevate e comodità d\'uso.',
+    fullDescription: 'Trapano avvitatore Makota potente e versatile, dotato di attacco per bussole che permette di utilizzare punte e accessori per svitare e stringere dadi e bulloni. Ideale per lavori di falegnameria, meccanica e manutenzione, garantisce prestazioni elevate e comodità d\'uso.',
     price: '€ 70'
   },
   
   
-];
+]; 

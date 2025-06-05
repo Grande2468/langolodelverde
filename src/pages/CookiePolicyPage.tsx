@@ -14,7 +14,7 @@ const CookiePolicyPage = () => {
         <div className="container mx-auto px-4 py-16 md:py-20">
           <div className="max-w-3xl">
             <h1 className="text-4xl md:text-5xl font-display font-bold mb-6">Cookie Policy</h1>
-            <p className="text-xl text-primary-100">Ultimo aggiornamento: [DATA ODIERNA]</p>
+            <p className="text-xl text-primary-100">Ultimo aggiornamento: 13 Marzo 2024</p>
           </div>
         </div>
       </div>
@@ -22,7 +22,7 @@ const CookiePolicyPage = () => {
       <Section>
         <div className="prose prose-lg max-w-3xl mx-auto">
           <p>
-            Benvenuto/a nella Cookie Policy de L'angolo del verde (di seguito "noi", "nostro", o "Sito"). Questa policy fornisce informazioni dettagliate su come e perché utilizziamo i cookie sul nostro sito web [IL TUO DOMINIO QUI, es. www.langolodelverde.it] e su qualsiasi altro sito web, applicazione mobile o servizio che collega a questa Cookie Policy.
+            Benvenuto/a nella Cookie Policy de L'angolo del verde (di seguito "noi", "nostro", o "Sito"). Questa policy fornisce informazioni dettagliate su come e perché utilizziamo i cookie sul nostro sito web www.langolodelverde.com e su qualsiasi altro sito web, applicazione mobile o servizio che collega a questa Cookie Policy.
           </p>
 
           <h2>Cosa sono i Cookie?</h2>
