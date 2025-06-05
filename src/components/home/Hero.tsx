@@ -17,8 +17,8 @@ const Hero = () => {
     .delivery(format(auto()))
     .delivery(quality(autoQuality()));
 
-  // Ottimizzazione per mobile - usiamo un'altezza minore e gravità automatica
-  const heroImageMobile = cloudinaryInstance.image('DSC03943_sxkqll');
+  // Ottimizzazione per mobile - usiamo un'immagine diversa ottimizzata per mobile
+  const heroImageMobile = cloudinaryInstance.image('DSC03947_qeharc');
   heroImageMobile
     .resize(fill().width(640).height(600).gravity(autoGravity()))
     .delivery(format(auto()))
@@ -68,7 +68,11 @@ const Hero = () => {
           <Button to="/prodotti" variant="primary" size="lg">
             Esplora i Prodotti
           </Button>
-          <Button to="/contatti" variant="outline" size="lg">
+          <Button 
+            to="/contatti" 
+            className="bg-white text-primary-900 hover:bg-primary-100 transition-colors duration-300"
+            size="lg"
+          >
             Contattaci
           </Button>
         </div>
