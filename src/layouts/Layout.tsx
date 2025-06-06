@@ -40,15 +40,21 @@ const Layout = () => {
       </main>
       <Footer />
       <CookieConsent
-        location="bottom"
-        buttonText="Capito!"
-        cookieName="langolodelverdeCookieConsent"
-        style={{ background: "#2B373B", fontSize: "14px" }}
-        buttonStyle={{ color: "#4e503b", background: "#F0EFEB", fontSize: "14px", borderRadius: "3px" }}
-        expires={150}
+        buttonText="Accetta"
+        declineButtonText="Rifiuta"
+        enableDeclineButton
+        disableStyles={true}
+        containerClasses="fixed bottom-0 left-0 right-0 bg-gray-900 text-white p-4 shadow-lg z-50"
+        buttonClasses="px-4 py-2 bg-primary-600 text-white rounded hover:bg-primary-700 transition-colors"
+        declineButtonClasses="px-4 py-2 border border-white text-white rounded hover:bg-white hover:text-gray-900 transition-colors mr-4"
+        contentClasses="container mx-auto flex flex-col sm:flex-row items-center justify-between gap-4"
       >
-        Questo sito utilizza cookie tecnici per migliorare l'esperienza utente. Utilizzando il nostro sito, accetti l'uso di questi cookie. Per maggiori informazioni, consulta la nostra {" "}
-        <a href="/cookie-policy" style={{ color: '#A0AEC0' }} className="hover:underline">Cookie Policy</a>.
+        <span className="text-sm">
+          Questo sito utilizza i cookie per migliorare l'esperienza utente.{' '}
+          <a href="/cookie-policy" className="underline hover:text-primary-300">
+            Maggiori informazioni
+          </a>
+        </span>
       </CookieConsent>
     </div>
   );
