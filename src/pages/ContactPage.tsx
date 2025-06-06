@@ -34,13 +34,13 @@ const ContactPage = () => {
                 320 665 8669
               </a>
               <a 
-                href="https://wa.me/393206658669"
+              href="https://wa.me/393206658669"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center justify-center gap-2 px-6 py-3 text-lg font-semibold bg-primary-600 text-white rounded-lg hover:bg-primary-700 transition-colors duration-300 w-full sm:w-auto"
-              >
+            >
                 <MessageCircle className="h-5 w-5" />
-                Contattaci su WhatsApp
+              Contattaci su WhatsApp
               </a>
             </div>
           </div>

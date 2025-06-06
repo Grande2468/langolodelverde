@@ -76,39 +76,39 @@ const Categories = () => {
             .delivery(quality('auto'));
 
           return (
-            <motion.div 
-              key={category.id}
-              variants={item}
+          <motion.div 
+            key={category.id}
+            variants={item}
+          >
+            <Link 
+              to={`/prodotti#${category.id}`} 
+              className="block h-full group"
             >
-              <Link 
-                to={`/prodotti#${category.id}`} 
-                className="block h-full group"
-              >
-                <div className="bg-white rounded-xl overflow-hidden shadow-md transition-all h-full hover:shadow-lg relative flex flex-col">
-                  <div className="h-48 overflow-hidden">
+              <div className="bg-white rounded-xl overflow-hidden shadow-md transition-all h-full hover:shadow-lg relative flex flex-col">
+                <div className="h-48 overflow-hidden">
                     <AdvancedImage 
                       cldImg={image}
-                      alt={category.name}
-                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                    />
-                  </div>
-                  <div className="p-5 flex-grow flex flex-col">
-                    <div className="mb-3 p-3 bg-primary-50 text-primary-700 rounded-full w-fit">
-                      {category.icon}
-                    </div>
-                    <h3 className="text-xl font-semibold mb-2 text-gray-900">
-                      {category.name}
-                    </h3>
-                    <p className="text-gray-600 text-sm mb-4">
-                      {category.description}
-                    </p>
-                    <span className="mt-auto text-primary-600 font-medium text-sm group-hover:underline">
-                      Vedi Prodotti
-                    </span>
-                  </div>
+                    alt={category.name}
+                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  />
                 </div>
-              </Link>
-            </motion.div>
+                <div className="p-5 flex-grow flex flex-col">
+                  <div className="mb-3 p-3 bg-primary-50 text-primary-700 rounded-full w-fit">
+                    {category.icon}
+                  </div>
+                  <h3 className="text-xl font-semibold mb-2 text-gray-900">
+                    {category.name}
+                  </h3>
+                  <p className="text-gray-600 text-sm mb-4">
+                    {category.description}
+                  </p>
+                  <span className="mt-auto text-primary-600 font-medium text-sm group-hover:underline">
+                    Vedi Prodotti
+                  </span>
+                </div>
+              </div>
+            </Link>
+          </motion.div>
           );
         })}
       </motion.div>

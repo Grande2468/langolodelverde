@@ -25,14 +25,11 @@ const Footer = () => {
               Il tuo partner di fiducia per attrezzature da giardinaggio, paesaggistica e agricoltura di qualità.
             </p>
             <div className="flex gap-4">
-              <a href="#" className="text-primary-200 hover:text-white transition-colors" aria-label="Facebook">
+              <a href="https://www.facebook.com/share/1Cc57fSwiu/" className="text-primary-200 hover:text-white transition-colors" aria-label="Facebook" target="_blank" rel="noopener noreferrer">
                 <Facebook size={20} />
               </a>
-              <a href="#" className="text-primary-200 hover:text-white transition-colors" aria-label="Instagram">
+              <a href="https://www.instagram.com/langolodelverde_caianello?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" className="text-primary-200 hover:text-white transition-colors" aria-label="Instagram" target="_blank" rel="noopener noreferrer">
                 <Instagram size={20} />
-              </a>
-              <a href="#" className="text-primary-200 hover:text-white transition-colors" aria-label="YouTube">
-                <Youtube size={20} />
               </a>
             </div>
           </div>

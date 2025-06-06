@@ -50,21 +50,21 @@ export const allProducts: Product[] = [
   },
   {
     id: 'moto-002-tosaerba-garden-master',
-    name: 'Tosaerba Elettrico Garden Master',
+    name: 'Motocoltivatore a benzina 6.5 cv',
     categoryId: 'motocoltivatori-tosaerba',
     images: ['Trattore-B001-e1530043946669-220x220_2x_xqobel'],
-    shortDescription: 'Motocoltivatore hp 6.5 – cc 196 – motore a benzina – larghezza fresa mm 500 – fresa posteriore',
-    fullDescription: 'Motocoltivatore hp 6.5 – cc 196 – motore a benzina – larghezza fresa mm 500 – fresa posteriore',
-    price: '€ 275,00'
+    shortDescription: 'Motocoltivatore a benzina con motore da 6.5 HP, cilindrata 196 cc, fresa posteriore da 500 mm di larghezza.',
+    fullDescription: 'Motocoltivatore a benzina con motore da 6.5 HP, cilindrata 196 cc, fresa posteriore da 500 mm di larghezza.',
+    price: '€ 600'
   },
   {
     id: 'moto-003-motocarriola-d30md',
     name: 'Motocarriola D30MD',
     categoryId: 'motocoltivatori-tosaerba',
     images: ['Immagine-WhatsApp-2024-02-08-ore-15.57.23_47219f59-220x220_2x_rlfxgc'],
-    shortDescription: 'Bio Trituratore Cingolato 15 HP - Motocarriola con bio-trituratore integrato.',
-    fullDescription: 'Bio Trituratore Cingolato 15 HP - Motocarriola con bio-trituratore integrato, dotata di doppio motore a benzina per trasporto e triturazione indipendenti. Potente, autonoma e ideale per lavori intensivi in giardino e campagna.',
-    price: '€ 1.299,00'
+    shortDescription: 'Motocarriola a cingoli con motore Ducar 6.5 HP, cilindrata 196 cc, avviamento manuale, portata 300 kg, cambio 3 marce avanti + 1 retromarcia, cassone 1040×860 mm ribaltabile, pendenza massima 20%, cingoli 189x60 con 34 buchi.',
+    fullDescription: 'Motocarriola a cingoli con motore Ducar 6.5 HP, cilindrata 196 cc, avviamento manuale, portata 300 kg, cambio 3 marce avanti + 1 retromarcia, cassone 1040×860 mm ribaltabile, pendenza massima 20%, cingoli 189x60 con 34 buchi.',
+    price: '€ 1450'
   },
   {
     id: 'moto-004-rasaerba-yh107',
@@ -121,7 +121,7 @@ export const allProducts: Product[] = [
     images: ['20210630_113227-scaled-220x220_2x_k7mwsz'],
     shortDescription: 'Motosega da taglio CC 38',
     fullDescription: 'Motosega da taglio CC 38',
-    price: '€ 199,00'
+    price: '€ 100'
   },
   {
     id: 'attg-004-motosega-cc65',
@@ -272,7 +272,7 @@ export const allProducts: Product[] = [
     price: '€ 15'
   },
   {
-    id: 'ut-set-chiavi-unique-00987872',
+    id: 'ut-seghetto-alternativo-001',
     name: 'Seghetto alternativo Makotae',
     categoryId: 'utensileria',
     images: ['DSC03922_mftdhw'],
@@ -281,18 +281,18 @@ export const allProducts: Product[] = [
     price: '€ 55'
   },
   {
-    id: 'ut-set-chiavi-unique-07802',
-    name: 'Smerigliatrice angolare a batteria Makita',
+    id: 'ut-smerigliatrice-batteria-002',
+    name: 'Smerigliatrice angolare a batteria Makota',
     categoryId: 'utensileria',
     images: ['20250528_092352_pegwp8',
       '20250528_092324_xxcynm',
     ],
     shortDescription: 'Smerigliatrice angolare a batteria da 18V compatibile Makita, ideale per tagliare, smerigliare e levigare metallo, pietra e altri materiali. Design compatto, impugnatura ergonomica e protezione regolabile per un lavoro preciso e sicuro anche senza cavi.',
     fullDescription: 'Smerigliatrice angolare a batteria da 18V compatibile Makita, ideale per tagliare, smerigliare e levigare metallo, pietra e altri materiali. Design compatto, impugnatura ergonomica e protezione regolabile per un lavoro preciso e sicuro anche senza cavi.',
-    price: '€ 90'
+    price: '€70'
   },
   {
-    id: 'ut-set-chiavi-unique-023402',
+    id: 'ut-smerigliatrice-corrente-003',
     name: 'Smerigliatrice angolare a corrente Makota',
     categoryId: 'utensileria',
     images: ['20250528_092612_pwfxvy'],
@@ -301,7 +301,7 @@ export const allProducts: Product[] = [
     price: '€ 30'
   },
   {
-    id: 'ut-set-chiavi-unique-04540892',
+    id: 'ut-tagliaerba-manuale-004',
     name: 'Tagliaerba manuale Makota',
     categoryId: 'utensileria',
     images: ['20250528_084937_gemhrc'],
@@ -310,7 +310,7 @@ export const allProducts: Product[] = [
     price: '€ 55'
   },
   {
-    id: 'ut-set-chiavi-unique-0452039240892',
+    id: 'ut-pistola-termica-005',
     name: 'Pistola Termica Makota',
     categoryId: 'utensileria',
     images: ['20250528_092704_empkcf'],
@@ -319,7 +319,7 @@ export const allProducts: Product[] = [
     price: '€ 55'
   },
   {
-    id: 'ut-set-chiavi-unique-0452039240892',
+    id: 'ut-avvitatore-006',
     name: 'Avvitatore Makota',
     categoryId: 'utensileria',
     images: ['20250528_090006_wmz8wg'],
@@ -328,7 +328,7 @@ export const allProducts: Product[] = [
     price: '€ 35'
   },
   {
-    id: 'ut-set-chiavi-unique-0452039240892',
+    id: 'ut-kit-4in1-007',
     name: 'Kit 4 in 1 Makota – Flex, Avvitatore a percussione, Avvitatore a impulso, Martello tassellatore',
     categoryId: 'utensileria',
     images: ['20250528_093337_pc8zfz'],
@@ -337,7 +337,7 @@ export const allProducts: Product[] = [
     price: '€ 120'
   },
   {
-    id: 'ut-set-chiavi-unique-0452039240892',
+    id: 'ut-ingrassatore-008',
     name: 'Ingrassatore a mano',
     categoryId: 'utensileria',
     images: ['DSC03933_gng9o7'],
@@ -346,7 +346,7 @@ export const allProducts: Product[] = [
     price: '€ 50'
   },
   {
-    id: 'ut-set-chiavi-unique-0452039240892',
+    id: 'ut-kit-forbice-009',
     name: 'Kit forbice/cesoia a batteria Makota – 3 misure di tagli',
     categoryId: 'utensileria',
     images: ['20250528_081710_cyqnar',
@@ -358,19 +358,19 @@ export const allProducts: Product[] = [
     ],
     shortDescription: 'Kit completo di forbice elettrica Makota con 3 lame intercambiabili di diverse grandezze, ideale per potature precise di rami, siepi e piante. Funzionamento a batteria per la massima libertà di movimento, impugnatura ergonomica e sistema di sicurezza integrato. Perfetto per uso domestico e professionale in giardinaggio.',
     fullDescription: 'Kit completo di forbice elettrica Makota con 3 lame intercambiabili di diverse grandezze, ideale per potature precise di rami, siepi e piante. Funzionamento a batteria per la massima libertà di movimento, impugnatura ergonomica e sistema di sicurezza integrato. Perfetto per uso domestico e professionale in giardinaggio.',
-    price: '€ 50 - € 60 - € 70 '
+    price: '€ 50 - € 60 - € 70'
   },
   {
-    id: 'ut-set-chiavi-unique-0452039240892',
-    name: 'Trapano a betteria makota',
+    id: 'ut-tassellatore-batteria-010',
+    name: 'Tassellatore a batteria makota',
     categoryId: 'utensileria',
     images: ['DSC03923_oq0c3b'],
-    shortDescription: 'Trapano a batteria Makota, compatto e potente, ideale per forature e avvitature su legno, metallo e plastica. Dotato di batteria ricaricabile, velocità regolabile e impugnatura ergonomica per un utilizzo confortevole.',
-    fullDescription: 'Trapano a batteria Makota, compatto e potente, ideale per forature e avvitature su legno, metallo e plastica. Dotato di batteria ricaricabile, velocità regolabile e impugnatura ergonomica per un utilizzo confortevole.',
+    shortDescription: 'Tassellatore Makota potente e resistente, ideale per forare e fissare materiali duri come cemento, muratura e pietra. Dotato di modalità martello e rotazione, offre prestazioni elevate e controllo ottimale anche nei lavori più impegnativi.',
+    fullDescription: 'Tassellatore Makota potente e resistente, ideale per forare e fissare materiali duri come cemento, muratura e pietra. Dotato di modalità martello e rotazione, offre prestazioni elevate e controllo ottimale anche nei lavori più impegnativi.',
     price: '€ 80'
   },
   {
-    id: 'ut-set-chiavi-unique-0452039240892',
+    id: 'ut-avvolgitubo-011',
     name: 'Avvolgitubo',
     categoryId: 'utensileria',
     images: ['DSC03930_ylwgfv'],
@@ -379,7 +379,7 @@ export const allProducts: Product[] = [
     price: '€ 70'
   },
   {
-    id: 'ut-set-chiavi-unique-0452039240892',
+    id: 'ut-mini-flex-012',
     name: 'Mini flex a batteria Makota',
     categoryId: 'utensileria',
     images: ['20250528_090930_a0cnw2'],
@@ -388,7 +388,7 @@ export const allProducts: Product[] = [
     price: '€ 25'
   },
   {
-    id: 'ut-set-chiavi-unique-0452039240892',
+    id: 'ut-aspiratore-013',
     name: 'Aspiratore Makota',
     categoryId: 'utensileria',
     images: ['20250528_092103_rerht0'],
@@ -397,7 +397,7 @@ export const allProducts: Product[] = [
     price: '€ 18'
   },
   {
-    id: 'ut-set-chiavi-unique-0452039240892',
+    id: 'ut-saldatore-plastica-014',
     name: 'Saldatore per plastica',
     categoryId: 'utensileria',
     images: ['20250528_091938_cxpfgd'],
@@ -406,8 +406,8 @@ export const allProducts: Product[] = [
     price: '€ 45'
   },
   {
-    id: 'ut-set-chiavi-unique-0452039240892',
-    name: 'Levigatrice Makota ',
+    id: 'ut-levigatrice-015',
+    name: 'Levigatrice Makota',
     categoryId: 'utensileria',
     images: ['20250528_091214_dplxcv',
       '20250528_091250_na4xow',
@@ -417,19 +417,18 @@ export const allProducts: Product[] = [
     price: '€ 60'
   },
   {
-    id: 'ut-set-chiavi-unique-0452039240892',
-    name: 'Makota : 4 in 1 – Forbice da Potatura a Batteria, Motosega a Batteria ',
+    id: 'ut-kit-potatura-016',
+    name: 'Makota : 4 in 1 – Forbice da Potatura a Batteria, Motosega a Batteria',
     categoryId: 'utensileria',
     images: ['DSC03912_svig5u',
       'DSC03915_upjgx6',
     ],
-    shortDescription: 'Kit versatile e completo per la cura del verde, include forbice da potatura e mini motosega a batteria, perfetti per tagli precisi e veloci su rami e siepi. Leggeri, maneggevoli e ideali per uso domestico o professionale..',
-    fullDescription: 'Kit versatile e completo per la cura del verde, include forbice da potatura e mini motosega a batteria, perfetti per tagli precisi e veloci su rami e siepi. Leggeri, maneggevoli e ideali per uso domestico o professionale.',
-    price: '€ 120'
+    shortDescription: 'Kit versatile e completo per la cura del verde, include forbice da potatura e mini motosega a batteria e asta telescopica 2.10m, perfetti per tagli precisi e veloci su rami e siepi. Leggeri, maneggevoli e ideali per uso domestico o professionale.',
+    fullDescription: 'Kit versatile e completo per la cura del verde, include forbice da potatura e mini motosega a batteria e asta telescopica 2.10m, perfetti per tagli precisi e veloci su rami e siepi. Leggeri, maneggevoli e ideali per uso domestico o professionale.',
+    price: '€ 80'
   },
-
   {
-    id: 'ut-set-chiavi-unique-0452039240892',
+    id: 'ut-pistola-idropulitrice-017',
     name: 'Pistola idropulitrice Makota',
     categoryId: 'utensileria',
     images: ['20250528_091431_qnonsw',
@@ -440,16 +439,16 @@ export const allProducts: Product[] = [
     price: '€ 25'
   },
   {
-    id: 'ut-set-chiavi-unique-0452039240892',
+    id: 'ut-soffiatore-batteria-018',
     name: 'Soffiatore a batteria Makota',
     categoryId: 'utensileria',
     images: ['20250528_084740_pdxn2i'],
     shortDescription: 'Soffiatore a batteria Makota, leggero e potente, ideale per la pulizia di foglie, polvere e detriti in giardini, cortili e aree esterne. Dotato di batteria ad alta capacità per lunga autonomia e design ergonomico per un utilizzo confortevole.',
     fullDescription: 'Soffiatore a batteria Makota, leggero e potente, ideale per la pulizia di foglie, polvere e detriti in giardini, cortili e aree esterne. Dotato di batteria ad alta capacità per lunga autonomia e design ergonomico per un utilizzo confortevole.',
     price: '€ 60'
-  }, 
-   {
-    id: 'ut-set-chiavi-unique-0452039240892',
+  },
+  {
+    id: 'ut-tassellatore-019',
     name: 'Tassellatore Makota',
     categoryId: 'utensileria',
     images: ['20250528_093844_bui6wi'],
@@ -479,7 +478,7 @@ export const allProducts: Product[] = [
     ],
     shortDescription: 'Set di 3 mini motoseghe Makota a batteria, ideali per potatura rapida e precisa. Disponibili in tre misure per adattarsi a ogni esigenza di taglio. Design compatto, leggera e maneggevole, perfetta per giardinaggio e cura degli alberi.',
     fullDescription: 'Set di 3 mini motoseghe Makota a batteria, ideali per potatura rapida e precisa. Disponibili in tre misure per adattarsi a ogni esigenza di taglio. Design compatto, leggera e maneggevole, perfetta per giardinaggio e cura degli alberi.',
-    price: '€ 25 - €45 - €50'
+    price: '€ 35 - €45 - 60'
   },
   
 ]; 

@@ -56,7 +56,7 @@ const Hero = () => {
           }}
         />
       </div>
-
+          
       <div className="relative z-10 container mx-auto px-4 text-center text-white">
         <h1 className="text-4xl md:text-6xl font-bold mb-6 drop-shadow-lg">
           L'angolo del verde
@@ -67,14 +67,14 @@ const Hero = () => {
         <div className="flex flex-wrap justify-center gap-4">
           <Button to="/prodotti" variant="primary" size="lg">
             Esplora i Prodotti
-          </Button>
+            </Button>
           <Button 
             to="/contatti" 
             className="border-2 border-white text-white hover:bg-white hover:text-primary-900 transition-all duration-300"
             size="lg"
           >
-            Contattaci
-          </Button>
+              Contattaci
+            </Button>
         </div>
       </div>
       
