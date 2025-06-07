@@ -58,7 +58,7 @@ export const allProducts: Product[] = [
     images: ['B-003-e1530044176939-125x125_2x_imbmlt'],
     shortDescription: 'Motozappa hp 4 – cc 139 – motore benzina 4 tempi – larghezza fresa mm 360',
     fullDescription: 'Motozappa hp 4 – cc 139 – motore benzina 4 tempi – larghezza fresa mm 360',
-    price: '€ 299,00',
+    price: '€ 290',
   },
   
 
