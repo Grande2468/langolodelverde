@@ -73,6 +73,16 @@ const ProductsPage = () => {
                 Nessun prodotto trovato in questa categoria.
               </div>
             )}
+
+            {/* Messaggio promozionale negozio fisico */}
+            <div className="mt-16 text-center bg-gray-50 p-8 rounded-lg">
+              <h2 className="text-2xl font-bold text-primary-800 mb-3">Scopri molto altro nel nostro negozio fisico!</h2>
+              <p className="text-gray-600 max-w-2xl mx-auto">
+                Vieni a trovarci per scoprire la nostra vasta gamma di prodotti, ricevere consulenza personalizzata 
+                e toccare con mano la qualità dei nostri articoli. Il nostro staff esperto è pronto ad aiutarti 
+                nella scelta migliore per le tue esigenze.
+              </p>
+            </div>
           </div>
         </Section>
       </div>

@@ -39,24 +39,8 @@ export const productCategories: ProductCategory[] = [
 
 export const allProducts: Product[] = [
   // Categoria: motocoltivatori-tosaerba
-  {
-    id: 'moto-001-motocoltivatore-xp200',
-    name: 'Motocoltivatore Professionale XP200',
-    categoryId: 'motocoltivatori-tosaerba',
-    images: ['B-002-e1530044457886-125x125_2x_xnkidy'],
-    shortDescription: 'Motozappa hp 6.5 – cc 196 – motore benzina 4 tempi – larghezza fresa mm 360',
-    fullDescription: 'Motozappa hp 6.5 – cc 196 – motore benzina 4 tempi – larghezza fresa mm 360',
-    price: '€ 899,00'
-  },
-  {
-    id: 'moto-002-tosaerba-garden-master',
-    name: 'Motocoltivatore a benzina 6.5 cv',
-    categoryId: 'motocoltivatori-tosaerba',
-    images: ['Trattore-B001-e1530043946669-220x220_2x_xqobel'],
-    shortDescription: 'Motocoltivatore a benzina con motore da 6.5 HP, cilindrata 196 cc, fresa posteriore da 500 mm di larghezza.',
-    fullDescription: 'Motocoltivatore a benzina con motore da 6.5 HP, cilindrata 196 cc, fresa posteriore da 500 mm di larghezza.',
-    price: '€ 600'
-  },
+  
+  
   {
     id: 'moto-003-motocarriola-d30md',
     name: 'Motocarriola D30MD',
@@ -66,15 +50,7 @@ export const allProducts: Product[] = [
     fullDescription: 'Motocarriola a cingoli con motore Ducar 6.5 HP, cilindrata 196 cc, avviamento manuale, portata 300 kg, cambio 3 marce avanti + 1 retromarcia, cassone 1040×860 mm ribaltabile, pendenza massima 20%, cingoli 189x60 con 34 buchi.',
     price: '€ 1450'
   },
-  {
-    id: 'moto-004-rasaerba-yh107',
-    name: 'RASAERBA UOMO A BORDO YH107',
-    categoryId: 'motocoltivatori-tosaerba',
-    images: ['Immagine-WhatsApp-2023-11-12-ore-17.07.57_310a2150-e1723734235216-400x400_ohg61e'],
-    shortDescription: 'Rasaerba uomo a bordo YH107 – 13.6 HP - Potente trattorino tagliaerba.',
-    fullDescription: 'Rasaerba uomo a bordo YH107 – 13.6 HP - Potente trattorino tagliaerba con larghezza di taglio da 107 cm, 5 marce + retromarcia, frizione elettromagnetica e serbatoio da 5 litri. Comfort garantito da sedile ergonomico e cesto da 220 L.',
-    price: '€ 2.499,00'
-  },
+  
   {
     id: 'moto-005-motozappa-hp4',
     name: 'Motozappa hp 4',
@@ -97,13 +73,13 @@ export const allProducts: Product[] = [
     price: '€ 55'
   },
   {
-    id: 'ag-set-base-003',
-    name: 'Pompa a mano per irrorazione',
+    id: 'ag-set-base-004',
+    name: 'Pompa a Irrorazione A.M.C.',
     categoryId: 'attrezzatura-giardino',
-    images: ['20250528_094241_feyvkg'],
-    shortDescription: 'Pompa manuale per irrorazione di liquidi, ideale per trattamenti di piante e orti. Dotata di serbatoio resistente e lancia regolabile, permette una distribuzione uniforme e precisa senza l\'uso di elettricità o carburante.',
-    fullDescription: 'Pompa manuale per irrorazione di liquidi, ideale per trattamenti di piante e orti. Dotata di serbatoio resistente e lancia regolabile, permette una distribuzione uniforme e precisa senza l\'uso di elettricità o carburante.',
-    price: '€ 60'
+    images: ['2842021Pompa-Spalla-elettrica-nebulizzatore-16L-per-disinfestazione-irrorazione-pulizia_1_ycdqrp'],
+    shortDescription: 'Pompa a spalla ideale per trattamenti su orti e giardini. Dotata di lancia regolabile, serbatoio resistente e facile da trasportare. Perfetta per irrorazione di pesticidi, fertilizzanti o acqua. Alta affidabilità e pressione costante.',
+    fullDescription: 'Pompa a spalla ideale per trattamenti su orti e giardini. Dotata di lancia regolabile, serbatoio resistente e facile da trasportare. Perfetta per irrorazione di pesticidi, fertilizzanti o acqua. Alta affidabilità e pressione costante.',
+    price: '€ 55'
   },
   {
     id: 'attg-002-motosega-carving',
@@ -112,7 +88,16 @@ export const allProducts: Product[] = [
     images: ['WhatsApp_Image_2024-08-01_at_09.30.22-removebg-preview-250x250_uociaf'],
     shortDescription: 'Motosega da potatura Carving 25 ULTRALEGGERA',
     fullDescription: 'Motosega da potatura Carving 25 ULTRALEGGERA',
-    price: '€ 299,00'
+    price: '€ 110'
+  },
+  {
+    id: 'attg-002-motosega-cc',
+    name: 'Motosega a Scoppio 25cc',
+    categoryId: 'attrezzatura-giardino',
+    images: ['352022Motosega-a-scoppio-52cc-profondita-lama-50cm-professionale-per-giardinaggio-1-1__zoqyna'],
+    shortDescription: 'Motosega compatta e potente da 25cc, perfetta per potature e piccoli lavori domestici. Dotata di avviamento facilitato, barra da taglio maneggevole e motore a due tempi affidabile. Leggera ma efficace, ideale per l’uso hobbistico.',
+    fullDescription: 'Motosega compatta e potente da 25cc, perfetta per potature e piccoli lavori domestici. Dotata di avviamento facilitato, barra da taglio maneggevole e motore a due tempi affidabile. Leggera ma efficace, ideale per l’uso hobbistico.',
+    price: '€ 80'
   },
   {
     id: 'attg-003-motosega-cc38',
@@ -130,7 +115,7 @@ export const allProducts: Product[] = [
     images: ['20210630_113306-removebg-preview-400x400_dbnq9q'],
     shortDescription: 'Motosega da taglio cc 65',
     fullDescription: 'Motosega da taglio cc 65',
-    price: '€ 199,00'
+    price: '€ 100'
   },
   {
     id: 'attg-005-asta-telescopica',
@@ -152,6 +137,30 @@ export const allProducts: Product[] = [
   },
 
   // Categoria: ricambi
+  {
+    id: 'scarpentinfortunistica1',
+    name: ' Scarpe Antinfortunistica',
+    categoryId: 'ricambi',
+    images: ['WhatsApp_Image_2025-06-07_at_16.19.09_rpeaq1',
+      'WhatsApp_Image_2025-06-07_at_16.19.09_5_cdbpb1',
+      'WhatsApp_Image_2025-06-07_at_16.19.09_4_eiwf6l',
+      'WhatsApp_Image_2025-06-07_at_16.19.09_2_fducp4',
+    ],
+    shortDescription: 'Scarpa da lavoro robusta con puntale in acciaio, suola anti-perforazione, antiscivolo e tomaia idrorepellente. Ideale per cantieri, magazzini e officine. Classe S3 – massima protezione e comfort per uso professionale.',
+    fullDescription: 'Scarpa da lavoro robusta con puntale in acciaio, suola anti-perforazione, antiscivolo e tomaia idrorepellente. Ideale per cantieri, magazzini e officine. Classe S3 – massima protezione e comfort per uso professionale.',
+    price: '€ 48'
+  },
+  {
+    id: 'scarpentinfortunistica2',
+    name: ' Scarpe Antinfortunistica',
+    categoryId: 'ricambi',
+    images: ['WhatsApp_Image_2025-06-07_at_16.19.09_4_eiwf6l',
+      'WhatsApp_Image_2025-06-07_at_16.19.10_yyemxr',
+    ],
+    shortDescription: 'Scarpa protettiva leggera con puntale rinforzato, suola antiscivolo e assorbimento urti al tallone. Perfetta per lavori leggeri e uso quotidiano. Classe S1 – ottimo rapporto qualità-prezzo.',
+    fullDescription: 'Scarpa protettiva leggera con puntale rinforzato, suola antiscivolo e assorbimento urti al tallone. Perfetta per lavori leggeri e uso quotidiano. Classe S1 – ottimo rapporto qualità-prezzo.',
+    price: '€ 35'
+  },
   {
     id: 'rica-001-disco-decespugliatore',
     name: 'Disco per decespugliatore',
