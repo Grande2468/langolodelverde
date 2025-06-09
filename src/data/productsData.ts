@@ -39,8 +39,136 @@ export const productCategories: ProductCategory[] = [
 
 export const allProducts: Product[] = [
   // Categoria: motocoltivatori-tosaerba
-  
-  
+  {
+    id: 'moto-003-motocarriola-d30md',
+    name: 'Motocarriola D30MD',
+    categoryId: 'motocoltivatori-tosaerba',
+    images: ['Immagine-WhatsApp-2024-02-08-ore-15.57.23_47219f59-220x220_2x_rlfxgc'],
+    shortDescription: 'Motocarriola a cingoli con motore Ducar 6.5 HP, cilindrata 196 cc, avviamento manuale, portata 300 kg, cambio 3 marce avanti + 1 retromarcia, cassone 1040×860 mm ribaltabile, pendenza massima 20%, cingoli 189x60 con 34 buchi.',
+    fullDescription: 'Motocarriola a cingoli con motore Ducar 6.5 HP, cilindrata 196 cc, avviamento manuale, portata 300 kg, cambio 3 marce avanti + 1 retromarcia, cassone 1040×860 mm ribaltabile, pendenza massima 20%, cingoli 189x60 con 34 buchi.',
+    price: '€ 1450'
+  },
+  {
+    id: 'moto-005-motozappa-hp4',
+    name: 'Motozappa hp 4',
+    categoryId: 'motocoltivatori-tosaerba',
+    images: ['B-003-e1530044176939-125x125_2x_imbmlt'],
+    shortDescription: 'Motozappa hp 4 – cc 139 – motore benzina 4 tempi – larghezza fresa mm 360',
+    fullDescription: 'Motozappa hp 4 – cc 139 – motore benzina 4 tempi – larghezza fresa mm 360',
+    price: '€ 290'
+  },
+
+  // Categoria: attrezzatura-giardino
+  {
+    id: 'attg-tubo-giardino-11',
+    name: 'Tubo da Giardino Base',
+    categoryId: 'attrezzatura-giardino',
+    images: ['DSC03967_dlr8yg'],
+    shortDescription: 'Tubo flessibile e leggero, ideale per piccoli giardini o balconi.',
+    fullDescription: 'Tubo flessibile e leggero, ideale per piccoli giardini o balconi. Compatibile con tutti gli attacchi standard.',
+    price: '€ 11'
+  },
+  {
+    id: 'attg-tubo-giardino-18',
+    name: 'Tubo da Giardino Rinforzato',
+    categoryId: 'attrezzatura-giardino',
+    images: ['DSC03968_ngslnu'],
+    shortDescription: 'Tubo estensibile rinforzato, resistente a nodi e piegature.',
+    fullDescription: 'Tubo estensibile rinforzato, resistente a nodi e piegature. Per irrigazione quotidiana con maggiore portata.',
+    price: '€ 18'
+  },
+  {
+    id: 'attg-tubo-giardino-20',
+    name: 'Tubo da Giardino Professionale',
+    categoryId: 'attrezzatura-giardino',
+    images: ['DSC03966_arwbwe'],
+    shortDescription: 'Tubo da giardino professionale, triplo strato, resistente a UV e pressione.',
+    fullDescription: 'Tubo da giardino professionale, triplo strato, resistente a UV e pressione. Perfetto per superfici ampie.',
+    price: '€ 20'
+  },
+  {
+    id: 'attg-idropulitrice-110',
+    name: 'Idropulitrice Elettrica 110 bar',
+    categoryId: 'attrezzatura-giardino',
+    images: ['DSC03960_bgwx1d'],
+    shortDescription: 'Idropulitrice a corrente da 110 bar, perfetta per pulizie di esterni, auto, pavimenti e muretti.',
+    fullDescription: 'Idropulitrice a corrente da 110 bar, perfetta per pulizie di esterni, auto, pavimenti e muretti. Potente ma compatta, con avvolgitubo, pistola e lancia regolabile inclusi.',
+    price: '€ 120'
+  },
+  {
+    id: 'attg-compressore-batteria',
+    name: 'Compressore a Batteria Makota',
+    categoryId: 'attrezzatura-giardino',
+    images: ['DSC03958_qnmmof'],
+    shortDescription: 'Compressore portatile a batteria, ideale per gonfiare gomme, piscine e attrezzi da giardino.',
+    fullDescription: 'Compressore portatile a batteria, ideale per gonfiare gomme, piscine e attrezzi da giardino. Compatto e ricaricabile, perfetto per casa e auto.',
+    price: '€ 85'
+  },
+
+  // Categoria: utensileria
+  {
+    id: 'ut-avvolgitubo-011',
+    name: 'Avvolgitubo automatico per aria compressa',
+    categoryId: 'utensileria',
+    images: ['DSC03930_ylwgfv'],
+    shortDescription: 'Avvolgitubo automatico professionale per aria compressa, con capacità di 20 metri di tubo. Sistema di riavvolgimento automatico per una gestione pratica e veloce.',
+    fullDescription: 'Avvolgitubo automatico professionale per aria compressa, con capacità di 20 metri di tubo. Sistema di riavvolgimento automatico per una gestione pratica e veloce. Ideale per officine e ambienti di lavoro professionali.',
+    price: '€ 70'
+  },
+  {
+    id: 'ut-fasce-sollevamento-small',
+    name: 'Fasce per sollevamento carichi - Piccola',
+    categoryId: 'utensileria',
+    images: ['20250528_095204_a6an86'],
+    shortDescription: 'Fasce robuste in poliestere per sollevamento carichi leggeri',
+    fullDescription: 'Fasce robuste in poliestere ad alta resistenza, ideali per il sollevamento e il trasporto in sicurezza di carichi leggeri. Utilizzate in ambito edile e agricolo, garantiscono affidabilità grazie alla struttura rinforzata.',
+    price: '€ 3'
+  },
+  {
+    id: 'ut-fasce-sollevamento-large',
+    name: 'Fasce per sollevamento carichi - Grande',
+    categoryId: 'utensileria',
+    images: ['20250528_095504_j4t4wb'],
+    shortDescription: 'Fasce robuste in poliestere per sollevamento carichi pesanti',
+    fullDescription: 'Fasce robuste in poliestere ad alta resistenza, ideali per il sollevamento e il trasporto in sicurezza di carichi pesanti. Utilizzate in ambito industriale, garantiscono massima affidabilità grazie alla struttura extra rinforzata e alle cuciture ad alta tenuta.',
+    price: '€ 12'
+  },
+  {
+    id: 'ut-tagliasiepi-2in1-004',
+    name: 'Tagliasiepi 2 in 1 Makota',
+    categoryId: 'utensileria',
+    images: ['20250528_084937_gemhrc'],
+    shortDescription: 'Tagliasiepi elettrico 2 in 1 Makota, versatile strumento che combina le funzioni di tagliasiepi e tosarami in un unico dispositivo.',
+    fullDescription: 'Tagliasiepi elettrico 2 in 1 Makota, versatile strumento che combina le funzioni di tagliasiepi e tosarami in un unico dispositivo. Design ergonomico e lame di precisione per risultati professionali nella potatura di siepi e rami.',
+    price: '€ 55'
+  },
+  {
+    id: 'ut-kit-forbice-009-small',
+    name: 'Kit forbice/cesoia a batteria Makota - Piccola',
+    categoryId: 'utensileria',
+    images: ['20250528_081710_cyqnar', '20250528_081629_frwm2l'],
+    shortDescription: 'Kit forbice elettrica Makota con lama piccola, ideale per potature precise di rami sottili.',
+    fullDescription: 'Kit forbice elettrica Makota con lama piccola, ideale per potature precise di rami sottili. Funzionamento a batteria per la massima libertà di movimento, impugnatura ergonomica e sistema di sicurezza integrato.',
+    price: '€ 50'
+  },
+  {
+    id: 'ut-kit-forbice-009-medium',
+    name: 'Kit forbice/cesoia a batteria Makota - Media',
+    categoryId: 'utensileria',
+    images: ['20250528_082425_lirlzz', '20250528_082302_kpdhwu'],
+    shortDescription: 'Kit forbice elettrica Makota con lama media, perfetta per potature di rami di medio spessore.',
+    fullDescription: 'Kit forbice elettrica Makota con lama media, perfetta per potature di rami di medio spessore. Funzionamento a batteria per la massima libertà di movimento, impugnatura ergonomica e sistema di sicurezza integrato.',
+    price: '€ 60'
+  },
+  {
+    id: 'ut-kit-forbice-009-large',
+    name: 'Kit forbice/cesoia a batteria Makota - Grande',
+    categoryId: 'utensileria',
+    images: ['20250528_082821_whpwrt', '20250528_082740_rogq61'],
+    shortDescription: 'Kit forbice elettrica Makota con lama grande, ideale per potature di rami spessi.',
+    fullDescription: 'Kit forbice elettrica Makota con lama grande, ideale per potature di rami spessi. Funzionamento a batteria per la massima libertà di movimento, impugnatura ergonomica e sistema di sicurezza integrato.',
+    price: '€ 70'
+  },
   {
     id: 'moto-003-motocarriola-d30md',
     name: 'Motocarriola D30MD',
@@ -95,8 +223,8 @@ export const allProducts: Product[] = [
     name: 'Motosega a Scoppio 25cc',
     categoryId: 'attrezzatura-giardino',
     images: ['352022Motosega-a-scoppio-52cc-profondita-lama-50cm-professionale-per-giardinaggio-1-1__zoqyna'],
-    shortDescription: 'Motosega compatta e potente da 25cc, perfetta per potature e piccoli lavori domestici. Dotata di avviamento facilitato, barra da taglio maneggevole e motore a due tempi affidabile. Leggera ma efficace, ideale per l’uso hobbistico.',
-    fullDescription: 'Motosega compatta e potente da 25cc, perfetta per potature e piccoli lavori domestici. Dotata di avviamento facilitato, barra da taglio maneggevole e motore a due tempi affidabile. Leggera ma efficace, ideale per l’uso hobbistico.',
+    shortDescription: 'Motosega compatta e potente da 25cc, perfetta per potature e piccoli lavori domestici. Dotata di avviamento facilitato, barra da taglio maneggevole e motore a due tempi affidabile. Leggera ma efficace, ideale per l\'uso hobbistico.',
+    fullDescription: 'Motosega compatta e potente da 25cc, perfetta per potature e piccoli lavori domestici. Dotata di avviamento facilitato, barra da taglio maneggevole e motore a due tempi affidabile. Leggera ma efficace, ideale per l\'uso hobbistico.',
     price: '€ 80'
   },
   {
@@ -245,13 +373,22 @@ export const allProducts: Product[] = [
     price: '€ 8'
   },
   {
-    id: 'uten-005-forbici-pota',
-    name: 'Forbici da pota',
+    id: 'uten-005-forbici-pota-small',
+    name: 'Forbici da pota - Piccole',
     categoryId: 'utensileria',
-    images: ['20250528_095413_yhrhia', '20250528_095422_sionl8'],
-    shortDescription: 'Forbici da potatura con lame affilate in acciaio',
-    fullDescription: 'Forbici da potatura con lame affilate in acciaio. Impugnatura ergonomica e sistema di chiusura di sicurezza',
-    price: '€ 2 - € 6'
+    images: ['20250528_095413_yhrhia'],
+    shortDescription: 'Forbici da potatura compatte con lame affilate in acciaio, ideali per piccoli rami e lavori di precisione',
+    fullDescription: 'Forbici da potatura compatte con lame affilate in acciaio. Impugnatura ergonomica e sistema di chiusura di sicurezza. Perfette per potature precise di rami sottili e lavori di giardinaggio delicati.',
+    price: '€ 2'
+  },
+  {
+    id: 'uten-005-forbici-pota-large',
+    name: 'Forbici da pota - Grandi',
+    categoryId: 'utensileria',
+    images: ['20250528_095422_sionl8'],
+    shortDescription: 'Forbici da potatura professionali con lame robuste in acciaio, per rami più spessi',
+    fullDescription: 'Forbici da potatura professionali con lame robuste in acciaio. Impugnatura ergonomica rinforzata e sistema di chiusura di sicurezza. Ideali per potature di rami più spessi e lavori intensivi.',
+    price: '€ 6'
   },
   {
     id: 'uten-006-punte-trapano',
@@ -262,15 +399,7 @@ export const allProducts: Product[] = [
     fullDescription: 'Set di punte in acciaio ad alta resistenza. Compatibili con tutti i trapani standard',
     price: '€ 10'
   },
-  {
-    id: 'uten-007-pistola-ingrassatrice',
-    name: 'Pistola ingrassatrice',
-    categoryId: 'utensileria',
-    images: ['20250528_095204_a6an86', '20250528_095504_j4t4wb'],
-    shortDescription: 'Fasce robuste in poliestere per sollevamento carichi',
-    fullDescription: 'Fasce robuste in poliestere ad alta resistenza, ideali per il sollevamento e il trasporto in sicurezza di carichi pesanti. Utilizzate in ambito edile, agricolo e industriale, garantiscono massima affidabilità grazie alla struttura rinforzata e alle cuciture ad alta tenuta.',
-    price: '€ 3 - € 12'
-  },
+
   {
     id: 'uten-008-fasce-sollevamento',
     name: 'Pistola ingrassatrice',
@@ -354,21 +483,7 @@ export const allProducts: Product[] = [
     fullDescription: 'Ingrassatore manuale per lubrificare in modo preciso cuscinetti, ingranaggi e componenti meccanici. Ideale per officine, manutenzione agricola o fai-da-te. Facile da usare e resistente all\'usura.',
     price: '€ 50'
   },
-  {
-    id: 'ut-kit-forbice-009',
-    name: 'Kit forbice/cesoia a batteria Makota – 3 misure di tagli',
-    categoryId: 'utensileria',
-    images: ['20250528_081710_cyqnar',
-      '20250528_081629_frwm2l',
-      '20250528_082425_lirlzz',
-     ' 20250528_082302_kpdhwu',
-      '20250528_082821_whpwrt',
-      '20250528_082740_rogq61',
-    ],
-    shortDescription: 'Kit completo di forbice elettrica Makota con 3 lame intercambiabili di diverse grandezze, ideale per potature precise di rami, siepi e piante. Funzionamento a batteria per la massima libertà di movimento, impugnatura ergonomica e sistema di sicurezza integrato. Perfetto per uso domestico e professionale in giardinaggio.',
-    fullDescription: 'Kit completo di forbice elettrica Makota con 3 lame intercambiabili di diverse grandezze, ideale per potature precise di rami, siepi e piante. Funzionamento a batteria per la massima libertà di movimento, impugnatura ergonomica e sistema di sicurezza integrato. Perfetto per uso domestico e professionale in giardinaggio.',
-    price: '€ 50 - € 60 - € 70'
-  },
+  
   {
     id: 'ut-tassellatore-batteria-010',
     name: 'Tassellatore a batteria makota',
@@ -475,19 +590,30 @@ export const allProducts: Product[] = [
     price: '€ 70'
   },
   {
-    id: 'ut-set-chiavi-unique-04520392408345692',
-    name: 'Mini Motoseghe Makota – Tre Grandezze',
+    id: 'ut-mini-motosega-small',
+    name: 'Mini Motosega Makota - Piccola',
     categoryId: 'utensileria',
-    images: ['DSC03464_c8hcmy',
-      'DSC03463_wx5hmj',
-      'DSC03475_itorc5',
-      'DSC03473_e2jyfs',
-      'DSC03486_d2peqr',
-      'DSC03488_z6bpkl',
-    ],
-    shortDescription: 'Set di 3 mini motoseghe Makota a batteria, ideali per potatura rapida e precisa. Disponibili in tre misure per adattarsi a ogni esigenza di taglio. Design compatto, leggera e maneggevole, perfetta per giardinaggio e cura degli alberi.',
-    fullDescription: 'Set di 3 mini motoseghe Makota a batteria, ideali per potatura rapida e precisa. Disponibili in tre misure per adattarsi a ogni esigenza di taglio. Design compatto, leggera e maneggevole, perfetta per giardinaggio e cura degli alberi.',
-    price: '€ 35 - €45 - 60'
+    images: ['DSC03464_c8hcmy', 'DSC03463_wx5hmj'],
+    shortDescription: 'Mini motosega Makota a batteria, versione piccola ideale per potature leggere e lavori di precisione',
+    fullDescription: 'Mini motosega Makota a batteria, versione piccola. Design ultra compatto e leggero, perfetta per potature di precisione e lavori in spazi ristretti. Ideale per rami sottili e manutenzione ordinaria del verde.',
+    price: '€ 35'
   },
-  
+  {
+    id: 'ut-mini-motosega-medium',
+    name: 'Mini Motosega Makota - Media',
+    categoryId: 'utensileria',
+    images: ['DSC03475_itorc5', 'DSC03473_e2jyfs'],
+    shortDescription: 'Mini motosega Makota a batteria, versione media per un equilibrio ottimale tra potenza e maneggevolezza',
+    fullDescription: 'Mini motosega Makota a batteria, versione media. Ottimo compromesso tra potenza e maneggevolezza, perfetta per lavori di potatura regolare e taglio di rami di medio spessore. Versatile e affidabile per ogni esigenza di giardinaggio.',
+    price: '€ 45'
+  },
+  {
+    id: 'ut-mini-motosega-large',
+    name: 'Mini Motosega Makota - Grande',
+    categoryId: 'utensileria',
+    images: ['DSC03486_d2peqr', 'DSC03488_z6bpkl'],
+    shortDescription: 'Mini motosega Makota a batteria, versione grande per lavori più impegnativi e maggiore autonomia',
+    fullDescription: 'Mini motosega Makota a batteria, versione grande. Massima potenza e autonomia per lavori più impegnativi. Ideale per potature intensive e taglio di rami più spessi, mantiene la praticità di utilizzo tipica delle mini motoseghe.',
+    price: '€ 60'
+  },
 ]; 
