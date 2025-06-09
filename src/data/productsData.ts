@@ -102,7 +102,7 @@ export const allProducts: Product[] = [
     images: ['DSC03958_qnmmof'],
     shortDescription: 'Compressore portatile a batteria, ideale per gonfiare gomme, piscine e attrezzi da giardino.',
     fullDescription: 'Compressore portatile a batteria, ideale per gonfiare gomme, piscine e attrezzi da giardino. Compatto e ricaricabile, perfetto per casa e auto.',
-    price: '€ 85'
+    price: '€ 160'
   },
 
   // Categoria: utensileria
@@ -122,7 +122,7 @@ export const allProducts: Product[] = [
     images: ['20250528_095204_a6an86'],
     shortDescription: 'Fasce robuste in poliestere per sollevamento carichi leggeri',
     fullDescription: 'Fasce robuste in poliestere ad alta resistenza, ideali per il sollevamento e il trasporto in sicurezza di carichi leggeri. Utilizzate in ambito edile e agricolo, garantiscono affidabilità grazie alla struttura rinforzata.',
-    price: '€ 3'
+    price: '€ 12'
   },
   {
     id: 'ut-fasce-sollevamento-large',
@@ -143,13 +143,22 @@ export const allProducts: Product[] = [
     price: '€ 55'
   },
   {
+    id: 'ut-soffiatore-makota99',
+    name: 'Soffiatore Makota',
+    categoryId: 'utensileria',
+    images: ['DSC03969_zjzjui'],
+    shortDescription: 'Soffiatore leggero e pratico, perfetto per rimuovere foglie e detriti da giardini e vialetti. Funzionamento silenzioso, impugnatura ergonomica e facile utilizzo senza fili.',
+    fullDescription: 'Soffiatore leggero e pratico, perfetto per rimuovere foglie e detriti da giardini e vialetti. Funzionamento silenzioso, impugnatura ergonomica e facile utilizzo senza fili.',
+    price: '€ 20'
+  },
+  {
     id: 'ut-kit-forbice-009-small',
     name: 'Kit forbice/cesoia a batteria Makota - Piccola',
     categoryId: 'utensileria',
     images: ['20250528_081710_cyqnar', '20250528_081629_frwm2l'],
     shortDescription: 'Kit forbice elettrica Makota con lama piccola, ideale per potature precise di rami sottili.',
     fullDescription: 'Kit forbice elettrica Makota con lama piccola, ideale per potature precise di rami sottili. Funzionamento a batteria per la massima libertà di movimento, impugnatura ergonomica e sistema di sicurezza integrato.',
-    price: '€ 50'
+    price: '€ 35'
   },
   {
     id: 'ut-kit-forbice-009-medium',
@@ -215,7 +224,7 @@ export const allProducts: Product[] = [
     categoryId: 'attrezzatura-giardino',
     images: ['WhatsApp_Image_2024-08-01_at_09.30.22-removebg-preview-250x250_uociaf'],
     shortDescription: 'Motosega da potatura Carving 25 ULTRALEGGERA',
-    fullDescription: 'Motosega da potatura Carving 25 ULTRALEGGERA',
+    fullDescription: 'Motosega da potaturfa Carving 25 ULTRALEGGERA',
     price: '€ 110'
   },
   {
@@ -318,7 +327,7 @@ export const allProducts: Product[] = [
   },
   {
     id: 'rica-004-batteria-makota',
-    name: 'Batteria di ricambio Makota 6000 mAh',
+    name: 'Batteria di ricambio Makota 6000 mAh 68V',
     categoryId: 'ricambi',
     images: ['20250528_100405_xst38r'],
     shortDescription: 'Batteria al litio da 18V con capacità di 6000 mAh, compatibile con utensili Makota',
@@ -327,12 +336,12 @@ export const allProducts: Product[] = [
   },
   {
     id: 'ru-filtro-aria-09uwunwnw08',
-    name: 'Batteria di ricambio Makota 8000 mAh',
+    name: 'Batteria di ricambio Makota 8000 mAh 88V ',
     categoryId: 'ricambi',
     images: ['20250528_100352_t8zsde'],
     shortDescription: 'Batteria al litio da 18V con capacità extra da 8000 mAh, progettata per garantire la massima autonomia nei lavori più intensi. Perfetta per professionisti che necessitano di potenza prolungata senza interruzioni.',
     fullDescription: 'Batteria al litio da 18V con capacità extra da 8000 mAh, progettata per garantire la massima autonomia nei lavori più intensi. Perfetta per professionisti che necessitano di potenza prolungata senza interruzioni.',
-    price: '€ 13'
+    price: '€ 17'
   },
 
   // Categoria: utensileria
@@ -388,7 +397,7 @@ export const allProducts: Product[] = [
     images: ['20250528_095422_sionl8'],
     shortDescription: 'Forbici da potatura professionali con lame robuste in acciaio, per rami più spessi',
     fullDescription: 'Forbici da potatura professionali con lame robuste in acciaio. Impugnatura ergonomica rinforzata e sistema di chiusura di sicurezza. Ideali per potature di rami più spessi e lavori intensivi.',
-    price: '€ 6'
+    price: '€ 5'
   },
   {
     id: 'uten-006-punte-trapano',
@@ -411,7 +420,7 @@ export const allProducts: Product[] = [
   },
   {
     id: 'ut-seghetto-alternativo-001',
-    name: 'Seghetto alternativo Makotae',
+    name: 'Seghetto alternativo Makota',
     categoryId: 'utensileria',
     images: ['DSC03922_mftdhw'],
     shortDescription: 'Seghetto alternativo Makota con velocità regolabile, perfetto per tagli curvi e precisi su legno, plastica e metallo. Struttura compatta, impugnatura ergonomica e lama facilmente sostituibile per un lavoro pulito e veloce.',
@@ -439,15 +448,6 @@ export const allProducts: Product[] = [
     price: '€ 30'
   },
   {
-    id: 'ut-tagliaerba-manuale-004',
-    name: 'Tagliaerba manuale Makota',
-    categoryId: 'utensileria',
-    images: ['20250528_084937_gemhrc'],
-    shortDescription: 'Tagliaerba manuale Makota, pratico e silenzioso, ideale per la cura di piccoli giardini e spazi verdi. Dotato di lame affilate per un taglio preciso e uniforme, funziona senza elettricità o carburante, garantendo un utilizzo ecologico ed economico. Struttura leggera e maneggevole per il massimo comfort durante l\'uso.',
-    fullDescription: 'Tagliaerba manuale Makota, pratico e silenzioso, ideale per la cura di piccoli giardini e spazi verdi. Dotato di lame affilate per un taglio preciso e uniforme, funziona senza elettricità o carburante, garantendo un utilizzo ecologico ed economico. Struttura leggera e maneggevole per il massimo comfort durante l\'uso.',
-    price: '€ 55'
-  },
-  {
     id: 'ut-pistola-termica-005',
     name: 'Pistola Termica Makota',
     categoryId: 'utensileria',
@@ -472,7 +472,7 @@ export const allProducts: Product[] = [
     images: ['20250528_093337_pc8zfz'],
     shortDescription: 'Kit professionale 4 in 1 Makota, ideale per soddisfare ogni esigenza in ambito edilizio e di manutenzione. Include una smerigliatrice per tagli e rifiniture, un avvitatore a percussione per forare anche materiali duri, un avvitatore a impulso per lavori su viti e bulloni ad alta resistenza, e un martello tassellatore perfetto per cemento e muratura. Tutti gli utensili sono alimentati a batteria, offrendo libertà di movimento, potenza e praticità in un unico set completo e versatile.',
     fullDescription: 'Kit professionale 4 in 1 Makota, ideale per soddisfare ogni esigenza in ambito edilizio e di manutenzione. Include una smerigliatrice per tagli e rifiniture, un avvitatore a percussione per forare anche materiali duri, un avvitatore a impulso per lavori su viti e bulloni ad alta resistenza, e un martello tassellatore perfetto per cemento e muratura. Tutti gli utensili sono alimentati a batteria, offrendo libertà di movimento, potenza e praticità in un unico set completo e versatile.',
-    price: '€ 120'
+    price: '€ 90'
   },
   {
     id: 'ut-ingrassatore-008',
@@ -498,8 +498,8 @@ export const allProducts: Product[] = [
     name: 'Avvolgitubo',
     categoryId: 'utensileria',
     images: ['DSC03930_ylwgfv'],
-    shortDescription: 'Avvolgitubo da giardino pratico e resistente, perfetto per mantenere il tubo ordinato e sempre a portata di mano. Dotato di manovella per un riavvolgimento semplice e struttura stabile per un uso duraturo.',
-    fullDescription: 'Avvolgitubo da giardino pratico e resistente, perfetto per mantenere il tubo ordinato e sempre a portata di mano. Dotato di manovella per un riavvolgimento semplice e struttura stabile per un uso duraturo.',
+    shortDescription: 'Avvolgitubo pratico e resistente, perfetto per mantenere il tubo ordinato e sempre a portata di mano. ',
+    fullDescription: 'Avvolgitubo pratico e resistente, perfetto per mantenere il tubo ordinato e sempre a portata di mano.',
     price: '€ 70'
   },
   {
@@ -560,7 +560,7 @@ export const allProducts: Product[] = [
     ],
     shortDescription: 'Pistola per idropulitrice Makota, progettata per garantire un getto d\'acqua potente e regolabile, ideale per la pulizia di superfici esterne, veicoli, attrezzi da giardino e pavimenti. Realizzata con materiali resistenti per un uso intenso e duraturo.',
     fullDescription: 'Pistola per idropulitrice Makota, progettata per garantire un getto d\'acqua potente e regolabile, ideale per la pulizia di superfici esterne, veicoli, attrezzi da giardino e pavimenti. Realizzata con materiali resistenti per un uso intenso e duraturo.',
-    price: '€ 25'
+    price: '€ 85'
   },
   {
     id: 'ut-soffiatore-batteria-018',
@@ -587,7 +587,7 @@ export const allProducts: Product[] = [
     images: ['20250528_093042_t6ihne'],
     shortDescription: 'Trapano avvitatore Makota potente e versatile, dotato di attacco per bussole che permette di utilizzare punte e accessori per svitare e stringere dadi e bulloni. Ideale per lavori di falegnameria, meccanica e manutenzione, garantisce prestazioni elevate e comodità d\'uso.',
     fullDescription: 'Trapano avvitatore Makota potente e versatile, dotato di attacco per bussole che permette di utilizzare punte e accessori per svitare e stringere dadi e bulloni. Ideale per lavori di falegnameria, meccanica e manutenzione, garantisce prestazioni elevate e comodità d\'uso.',
-    price: '€ 70'
+    price: '€ 75'
   },
   {
     id: 'ut-mini-motosega-small',
@@ -616,4 +616,110 @@ export const allProducts: Product[] = [
     fullDescription: 'Mini motosega Makota a batteria, versione grande. Massima potenza e autonomia per lavori più impegnativi. Ideale per potature intensive e taglio di rami più spessi, mantiene la praticità di utilizzo tipica delle mini motoseghe.',
     price: '€ 60'
   },
+  {
+    id: 'utensile-001-compressore-25l',
+    name: 'Compressore ad aria 25L 8 bar',
+    categoryId: 'utensileria',
+    images: ['51JWYLt79YL._AC_SX679__tjbsv2'],
+    shortDescription: 'Compressore ad aria da 25 litri, pressione massima 8 bar. Compatto e pratico per lavori domestici e semi-professionali.',
+    fullDescription: 'Compressore ad aria con serbatoio da 25 litri, pressione massima di 8 bar. Ideale per gonfiaggio, verniciatura e piccoli lavori di manutenzione. Alimentazione elettrica, facile da trasportare.',
+    price: '€ 90'
+  },
+  {
+    id: 'utensile-005-compressore-50l',
+    name: 'AMC Compressore ad Aria 50L 8 bar',
+    categoryId: 'utensileria',
+    images: ['51JWYLt79YL._AC_SX679__tjbsv2'],
+    shortDescription: 'Compressore ad aria elettrico da 50 litri, pressione 8 bar, motore coassiale da 2 HP, ideale per lavori intensivi.',
+    fullDescription: 'Compressore ad aria da 50 litri con motore elettrico coassiale da 2 HP e pressione massima di 8 bar. Adatto a molteplici applicazioni come verniciatura, gonfiaggio e uso con utensili pneumatici. Design robusto e silenzioso.',
+    price: '€ 140'
+  },
+  {
+    id: 'utensile-002-cric-idraulico-4t',
+    name: 'AMC Cric Idraulico Carrello 4T',
+    categoryId: 'utensileria',
+    images: ['61wLAXai1JS._AC_SX522__hjhjzz'],
+    shortDescription: 'Cric idraulico a carrello professionale con capacità di sollevamento fino a 4 tonnellate, dotato di ruote bidirezionali.',
+    fullDescription: 'AMC Cric sollevatore idraulico a carrello con capacità di 4 tonnellate, ideale per uso professionale e officine. Dotato di ruote bidirezionali a cuscinetto per una maggiore manovrabilità.',
+    price: '€ 100'
+  },
+  {
+    id: 'utensile-003-chiavi-bussola-108pz',
+    name: 'Set Chiavi a Bussola 108 Pezzi',
+    categoryId: 'utensileria',
+    images: ['135713546_1_tc7rr5'],
+    shortDescription: 'Set completo di chiavi a bussola e cricchetto da 108 pezzi, ideale per lavori di manutenzione meccanica e fai-da-te.',
+    fullDescription: 'Set professionale di chiavi a bussola con cricchetto da 108 pezzi in acciaio temprato. Include bussole metriche, accessori e adattatori per ogni esigenza di manutenzione e riparazione.',
+    price: '€ 45'
+  },
+  {
+    id: 'utensile-004-cassetta-attrezzi-849pz',
+    name: 'AMC Cassetta Attrezzi 849 Pezzi',
+    categoryId: 'utensileria',
+    images: ['71jt6yC2uSL._AC_SX679__nqj9kh'],
+    shortDescription: 'Valigetta completa con 849 pezzi, inclusi cacciaviti, bussole, pinze, chiavi e molto altro. Montata su trolley con ruote.',
+    fullDescription: 'AMC Set cassetta attrezzi completa di 849 pezzi. Include una vasta gamma di utensili per meccanica e bricolage. La struttura a trolley con manico e ruote facilita il trasporto ovunque.',
+    price: '€ 80'
+  },
+  {
+    id: 'utensile-006-ventilatore-batteria-makota',
+    name: 'Ventilatore a Batteria Makota',
+    categoryId: 'utensileria',
+    images: ['DSC03976_nk72hg'],
+    shortDescription: 'Ventilatore portatile Makota a batteria, leggero, compatto e ricaricabile, ideale per ambienti di lavoro o uso domestico.',
+    fullDescription: 'Ventilatore a batteria Makota, ideale per rinfrescare l’ambiente durante le giornate calde. Design compatto, portatile e con lunga autonomia. Funzionamento silenzioso e griglia protettiva per una maggiore sicurezza.',
+    price: '€ 80'
+  },
+  {
+    id: 'utensile-007-pistola-compressore-makota',
+    name: 'Pistola per Compressore Makota',
+    categoryId: 'utensileria',
+    images: ['DSC03992_v6rnv6'],
+    shortDescription: 'Pistola ad aria compressa Makota, compatibile con compressori standard, perfetta per pulizia e soffiaggio.',
+    fullDescription: 'Pistola per compressore Makota, realizzata in materiali resistenti. Progettata per operazioni di soffiaggio, pulizia e asciugatura con aria compressa. Impugnatura ergonomica per un controllo ottimale.',
+    price: '€ 20'
+  },
+  {
+    id: 'utensile-008-lucidatrice-batteria-makota',
+    name: 'Lucidatrice a Batteria Makota',
+    categoryId: 'utensileria',
+    images: ['DSC03996_i3envb'],
+    shortDescription: 'Lucidatrice Makota senza fili, a batteria, ideale per la cura dell’auto o superfici delicate.',
+    fullDescription: 'Lucidatrice portatile Makota a batteria, con controllo della velocità e impugnatura comoda. Perfetta per lucidare auto, superfici metalliche o verniciate. Lunga autonomia e praticità senza cavo.',
+    price: '€ 75'
+  },
+  {
+    id: 'utensile-009-trapano-brushless-makota',
+    name: 'Trapano Brushless a Litio Makota',
+    categoryId: 'utensileria',
+    images: ['DSC03994_epy083'],
+    shortDescription: 'Trapano Makota a batteria al litio con motore brushless, compatto, leggero e potente.',
+    fullDescription: 'Trapano Makota alimentato a batteria al litio con tecnologia brushless (senza spazzole), che garantisce maggiore durata, prestazioni elevate e manutenzione ridotta. Ideale per forare legno, metallo e plastica.',
+    price: '€ 45'
+  },
+  {
+    id: 'giardino-010-nebulizzatore-8l',
+    name: 'Nebulizzatore 8 Litri',
+    categoryId: 'attrezzatura-giardino',
+    images: ['DSC03971_jhxbii'],
+    shortDescription: 'Nebulizzatore manuale da 8 litri, perfetto per giardinaggio e trattamenti fitosanitari.',
+    fullDescription: 'Nebulizzatore con serbatoio da 8 litri, progettato per la distribuzione di fertilizzanti o prodotti fitosanitari nel giardino. Lancia regolabile, tracolla per il trasporto e valvola di sicurezza inclusi.',
+    price: '€ 20'
+  },
+  {
+    id: 'giardino-011-decespugliatore-batteria-makota',
+    name: 'Decespugliatore a Batteria Makota',
+    categoryId: 'attrezzatura-giardino',
+    images: ['514d9oO3vaL._AC_SX679__yviehx'],
+    shortDescription: 'Decespugliatore Makota a batteria, leggero e silenzioso, ideale per rifiniture e manutenzione del verde.',
+    fullDescription: 'Decespugliatore Makota alimentato a batteria, perfetto per tagli precisi nei bordi del prato e la cura di aree difficili da raggiungere. Design ergonomico, impugnatura comoda e motore silenzioso. Autonomia ideale per l’uso domestico.',
+    price: '€ 85'
+  }
+  
+  
+  
+  
+  
+  
+  
 ]; 
