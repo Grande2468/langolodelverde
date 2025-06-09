@@ -93,7 +93,7 @@ export const allProducts: Product[] = [
     images: ['DSC03960_bgwx1d'],
     shortDescription: 'Idropulitrice a corrente da 110 bar, perfetta per pulizie di esterni, auto, pavimenti e muretti.',
     fullDescription: 'Idropulitrice a corrente da 110 bar, perfetta per pulizie di esterni, auto, pavimenti e muretti. Potente ma compatta, con avvolgitubo, pistola e lancia regolabile inclusi.',
-    price: '€ 120'
+    price: '€ 85'
   },
   {
     id: 'attg-compressore-batteria',
@@ -102,7 +102,7 @@ export const allProducts: Product[] = [
     images: ['DSC03958_qnmmof'],
     shortDescription: 'Compressore portatile a batteria, ideale per gonfiare gomme, piscine e attrezzi da giardino.',
     fullDescription: 'Compressore portatile a batteria, ideale per gonfiare gomme, piscine e attrezzi da giardino. Compatto e ricaricabile, perfetto per casa e auto.',
-    price: '€ 160'
+    price: '€ 169'
   },
 
   // Categoria: utensileria
