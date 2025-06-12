@@ -178,15 +178,7 @@ export const allProducts: Product[] = [
     fullDescription: 'Kit forbice elettrica Makota con lama grande, ideale per potature di rami spessi. Funzionamento a batteria per la massima libertà di movimento, impugnatura ergonomica e sistema di sicurezza integrato.',
     price: '€ 70'
   },
-  {
-    id: 'moto-003-motocarriola-d30md',
-    name: 'Motocarriola D30MD',
-    categoryId: 'motocoltivatori-tosaerba',
-    images: ['Immagine-WhatsApp-2024-02-08-ore-15.57.23_47219f59-220x220_2x_rlfxgc'],
-    shortDescription: 'Motocarriola a cingoli con motore Ducar 6.5 HP, cilindrata 196 cc, avviamento manuale, portata 300 kg, cambio 3 marce avanti + 1 retromarcia, cassone 1040×860 mm ribaltabile, pendenza massima 20%, cingoli 189x60 con 34 buchi.',
-    fullDescription: 'Motocarriola a cingoli con motore Ducar 6.5 HP, cilindrata 196 cc, avviamento manuale, portata 300 kg, cambio 3 marce avanti + 1 retromarcia, cassone 1040×860 mm ribaltabile, pendenza massima 20%, cingoli 189x60 con 34 buchi.',
-    price: '€ 1450'
-  },
+  
   
   {
     id: 'moto-005-motozappa-hp4',
@@ -714,7 +706,49 @@ export const allProducts: Product[] = [
     shortDescription: 'Decespugliatore Makota a batteria, leggero e silenzioso, ideale per rifiniture e manutenzione del verde.',
     fullDescription: 'Decespugliatore Makota alimentato a batteria, perfetto per tagli precisi nei bordi del prato e la cura di aree difficili da raggiungere. Design ergonomico, impugnatura comoda e motore silenzioso. Autonomia ideale per l’uso domestico.',
     price: '€ 85'
-  }
+  },
+{
+  id: 'utensili-001-carrello-attrezzi-amc',
+  name: 'Carrello Porta Attrezzi AMC con Ruote',
+  categoryId: 'utensileria',
+  images: ['71dkbXCpJZL._AC_SX679__p92ux8'],
+  shortDescription: 'Carrello porta attrezzi AMC con struttura rinforzata, sei cassetti e oltre 500 utensili inclusi.',
+  fullDescription: 'A.M.C. Carrello porta attrezzi completo con ruote, struttura rinforzata e 6 cassetti per un’organizzazione ottimale. Contiene oltre 500 pezzi di utensili professionali per ogni tipo di lavoro. Ideale per officine e appassionati del fai-da-te.',
+  price: '€ 260'
+},
+
+{
+  id: 'giardino-012-decespugliatore-zaino-52cc',
+  name: 'Decespugliatore a Zaino a Scoppio 52cc',
+  categoryId: 'attrezzatura-giardino',
+  images: ['1372022Decespugliatore-zaino-a-scoppio-2-tempi-52cc-con-doppio-disco-e-kit-accessori_1_noxkfh'],
+  shortDescription: 'Decespugliatore a zaino con motore a scoppio 2 tempi da 52cc e accessori inclusi.',
+  fullDescription: 'Decespugliatore a zaino con motore a scoppio 52cc 2 tempi, completo di doppio disco e kit accessori. Perfetto per lavori intensivi e di lunga durata grazie al comodo supporto a zaino che riduce l’affaticamento.',
+  price: '€ 100'
+},
+
+{
+  id: 'giardino-013-decespugliatore-scoppio-52cc',
+  name: 'Decespugliatore a Scoppio 52cc',
+  categoryId: 'attrezzatura-giardino',
+  images: ['51jYxNeyidL._AC_SX679__wbmnqq'],
+  shortDescription: 'Decespugliatore a scoppio 52cc potente e affidabile, ideale per la manutenzione del verde.',
+  fullDescription: 'Decespugliatore a scoppio 52cc ad alte prestazioni, adatto per il taglio di erba alta e sterpaglie. Leggero e maneggevole, garantisce ottimi risultati anche nei terreni più difficili.',
+  price: '€ 75'
+},
+{
+  id: 'giardino-014-atomizzatore-43cc',
+  name: 'Atomizzatore a Scoppio 43cc a Spalla',
+  categoryId: 'attrezzatura-giardino',
+  images: ['51Idr9vfqNS._SX522__iarjvo'],
+  shortDescription: 'Atomizzatore tripla funzione: soffiatore, polverizzatore e spruzzatore con motore 43cc e serbatoio da 20L.',
+  fullDescription: 'Atomizzatore multifunzione con motore a scoppio 43cc, serbatoio da 20 litri e utilizzo a spalla. Ideale per la cura delle piante, può essere usato come soffiatore, polverizzatore o spruzzatore. Robusto e versatile, adatto sia per uso agricolo che hobbistico.',
+  price: '€ 130'
+}
+
+
+
+
   
   
   
