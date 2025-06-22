@@ -7,9 +7,17 @@
     animation: scroll 40s linear infinite;
   }
 
+  .animate-scroll-fast {
+    animation: scroll 8s linear infinite; /* Velocità aumentata a 8 secondi */
+  }
+
   @media (max-width: 768px) {
     .animate-scroll {
-      animation-duration: 30s; /* Velocità aumentata su mobile */
+      animation-duration: 30s;
+    }
+    
+    .animate-scroll-fast {
+      animation-duration: 6s; /* Velocità aumentata a 6 secondi su mobile */
     }
   }
 

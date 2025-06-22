@@ -15,10 +15,10 @@ const brandLogos = [
 
 const BrandsBanner = () => {
   return (
-    <div className="bg-white py-4 md:py-8 overflow-hidden">
+    <div className="bg-gradient-to-r from-primary-50 to-primary-100 py-4 md:py-8 overflow-hidden">
       <div className="relative">
         {/* Contenitore per l'animazione */}
-        <div className="flex animate-scroll">
+        <div className="flex animate-scroll-fast">
           {/* Duplico i loghi per creare un effetto infinito */}
           {[...brandLogos, ...brandLogos].map((logoId, index) => {
             const cldImage = cloudinaryInstance.image(logoId);
@@ -30,7 +30,7 @@ const BrandsBanner = () => {
             return (
               <div 
                 key={index} 
-                className="mx-4 md:mx-8 flex-shrink-0"
+                className="mx-4 md:mx-8 flex-shrink-0 bg-white rounded-lg p-2"
                 style={{ minWidth: '120px', maxWidth: '150px' }}
               >
                 <AdvancedImage
