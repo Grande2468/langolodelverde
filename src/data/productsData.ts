@@ -117,7 +117,7 @@ export const allProducts: Product[] = [
   },
   {
     id: 'ut-fasce-sollevamento-small',
-    name: 'Fasce per sollevamento carichi - Piccola',
+    name: 'Fasce per sollevamento carichi - grande',
     categoryId: 'utensileria',
     images: ['20250528_095204_a6an86'],
     shortDescription: 'Fasce robuste in poliestere per sollevamento carichi leggeri',
@@ -126,12 +126,12 @@ export const allProducts: Product[] = [
   },
   {
     id: 'ut-fasce-sollevamento-large',
-    name: 'Fasce per sollevamento carichi - Grande',
+    name: 'Fasce per sollevamento carichi - piccola',
     categoryId: 'utensileria',
     images: ['20250528_095504_j4t4wb'],
     shortDescription: 'Fasce robuste in poliestere per sollevamento carichi pesanti',
     fullDescription: 'Fasce robuste in poliestere ad alta resistenza, ideali per il sollevamento e il trasporto in sicurezza di carichi pesanti. Utilizzate in ambito industriale, garantiscono massima affidabilità grazie alla struttura extra rinforzata e alle cuciture ad alta tenuta.',
-    price: '€ 12'
+    price: '€ 3'
   },
   {
     id: 'ut-tagliasiepi-2in1-004',
@@ -221,12 +221,12 @@ export const allProducts: Product[] = [
   },
   {
     id: 'attg-002-motosega-cc',
-    name: 'Motosega a Scoppio 25cc',
+    name: 'Motosega a Scoppio 52cc',
     categoryId: 'attrezzatura-giardino',
     images: ['352022Motosega-a-scoppio-52cc-profondita-lama-50cm-professionale-per-giardinaggio-1-1__zoqyna'],
-    shortDescription: 'Motosega compatta e potente da 25cc, perfetta per potature e piccoli lavori domestici. Dotata di avviamento facilitato, barra da taglio maneggevole e motore a due tempi affidabile. Leggera ma efficace, ideale per l\'uso hobbistico.',
-    fullDescription: 'Motosega compatta e potente da 25cc, perfetta per potature e piccoli lavori domestici. Dotata di avviamento facilitato, barra da taglio maneggevole e motore a due tempi affidabile. Leggera ma efficace, ideale per l\'uso hobbistico.',
-    price: '€ 80'
+    shortDescription: 'Motosega compatta e potente da 52cc, perfetta per potature e piccoli lavori domestici. Dotata di avviamento facilitato, barra da taglio maneggevole e motore a due tempi affidabile. Leggera ma efficace, ideale per l\'uso hobbistico.',
+    fullDescription: 'Motosega compatta e potente da 52cc, perfetta per potature e piccoli lavori domestici. Dotata di avviamento facilitato, barra da taglio maneggevole e motore a due tempi affidabile. Leggera ma efficace, ideale per l\'uso hobbistico.',
+    price: '€ 70'
   },
   {
     id: 'attg-003-motosega-cc38',
@@ -459,11 +459,11 @@ export const allProducts: Product[] = [
   },
   {
     id: 'ut-kit-4in1-007',
-    name: 'Kit 4 in 1 Makota – Flex, Avvitatore a percussione, Avvitatore a impulso, Martello tassellatore',
+    name: 'Kit 3 in 1 Makota – avvitatore ad impulsi, flex e faretto',
     categoryId: 'utensileria',
     images: ['20250528_093337_pc8zfz'],
-    shortDescription: 'Kit professionale 4 in 1 Makota, ideale per soddisfare ogni esigenza in ambito edilizio e di manutenzione. Include una smerigliatrice per tagli e rifiniture, un avvitatore a percussione per forare anche materiali duri, un avvitatore a impulso per lavori su viti e bulloni ad alta resistenza, e un martello tassellatore perfetto per cemento e muratura. Tutti gli utensili sono alimentati a batteria, offrendo libertà di movimento, potenza e praticità in un unico set completo e versatile.',
-    fullDescription: 'Kit professionale 4 in 1 Makota, ideale per soddisfare ogni esigenza in ambito edilizio e di manutenzione. Include una smerigliatrice per tagli e rifiniture, un avvitatore a percussione per forare anche materiali duri, un avvitatore a impulso per lavori su viti e bulloni ad alta resistenza, e un martello tassellatore perfetto per cemento e muratura. Tutti gli utensili sono alimentati a batteria, offrendo libertà di movimento, potenza e praticità in un unico set completo e versatile.',
+    shortDescription: 'Kit 3 in 1 Makota: avvitatore ad impulsi, flex e faretto LED. Compatto, potente e pronto per ogni lavoro.',
+    fullDescription: 'Kit 3 in 1 Makota: avvitatore ad impulsi, flex e faretto LED. Compatto, potente e pronto per ogni lavoro.',
     price: '€ 90'
   },
   {
@@ -552,7 +552,7 @@ export const allProducts: Product[] = [
     ],
     shortDescription: 'Pistola per idropulitrice Makota, progettata per garantire un getto d\'acqua potente e regolabile, ideale per la pulizia di superfici esterne, veicoli, attrezzi da giardino e pavimenti. Realizzata con materiali resistenti per un uso intenso e duraturo.',
     fullDescription: 'Pistola per idropulitrice Makota, progettata per garantire un getto d\'acqua potente e regolabile, ideale per la pulizia di superfici esterne, veicoli, attrezzi da giardino e pavimenti. Realizzata con materiali resistenti per un uso intenso e duraturo.',
-    price: '€ 85'
+    price: '€ 25'
   },
   {
     id: 'ut-soffiatore-batteria-018',
@@ -664,12 +664,12 @@ export const allProducts: Product[] = [
   },
   {
     id: 'utensile-007-pistola-compressore-makota',
-    name: 'Pistola per Compressore Makota',
+    name: 'Pistola Compressore Makota',
     categoryId: 'utensileria',
     images: ['DSC03992_v6rnv6'],
-    shortDescription: 'Pistola ad aria compressa Makota, compatibile con compressori standard, perfetta per pulizia e soffiaggio.',
-    fullDescription: 'Pistola per compressore Makota, realizzata in materiali resistenti. Progettata per operazioni di soffiaggio, pulizia e asciugatura con aria compressa. Impugnatura ergonomica per un controllo ottimale.',
-    price: '€ 20'
+    shortDescription: 'Pistola compressore Makota, realizzata per gonfiare pneumatici in qualunque momento e luogo.',
+    fullDescription: 'Pistola compressore Makota, realizzata per gonfiare pneumatici in qualunque momento e luogo.',
+    price: '€ 45'
   },
   {
     id: 'utensile-008-lucidatrice-batteria-makota',
@@ -705,7 +705,7 @@ export const allProducts: Product[] = [
     images: ['514d9oO3vaL._AC_SX679__yviehx'],
     shortDescription: 'Decespugliatore Makota a batteria, leggero e silenzioso, ideale per rifiniture e manutenzione del verde.',
     fullDescription: 'Decespugliatore Makota alimentato a batteria, perfetto per tagli precisi nei bordi del prato e la cura di aree difficili da raggiungere. Design ergonomico, impugnatura comoda e motore silenzioso. Autonomia ideale per l’uso domestico.',
-    price: '€ 85'
+    price: '€ 60'
   },
 {
   id: 'utensili-001-carrello-attrezzi-amc',
