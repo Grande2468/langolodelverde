@@ -18,7 +18,7 @@ let DefaultIcon = L.icon({
 L.Marker.prototype.options.icon = DefaultIcon;
 
 const MapSection = () => {
-  const position: [number, number] = [41.306917, 14.103889]; // Coordinate aggiornate
+  const position: [number, number] = [41.308, 14.1080]; // Coordinate aggiornate
   
   return (
     <Section background="light">

@@ -95,7 +95,7 @@ const Footer = () => {
               <li className="flex gap-3">
                 <MapPin className="h-5 w-5 text-primary-400 flex-shrink-0 mt-1" />
                 <span className="text-primary-100">
-                  Via Ceraselle, n 78<br />
+                  Via Ceraselle, n 9<br />
                   81059 Caianello (CE)
                 </span>
               </li>

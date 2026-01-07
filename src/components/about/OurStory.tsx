@@ -7,7 +7,7 @@ import { autoGravity } from '@cloudinary/url-gen/qualifiers/gravity';
 import { format, quality } from '@cloudinary/url-gen/actions/delivery';
 
 const OurStory = () => {
-  const storyImage = cloudinaryInstance.image('DSC03903_imttn4');
+  const storyImage = cloudinaryInstance.image('IMG_3125_jid5sj');
   storyImage
     .resize(fill().width(800).height(600).gravity(autoGravity()))
     .delivery(format('auto'))

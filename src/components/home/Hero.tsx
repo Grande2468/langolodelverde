@@ -9,7 +9,7 @@ import { auto } from '@cloudinary/url-gen/qualifiers/format';
 import { auto as autoQuality } from '@cloudinary/url-gen/qualifiers/quality';
 
 const Hero = () => {
-  const heroImage = cloudinaryInstance.image('DSC03943_sxkqll');
+  const heroImage = cloudinaryInstance.image('IMG_3105_m9zpkj');
   
   // Ottimizzazione per desktop
   heroImage

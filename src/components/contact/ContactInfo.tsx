@@ -5,7 +5,7 @@ const contactItems = [
   {
     icon: <MapPin className="h-6 w-6" />,
     title: 'Indirizzo',
-    details: ['Via Ceraselle, n 78', '81059 Caianello (CE)'],
+    details: ['Via Ceraselle 9 81059 Caianello (CE), 78, 81059 Caianello CE'],
   },
   {
     icon: <Phone className="h-6 w-6" />,
