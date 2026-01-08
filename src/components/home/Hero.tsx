@@ -18,7 +18,7 @@ const Hero = () => {
     .delivery(quality(autoQuality()));
 
   // Ottimizzazione per mobile - usiamo un'immagine diversa ottimizzata per mobile
-  const heroImageMobile = cloudinaryInstance.image('DSC03947_qeharc');
+  const heroImageMobile = cloudinaryInstance.image('IMG_3105_m9zpkj');
   heroImageMobile
     .resize(fill().width(640).height(600).gravity(autoGravity()))
     .delivery(format(auto()))
