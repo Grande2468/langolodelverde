@@ -42,10 +42,14 @@ const TermsPage = () => (
       <section>
         <h2 className="text-xl font-semibold text-gray-900 mb-2">5. Diritto di recesso</h2>
         <p>
-          Se sei un consumatore hai diritto di recedere entro 14 giorni dal ricevimento della merce, senza
-          indicarne il motivo (artt. 52 e ss. Codice del Consumo), comunicandolo via email o telefono. Il prodotto va
-          restituito integro, nella confezione originale; le spese di restituzione sono a tuo carico. Rimborseremo
-          l'importo entro 14 giorni dal ricevimento del reso, con lo stesso metodo di pagamento.
+          Se sei un consumatore hai diritto di recedere entro 14 giorni dal ricevimento (o dal ritiro) della merce,
+          senza indicarne il motivo (artt. 52 e ss. Codice del Consumo), con una dichiarazione esplicita inviata per
+          email o lettera, anche usando il <a href="/recesso" className="underline">modulo di recesso tipo</a>. I beni
+          vanno restituiti entro 14 giorni dalla comunicazione; i costi diretti della restituzione sono a tuo carico.
+          Rimborseremo tutti i pagamenti ricevuti, compresi i costi di consegna standard, entro 14 giorni dalla
+          comunicazione del recesso, con lo stesso metodo di pagamento; possiamo trattenere il rimborso finché non
+          riceviamo i beni o la prova della loro spedizione. Tutti i dettagli nella pagina{' '}
+          <a href="/recesso" className="underline">Diritto di recesso</a>.
         </p>
       </section>
       <section>

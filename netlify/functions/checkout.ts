@@ -9,6 +9,7 @@ interface Body {
   items?: { id: string; qty: number }[];
   shippingMethodId?: string;
   customer?: Record<string, string>;
+  invoice?: Record<string, string> | null;
 }
 
 const str = (v: unknown, max = 200) => (typeof v === 'string' ? v.trim().slice(0, max) : '');
@@ -41,6 +42,34 @@ const handle = async (req: Request) => {
   };
   if (!customer.nome || !customer.cognome || !customer.telefono || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(customer.email)) {
     return json({ error: 'Compila nome, cognome, email e telefono.' }, 400);
+  }
+
+  // --- fattura (facoltativa)
+  let invoice: Record<string, string> | null = null;
+  if (body.invoice) {
+    const f = body.invoice;
+    const tipo = f.tipo === 'azienda' ? 'azienda' : 'privato';
+    invoice = {
+      tipo,
+      codiceFiscale: str(f.codiceFiscale, 16).toUpperCase().replace(/\s/g, ''),
+      ragioneSociale: str(f.ragioneSociale, 150),
+      partitaIva: str(f.partitaIva, 13).toUpperCase().replace(/\s/g, '').replace(/^IT/, ''),
+      codiceDestinatario: str(f.codiceDestinatario, 7).toUpperCase().replace(/\s/g, ''),
+      pec: str(f.pec, 120).toLowerCase(),
+      indirizzo: str(f.indirizzo, 300),
+    };
+    if (tipo === 'privato' && !/^[A-Z0-9]{16}$/.test(invoice.codiceFiscale)) {
+      return json({ error: 'Per la fattura inserisci un codice fiscale valido (16 caratteri).' }, 400);
+    }
+    if (tipo === 'azienda') {
+      if (!invoice.ragioneSociale || !/^\d{11}$/.test(invoice.partitaIva)) {
+        return json({ error: 'Per la fattura aziendale servono ragione sociale e partita IVA (11 cifre).' }, 400);
+      }
+      if (!/^[A-Z0-9]{7}$/.test(invoice.codiceDestinatario) && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(invoice.pec)) {
+        return json({ error: 'Per la fattura aziendale serve il codice destinatario SDI (7 caratteri) oppure la PEC.' }, 400);
+      }
+    }
+    if (!invoice.indirizzo) return json({ error: "Inserisci l'indirizzo di fatturazione." }, 400);
   }
 
   // --- articoli (unisce eventuali doppioni)
@@ -105,6 +134,7 @@ const handle = async (req: Request) => {
       shippingCost,
       total,
       customer,
+      invoice,
       stockApplied: false,
       createdAt: now,
       updatedAt: now,

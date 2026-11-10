@@ -98,6 +98,25 @@ export interface Customer {
   note?: string;
 }
 
+export interface InvoiceData {
+  tipo: 'privato' | 'azienda';
+  codiceFiscale?: string;
+  ragioneSociale?: string;
+  partitaIva?: string;
+  codiceDestinatario?: string; // codice SDI (7 caratteri)
+  pec?: string;
+  indirizzo: string; // indirizzo di fatturazione completo
+}
+
+export interface Refund {
+  id: string;
+  amount: number;
+  reason?: string;
+  status?: string | null;
+  at: number;
+  by?: string;
+}
+
 export interface Order {
   id: string;
   number: string;
@@ -108,6 +127,9 @@ export interface Order {
   shippingCost: number;
   total: number;
   customer: Customer;
+  invoice?: InvoiceData | null;
+  refundedTotal?: number;
+  refunds?: Refund[];
   stripeSessionId?: string;
   paymentIntent?: string;
   stockApplied?: boolean;

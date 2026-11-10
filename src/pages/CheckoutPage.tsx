@@ -6,7 +6,9 @@ import PageHeader from '../components/ui/PageHeader';
 import { useCart } from '../context/CartContext';
 import { fetchShipping } from '../lib/catalog';
 import { euro } from '../lib/format';
-import type { Customer, ShippingMethod } from '../lib/types';
+import type { Customer, InvoiceData, ShippingMethod } from '../lib/types';
+
+const EMPTY_INVOICE: InvoiceData = { tipo: 'privato', codiceFiscale: '', ragioneSociale: '', partitaIva: '', codiceDestinatario: '', pec: '', indirizzo: '' };
 
 const EMPTY: Customer = { nome: '', cognome: '', email: '', telefono: '', indirizzo: '', cap: '', citta: '', provincia: '', note: '' };
 
@@ -19,6 +21,8 @@ const CheckoutPage = () => {
   const [methodId, setMethodId] = useState('');
   const [c, setC] = useState<Customer>(EMPTY);
   const [accepted, setAccepted] = useState(false);
+  const [wantInvoice, setWantInvoice] = useState(false);
+  const [inv, setInv] = useState<InvoiceData>(EMPTY_INVOICE);
   const [sending, setSending] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -61,6 +65,9 @@ const CheckoutPage = () => {
           items: lines.map((l) => ({ id: l.id, qty: l.qty })),
           shippingMethodId: method.id,
           customer: c,
+          invoice: wantInvoice
+            ? { ...inv, indirizzo: inv.indirizzo.trim() || (isShipping ? `${c.indirizzo}, ${c.cap} ${c.citta} (${c.provincia})` : '') }
+            : null,
         }),
       });
       const data = await res.json().catch(() => ({}));
@@ -172,6 +179,59 @@ const CheckoutPage = () => {
           )}
 
           <section>
+            <label className="flex items-center gap-2 font-medium cursor-pointer">
+              <input type="checkbox" checked={wantInvoice} onChange={(e) => setWantInvoice(e.target.checked)} />
+              Voglio la fattura
+            </label>
+            {wantInvoice && (
+              <div className="mt-4 space-y-4 border rounded-lg p-4 bg-gray-50">
+                <div className="flex gap-6 text-sm">
+                  {(['privato', 'azienda'] as const).map((t) => (
+                    <label key={t} className="flex items-center gap-2 cursor-pointer">
+                      <input type="radio" checked={inv.tipo === t} onChange={() => setInv({ ...inv, tipo: t })} />
+                      {t === 'privato' ? 'Privato' : 'Azienda / libero professionista'}
+                    </label>
+                  ))}
+                </div>
+                {inv.tipo === 'privato' ? (
+                  <div>
+                    <label className={label}>Codice fiscale *</label>
+                    <input required maxLength={16} pattern="[A-Za-z0-9]{16}" title="16 caratteri" className={`${input} uppercase`} value={inv.codiceFiscale} onChange={(e) => setInv({ ...inv, codiceFiscale: e.target.value })} />
+                  </div>
+                ) : (
+                  <div className="grid sm:grid-cols-2 gap-4">
+                    <div className="sm:col-span-2">
+                      <label className={label}>Ragione sociale *</label>
+                      <input required className={input} value={inv.ragioneSociale} onChange={(e) => setInv({ ...inv, ragioneSociale: e.target.value })} />
+                    </div>
+                    <div>
+                      <label className={label}>Partita IVA *</label>
+                      <input required inputMode="numeric" pattern="(IT)?[0-9]{11}" title="11 cifre" className={input} value={inv.partitaIva} onChange={(e) => setInv({ ...inv, partitaIva: e.target.value })} />
+                    </div>
+                    <div>
+                      <label className={label}>Codice fiscale (se diverso)</label>
+                      <input maxLength={16} className={`${input} uppercase`} value={inv.codiceFiscale} onChange={(e) => setInv({ ...inv, codiceFiscale: e.target.value })} />
+                    </div>
+                    <div>
+                      <label className={label}>Codice destinatario SDI</label>
+                      <input maxLength={7} className={`${input} uppercase`} value={inv.codiceDestinatario} onChange={(e) => setInv({ ...inv, codiceDestinatario: e.target.value })} placeholder="7 caratteri" />
+                    </div>
+                    <div>
+                      <label className={label}>oppure PEC</label>
+                      <input type="email" className={input} value={inv.pec} onChange={(e) => setInv({ ...inv, pec: e.target.value })} />
+                    </div>
+                  </div>
+                )}
+                <div>
+                  <label className={label}>Indirizzo di fatturazione{isShipping ? ' (vuoto = uguale alla spedizione)' : ' *'}</label>
+                  <input required={!isShipping} className={input} value={inv.indirizzo} onChange={(e) => setInv({ ...inv, indirizzo: e.target.value })} placeholder="Via, numero, CAP, città, provincia" />
+                </div>
+                <p className="text-xs text-gray-500">La fattura elettronica ti arriverà tramite il Sistema di Interscambio dell'Agenzia delle Entrate.</p>
+              </div>
+            )}
+          </section>
+
+          <section>
             <label className={label}>Note per l'ordine (facoltative)</label>
             <textarea rows={3} className={input} value={c.note} onChange={set('note')} placeholder="Es. orari di consegna, citofono…" />
           </section>
@@ -220,6 +280,14 @@ const CheckoutPage = () => {
             </span>
           </label>
 
+          <p className="text-xs text-gray-500 mt-3">
+            Hai 14 giorni dalla consegna per recedere dall'acquisto. Vedi{' '}
+            <Link to="/recesso" target="_blank" className="underline">
+              diritto di recesso
+            </Link>
+            .
+          </p>
+
           {error && <p className="mt-4 text-sm text-red-600">{error}</p>}
 
           <button
@@ -228,7 +296,7 @@ const CheckoutPage = () => {
             className="mt-6 w-full inline-flex items-center justify-center gap-2 bg-primary-600 text-white py-3 rounded-lg font-semibold hover:bg-primary-700 disabled:opacity-60"
           >
             <CreditCard className="h-5 w-5" />
-            {sending ? 'Apro il pagamento…' : `Paga ${euro(subtotal + shipping)} con carta`}
+            {sending ? 'Apro il pagamento…' : `Ordina con obbligo di pagamento · ${euro(subtotal + shipping)}`}
           </button>
           <p className="mt-3 text-xs text-gray-500 flex items-center justify-center gap-1">
             <Lock className="h-3.5 w-3.5" /> Pagamento sicuro gestito da Stripe

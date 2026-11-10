@@ -1,4 +1,3 @@
-import { motion } from 'framer-motion';
 import Button from '../ui/Button';
 import { AdvancedImage, lazyload } from '@cloudinary/react';
 import cloudinaryInstance from '../../services/cloudinary';

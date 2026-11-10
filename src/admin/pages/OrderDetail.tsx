@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { ArrowLeft, Copy, Printer, Phone, Mail, AlertTriangle, ExternalLink } from 'lucide-react';
-import { cancelOrderAndRestock, getOrder, updateOrder } from '../api';
+import { cancelOrderAndRestock, getOrder, refundOrder, updateOrder } from '../api';
 import { ADMIN_BASE } from '../base';
 import { Btn, Card, ErrorBox, Field, PageTitle, Spinner, StatusBadge, errMsg, inputCls } from '../components/ui';
 import { cld } from '../../lib/cloudinary';
-import { dateTime, euro } from '../../lib/format';
+import { centsToInput, dateTime, euro, parseEuro } from '../../lib/format';
 import { ORDER_STATUS_LABELS, type Order, type OrderStatus } from '../../lib/types';
 
 const esc = (s: string) => s.replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' })[c]!);
@@ -40,6 +40,10 @@ const OrderDetail = () => {
   const [tracking, setTracking] = useState('');
   const [notes, setNotes] = useState('');
   const [copied, setCopied] = useState(false);
+  const [refundAmount, setRefundAmount] = useState('');
+  const [refundRestock, setRefundRestock] = useState(true);
+  const [refundReason, setRefundReason] = useState('');
+  const [refundMsg, setRefundMsg] = useState<string | null>(null);
 
   const load = () =>
     id &&
@@ -51,6 +55,7 @@ const OrderDetail = () => {
         setCourier(o.courier ?? '');
         setTracking(o.tracking ?? '');
         setNotes(o.adminNotes ?? '');
+        setRefundAmount(centsToInput(o.total - (o.refundedTotal ?? 0)));
       })
       .catch((e) => setError(errMsg(e)));
 
@@ -72,6 +77,29 @@ const OrderDetail = () => {
       await updateOrder(order.id, { status, courier: courier.trim(), tracking: tracking.trim(), adminNotes: notes.trim() });
       setSaved(true);
       setTimeout(() => setSaved(false), 2000);
+      await load();
+    } catch (e) {
+      setError(errMsg(e));
+    } finally {
+      setSaving(false);
+    }
+  };
+
+  const residual = order.total - (order.refundedTotal ?? 0);
+  const canRefund = !!order.paymentIntent && residual > 0;
+
+  const refund = async () => {
+    const cents = parseEuro(refundAmount);
+    if (!cents || cents > residual) return setError(`Importo non valido (massimo ${euro(residual)})`);
+    // eslint-disable-next-line no-alert
+    if (!window.confirm(`Rimborsare ${euro(cents)} al cliente tramite Stripe? L'operazione non si può annullare.`)) return;
+    setSaving(true);
+    setError(null);
+    setRefundMsg(null);
+    try {
+      const r = await refundOrder(order.id, { amount: cents, restock: refundRestock, reason: refundReason.trim() });
+      setRefundMsg(`Rimborso di ${euro(cents)} inviato (${r.status}). Il cliente lo vedrà sulla carta in 5–10 giorni lavorativi.`);
+      setRefundReason('');
       await load();
     } catch (e) {
       setError(errMsg(e));
@@ -106,7 +134,7 @@ const OrderDetail = () => {
       <PageTitle title={`Ordine ${order.number}`}>
         <StatusBadge status={order.status} />
         <Btn variant="secondary" onClick={() => printSlip(order)}>
-          <Printer className="h-4 w-4" /> Stampa bolla
+          <Printer className="h-4 w-4" /> Stampa riepilogo
         </Btn>
       </PageTitle>
 
@@ -230,6 +258,67 @@ const OrderDetail = () => {
               </Btn>
             )}
           </Card>
+
+          {order.paymentIntent && (
+            <Card className="p-5 space-y-3">
+              <h2 className="font-semibold">Rimborso</h2>
+              {(order.refundedTotal ?? 0) > 0 && (
+                <p className="text-sm text-gray-700">
+                  Già rimborsato: <strong>{euro(order.refundedTotal)}</strong> su {euro(order.total)}
+                </p>
+              )}
+              {order.refunds?.map((r) => (
+                <p key={r.id} className="text-xs text-gray-500">
+                  {dateTime(r.at)} — {euro(r.amount)}
+                  {r.reason ? ` — ${r.reason}` : ''}
+                </p>
+              ))}
+              {canRefund ? (
+                <>
+                  <Field label="Importo da rimborsare €" hint="Per un recesso completo rimborsa anche la spedizione">
+                    <input inputMode="decimal" className={inputCls} value={refundAmount} onChange={(e) => setRefundAmount(e.target.value)} />
+                  </Field>
+                  <Field label="Motivo">
+                    <input className={inputCls} value={refundReason} onChange={(e) => setRefundReason(e.target.value)} placeholder="Es. recesso, prodotto difettoso" />
+                  </Field>
+                  {order.stockApplied && (
+                    <label className="flex items-center gap-2 text-sm">
+                      <input type="checkbox" checked={refundRestock} onChange={(e) => setRefundRestock(e.target.checked)} />
+                      Rimetti la merce nel magazzino online
+                    </label>
+                  )}
+                  <Btn variant="danger" onClick={refund} disabled={saving} className="w-full">
+                    Rimborsa con Stripe
+                  </Btn>
+                </>
+              ) : (
+                <p className="text-sm text-gray-500">Ordine interamente rimborsato.</p>
+              )}
+              {refundMsg && <p className="text-sm text-primary-700">{refundMsg}</p>}
+            </Card>
+          )}
+
+          {order.invoice && (
+            <Card className="p-5 text-sm space-y-1">
+              <h2 className="font-semibold mb-2 text-base">Fattura richiesta</h2>
+              {order.invoice.tipo === 'azienda' ? (
+                <>
+                  <p><strong>{order.invoice.ragioneSociale}</strong></p>
+                  <p>P.IVA {order.invoice.partitaIva}</p>
+                  {order.invoice.codiceFiscale && <p>C.F. {order.invoice.codiceFiscale}</p>}
+                  {order.invoice.codiceDestinatario && <p>Codice SDI: {order.invoice.codiceDestinatario}</p>}
+                  {order.invoice.pec && <p>PEC: {order.invoice.pec}</p>}
+                </>
+              ) : (
+                <>
+                  <p><strong>{c.nome} {c.cognome}</strong> (privato)</p>
+                  <p>C.F. {order.invoice.codiceFiscale}</p>
+                </>
+              )}
+              <p>{order.invoice.indirizzo}</p>
+              <p className="text-xs text-gray-500 pt-2">Emetti la fattura elettronica con il tuo software (es. Fatture in Cloud o il portale dell'Agenzia delle Entrate).</p>
+            </Card>
+          )}
 
           <Card className="p-5 text-sm space-y-1 text-gray-600">
             <p>Creato: {dateTime(order.createdAt)}</p>

@@ -1,4 +1,3 @@
-import React from 'react';
 import Section from '../components/ui/Section';
 import ContactInfo from '../components/contact/ContactInfo';
 import MapSection from '../components/contact/MapSection';

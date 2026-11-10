@@ -13,7 +13,7 @@ const PrivacyPolicyPage = () => {
         <div className="container mx-auto px-4 py-16 md:py-20">
           <div className="max-w-3xl">
             <h1 className="text-4xl md:text-5xl font-display font-bold mb-6">Informativa sulla Privacy</h1>
-            <p className="text-xl text-primary-100">Ultimo aggiornamento: 10 Novembre 2026</p>
+            <p className="text-xl text-primary-100">Ultimo aggiornamento: 11 Novembre 2026</p>
           </div>
         </div>
       </div>
@@ -24,7 +24,7 @@ const PrivacyPolicyPage = () => {
             Benvenuto/a nell'Informativa sulla Privacy de L'angolo del verde (di seguito "noi", "nostro", o "Sito"). La tua privacy è importante per noi. Questa informativa spiega quali dati personali raccogliamo dagli utenti e come li utilizziamo.
           </p>
           <p>
-            Ti invitiamo a leggere attentamente questi termini prima di fornirci i tuoi dati personali su questo sito web. Gli utenti di età inferiore ai quattordici anni non dovrebbero fornire dati personali senza il consenso dei genitori o dei tutori.
+            Ti invitiamo a leggere attentamente questi termini prima di fornirci i tuoi dati personali su questo sito web. Il negozio online è riservato ai maggiorenni: gli acquisti possono essere effettuati solo da persone di almeno 18 anni.
           </p>
 
           <h2>Titolare del Trattamento dei Dati</h2>
@@ -165,10 +165,8 @@ const PrivacyPolicyPage = () => {
             <li><strong>Database:</strong> Google Firebase (Cloud Firestore), dove sono conservati catalogo e ordini. Consulta la <a href="https://firebase.google.com/support/privacy" target="_blank" rel="noopener noreferrer" className="text-primary-600 hover:underline">informativa privacy di Firebase</a>.</li>
             <li><strong>Pagamenti:</strong> Stripe Payments Europe Ltd., che gestisce i pagamenti con carta. Consulta la <a href="https://stripe.com/it/privacy" target="_blank" rel="noopener noreferrer" className="text-primary-600 hover:underline">informativa privacy di Stripe</a>.</li>
             <li><strong>Spedizioni:</strong> il corriere incaricato della consegna, a cui comunichiamo nome, indirizzo e telefono del destinatario solo per effettuare la consegna.</li>
-            <li><strong>Servizi di Mappe:</strong> Come OpenStreetMap.</li>
-            <li><strong>Servizi di Font:</strong> Come Google Fonts.</li>
-            <li><em>Google Fonts:</em> Per visualizzare caratteri personalizzati. Google potrebbe raccogliere il tuo indirizzo IP. Per maggiori informazioni, consulta la privacy policy di Google.</li>
-            <li><em>OpenStreetMap (tramite React Leaflet):</em> Per visualizzare mappe interattive. I server di OpenStreetMap potrebbero registrare il tuo indirizzo IP per scopi tecnici.</li>
+            <li><em>OpenStreetMap:</em> per la mappa nella pagina Contatti. La mappa si carica solo se clicchi su "Mostra la mappa"; in quel caso i server di OpenStreetMap ricevono il tuo indirizzo IP per scopi tecnici.</li>
+            <li><em>Caratteri tipografici:</em> sono ospitati direttamente sul nostro sito, senza richieste a Google Fonts.</li>
             <li><em>Cloudinary:</em> Per la gestione e l'ottimizzazione delle immagini del sito. Cloudinary potrebbe raccogliere informazioni tecniche come il tuo indirizzo IP e user agent per fornire il servizio di content delivery. Per maggiori informazioni, consulta la <a href="https://cloudinary.com/privacy" className="text-primary-600 hover:underline" target="_blank" rel="noopener noreferrer">privacy policy di Cloudinary</a>.</li>
           </ul>
 

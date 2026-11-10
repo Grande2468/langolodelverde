@@ -1,5 +1,5 @@
 import { NavLink } from 'react-router-dom';
-import { MapPin, Phone, Mail, Facebook, Instagram, Youtube } from 'lucide-react';
+import { MapPin, Phone, Mail, Facebook, Instagram } from 'lucide-react';
 import logo from '../../assets/images/logo.png';
 
 const Footer = () => {
@@ -123,9 +123,15 @@ const Footer = () => {
         
         <div className="border-t border-primary-800 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
           <p className="text-primary-300 text-sm">
-            &copy; {currentYear} L'angolo del verde. Tutti i diritti riservati.
+            &copy; {currentYear} L'angolo del verde — Via Ceraselle 78, 81059 Caianello (CE) — P.IVA 04874830617
           </p>
           <div className="flex flex-wrap gap-4 md:gap-6 mt-4 md:mt-0">
+            <NavLink
+              to="/recesso"
+              className="text-primary-300 hover:text-white text-sm transition-colors"
+            >
+              Diritto di recesso
+            </NavLink>
             <NavLink 
               to="/condizioni-di-vendita" 
               className="text-primary-300 hover:text-white text-sm transition-colors"

@@ -79,6 +79,27 @@ const markExpired = async (orderId: string) => {
   });
 };
 
+/** Rimborsi fatti dal pannello Stripe: aggiorna l'importo rimborsato sull'ordine. */
+const syncRefund = async (charge: Stripe.Charge) => {
+  const pi = typeof charge.payment_intent === 'string' ? charge.payment_intent : charge.payment_intent?.id;
+  if (!pi) return;
+  const db = adminDb();
+  const found = await db.collection('orders').where('paymentIntent', '==', pi).limit(1).get();
+  if (found.empty) return;
+  const ref = found.docs[0].ref;
+  await db.runTransaction(async (tx) => {
+    const o = (await tx.get(ref)).data();
+    if (!o) return;
+    const refundedTotal = Math.max(Number(o.refundedTotal ?? 0), charge.amount_refunded);
+    const full = charge.refunded || refundedTotal >= Number(o.total);
+    tx.update(ref, {
+      refundedTotal,
+      ...(full && o.status !== 'annullato' ? { status: 'annullato', cancelReason: o.cancelReason || 'Rimborsato da Stripe' } : {}),
+      updatedAt: Date.now(),
+    });
+  });
+};
+
 export default async (req: Request) => {
   if (req.method !== 'POST') return json({ error: 'Metodo non consentito' }, 405);
   const secret = process.env.STRIPE_SECRET_KEY;
@@ -103,6 +124,8 @@ export default async (req: Request) => {
     } else if (event.type === 'checkout.session.expired') {
       const session = event.data.object as Stripe.Checkout.Session;
       if (session.metadata?.orderId) await markExpired(session.metadata.orderId);
+    } else if (event.type === 'charge.refunded') {
+      await syncRefund(event.data.object as Stripe.Charge);
     }
   } catch (err) {
     console.error('Errore elaborazione webhook', err);

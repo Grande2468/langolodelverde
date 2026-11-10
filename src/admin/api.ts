@@ -24,7 +24,7 @@ import type {
   ShippingDoc,
   StockLocation,
 } from '../lib/types';
-import { auth } from './auth';
+import { auth, idToken } from './auth';
 import { randomSuffix, slugify } from '../lib/format';
 
 const catalogRef = () => doc(db, 'public', 'catalog');
@@ -213,7 +213,7 @@ export const cancelOrderAndRestock = async (orderId: string, reason: string) => 
     const now = Date.now();
     if (order.stockApplied) {
       const refs = order.items.map((i) => doc(db, 'products', i.productId));
-      const snaps = [];
+      const snaps: Awaited<ReturnType<typeof tx.get>>[] = [];
       for (const r of refs) snaps.push(await tx.get(r));
       const cat = await tx.get(catalogRef());
       let catalog = readCatalog(cat.data() as CatalogDoc | undefined);
@@ -245,6 +245,18 @@ export const cancelOrderAndRestock = async (orderId: string, reason: string) => 
 };
 
 export const deleteOrder = (id: string) => deleteDoc(doc(db, 'orders', id));
+
+/** Rimborso tramite Stripe (totale se amount è omesso), con rientro merce facoltativo. */
+export const refundOrder = async (orderId: string, opts: { amount?: number; restock: boolean; reason: string }) => {
+  const res = await fetch('/api/refund', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${await idToken()}` },
+    body: JSON.stringify({ orderId, ...opts }),
+  });
+  const data = await res.json().catch(() => ({}));
+  if (!res.ok) throw new Error(data.error || `Errore rimborso (${res.status})`);
+  return data as { refundId: string; status: string; refundedTotal: number; fullyRefunded: boolean };
+};
 
 /* ----------------------------- SPEDIZIONI ----------------------------- */
 

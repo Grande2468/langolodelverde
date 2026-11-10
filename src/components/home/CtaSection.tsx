@@ -1,7 +1,7 @@
 import Section from '../ui/Section';
 import Button from '../ui/Button';
 import { motion } from 'framer-motion';
-import { PhoneCall, Phone } from 'lucide-react';
+import { Phone } from 'lucide-react';
 
 const CtaSection = () => {
   return (

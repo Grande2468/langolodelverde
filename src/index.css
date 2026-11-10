@@ -7,6 +7,19 @@
   body { @apply bg-white text-gray-900; }
 }
 
+/* Testi legali (classe .prose senza plugin typography) */
+@layer components {
+  .prose { @apply text-gray-700 leading-relaxed; }
+  .prose h2 { @apply text-2xl font-bold text-gray-900 mt-10 mb-3; }
+  .prose h3 { @apply text-xl font-semibold text-gray-900 mt-8 mb-2; }
+  .prose h4 { @apply text-lg font-semibold text-gray-900 mt-6 mb-2; }
+  .prose p { @apply mb-4; }
+  .prose ul { @apply list-disc pl-6 mb-4 space-y-1; }
+  .prose ol { @apply list-decimal pl-6 mb-4 space-y-1; }
+  .prose a { @apply text-primary-700 underline; }
+  .prose code { @apply text-sm bg-gray-100 px-1 rounded; }
+}
+
 @layer utilities {
   .animate-scroll {
     animation: scroll 40s linear infinite;

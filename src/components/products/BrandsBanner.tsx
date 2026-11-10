@@ -1,4 +1,3 @@
-import React from 'react';
 import { AdvancedImage } from '@cloudinary/react';
 import cloudinaryInstance from '../../services/cloudinary';
 import { scale } from '@cloudinary/url-gen/actions/resize';
