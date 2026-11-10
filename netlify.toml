@@ -1,0 +1,23 @@
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+[build.environment]
+  NODE_VERSION = "22"
+
+[functions]
+  directory = "netlify/functions"
+  node_bundler = "esbuild"
+  external_node_modules = ["firebase-admin", "stripe"]
+
+# Single Page App: tutte le rotte servono index.html
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+# L'area admin non deve finire su Google
+[[headers]]
+  for = "/gestione-adv/*"
+  [headers.values]
+    X-Robots-Tag = "noindex, nofollow"

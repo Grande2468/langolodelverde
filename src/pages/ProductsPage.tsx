@@ -1,96 +1,145 @@
-import React, { useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { Helmet } from 'react-helmet';
-import { productCategories, allProducts } from '../data/productsData';
+import { useLocation } from 'react-router-dom';
+import { Search } from 'lucide-react';
 import ProductCard from '../components/products/ProductCard';
 import Section from '../components/ui/Section';
-import { motion } from 'framer-motion';
 import BrandsBanner from '../components/products/BrandsBanner';
+import { useCatalog } from '../hooks/useCatalog';
+
+const PAGE = 24;
+type Sort = 'recenti' | 'prezzo-asc' | 'prezzo-desc' | 'nome';
 
 const ProductsPage = () => {
+  const location = useLocation();
+  const { catalog, loading, error } = useCatalog();
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
+  const [search, setSearch] = useState('');
+  const [sort, setSort] = useState<Sort>('recenti');
+  const [visible, setVisible] = useState(PAGE);
 
-  const filteredProducts = selectedCategory
-    ? allProducts.filter(product => product.categoryId === selectedCategory)
-    : allProducts;
+  // supporta sia /prodotti#categoria (link della home/footer) sia /prodotti?categoria=
+  useEffect(() => {
+    const fromHash = location.hash.replace('#', '');
+    const fromQuery = new URLSearchParams(location.search).get('categoria');
+    setSelectedCategory(fromQuery || fromHash || null);
+  }, [location.hash, location.search]);
+
+  useEffect(() => setVisible(PAGE), [selectedCategory, search, sort]);
+
+  const filtered = useMemo(() => {
+    const q = search.trim().toLowerCase();
+    let list = catalog.items.filter(
+      (p) =>
+        (!selectedCategory || p.categoryId === selectedCategory) &&
+        (!q || `${p.name} ${p.brand ?? ''} ${p.shortDescription}`.toLowerCase().includes(q))
+    );
+    list = [...list];
+    if (sort === 'prezzo-asc') list.sort((a, b) => a.price - b.price);
+    else if (sort === 'prezzo-desc') list.sort((a, b) => b.price - a.price);
+    else if (sort === 'nome') list.sort((a, b) => a.name.localeCompare(b.name, 'it'));
+    // disponibili prima degli esauriti
+    return list.sort((a, b) => Number(b.stockOnline > 0) - Number(a.stockOnline > 0));
+  }, [catalog.items, selectedCategory, search, sort]);
+
+  const pill = (active: boolean) =>
+    `px-4 md:px-6 py-2 rounded-full text-sm font-medium transition-colors whitespace-nowrap ${
+      active ? 'bg-primary-600 text-white' : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+    }`;
 
   return (
     <>
       <Helmet>
-        <title>I Nostri Prodotti | L'angolo del verde</title>
-        <meta name="description" content="Scopri la nostra gamma completa di attrezzature per giardinaggio e paesaggistica. Motocoltivatori, tosaerba, decespugliatori e molto altro per la cura del tuo verde." />
+        <title>Negozio online | L'angolo del verde</title>
+        <meta
+          name="description"
+          content="Acquista online attrezzature per giardinaggio: motocoltivatori, tosaerba, attrezzatura da giardino, ricambi e utensileria. Spedizione o ritiro in negozio."
+        />
       </Helmet>
-      
+
       <div className="pt-20 md:pt-24">
-        {/* Banner dei marchi */}
         <BrandsBanner />
 
-        {/* Messaggio showroom */}
-        <div className="bg-gray-50 py-8 md:py-12">
-          <div className="max-w-4xl mx-auto px-4 text-center">
-            <h2 className="text-2xl md:text-3xl font-bold text-primary-800 mb-3 md:mb-4">
-              Scopri la Nostra Vasta Gamma di Prodotti
-            </h2>
-            <p className="text-base md:text-lg text-gray-600 leading-relaxed">
-              Quello che vedi online è solo una piccola selezione dei prodotti disponibili nel nostro showroom.
-              Vieni a trovarci per scoprire l'intera gamma, ricevere consulenza personalizzata
-              e toccare con mano la qualità dei nostri articoli. Il nostro staff esperto è pronto
-              ad aiutarti nella scelta migliore per le tue esigenze.
-            </p>
-          </div>
-        </div>
-
         <Section>
-          <div className="max-w-7xl mx-auto px-4">
-            <h1 className="text-3xl md:text-5xl font-bold text-gray-900 mb-6 md:mb-8 text-center">
-              I Nostri Prodotti
-            </h1>
+          <div className="max-w-7xl mx-auto">
+            <h1 className="text-3xl md:text-5xl font-bold text-gray-900 mb-6 md:mb-8 text-center">I Nostri Prodotti</h1>
 
-            {/* Filtri Categorie */}
-            <div className="mb-8 md:mb-12 overflow-x-auto pb-2 -mx-4 px-4">
-              <div className="flex flex-nowrap md:flex-wrap justify-start md:justify-center gap-2 md:gap-4 min-w-max md:min-w-0">
-                <button
-                  onClick={() => setSelectedCategory(null)}
-                  className={`px-4 md:px-6 py-2 rounded-full text-sm font-medium transition-colors
-                    ${!selectedCategory 
-                      ? 'bg-primary-600 text-white' 
-                      : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
-                    }`}
-                >
+            <div className="mb-6 overflow-x-auto pb-2 -mx-4 px-4">
+              <div className="flex flex-nowrap md:flex-wrap justify-start md:justify-center gap-2 md:gap-3 min-w-max md:min-w-0">
+                <button onClick={() => setSelectedCategory(null)} className={pill(!selectedCategory)}>
                   Tutti
                 </button>
-                {productCategories.map(category => (
-                  <button
-                    key={category.id}
-                    onClick={() => setSelectedCategory(category.id)}
-                    className={`px-4 md:px-6 py-2 rounded-full text-sm font-medium transition-colors whitespace-nowrap
-                      ${selectedCategory === category.id 
-                        ? 'bg-primary-600 text-white' 
-                        : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
-                      }`}
-                  >
-                    {category.name}
+                {catalog.categories.map((c) => (
+                  <button key={c.id} onClick={() => setSelectedCategory(c.id)} className={pill(selectedCategory === c.id)}>
+                    {c.name}
                   </button>
                 ))}
               </div>
             </div>
-      
-            {/* Griglia Prodotti */}
-            <motion.div 
-              className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-6"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.5 }}
-            >
-              {filteredProducts.map(product => (
-                <ProductCard key={product.id} product={product} />
-              ))}
-            </motion.div>
 
-            {/* Messaggio se non ci sono prodotti */}
-            {filteredProducts.length === 0 && (
-              <div className="text-center text-gray-500 mt-8">
-                Nessun prodotto trovato in questa categoria.
+            <div className="flex flex-col sm:flex-row gap-3 mb-8">
+              <label className="relative flex-grow">
+                <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-gray-400" />
+                <input
+                  type="search"
+                  value={search}
+                  onChange={(e) => setSearch(e.target.value)}
+                  placeholder="Cerca un prodotto o una marca…"
+                  className="w-full pl-10 pr-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
+                />
+              </label>
+              <select
+                value={sort}
+                onChange={(e) => setSort(e.target.value as Sort)}
+                className="py-2.5 px-3 border border-gray-300 rounded-lg bg-white"
+                aria-label="Ordina"
+              >
+                <option value="recenti">Più recenti</option>
+                <option value="prezzo-asc">Prezzo crescente</option>
+                <option value="prezzo-desc">Prezzo decrescente</option>
+                <option value="nome">Nome A–Z</option>
+              </select>
+            </div>
+
+            {loading ? (
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-6">
+                {Array.from({ length: 8 }).map((_, i) => (
+                  <div key={i} className="border border-gray-100 rounded-lg overflow-hidden animate-pulse">
+                    <div className="aspect-square bg-gray-100" />
+                    <div className="p-4 space-y-3">
+                      <div className="h-4 bg-gray-100 rounded w-3/4" />
+                      <div className="h-4 bg-gray-100 rounded w-1/2" />
+                    </div>
+                  </div>
+                ))}
               </div>
+            ) : error ? (
+              <p className="text-center text-red-600">{error}</p>
+            ) : filtered.length === 0 ? (
+              <div className="text-center text-gray-500 py-12">
+                {catalog.items.length === 0
+                  ? 'Il negozio online sarà presto disponibile. Nel frattempo vieni a trovarci in negozio!'
+                  : 'Nessun prodotto trovato.'}
+              </div>
+            ) : (
+              <>
+                <p className="text-sm text-gray-500 mb-4">{filtered.length} prodotti</p>
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-6">
+                  {filtered.slice(0, visible).map((p) => (
+                    <ProductCard key={p.id} product={p} />
+                  ))}
+                </div>
+                {visible < filtered.length && (
+                  <div className="text-center mt-10">
+                    <button
+                      onClick={() => setVisible((v) => v + PAGE)}
+                      className="px-6 py-3 border-2 border-primary-600 text-primary-700 font-semibold rounded-lg hover:bg-primary-50"
+                    >
+                      Mostra altri prodotti ({filtered.length - visible})
+                    </button>
+                  </div>
+                )}
+              </>
             )}
           </div>
         </Section>

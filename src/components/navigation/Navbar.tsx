@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
-import { NavLink } from 'react-router-dom';
-import { Menu, X } from 'lucide-react';
+import { NavLink, Link } from 'react-router-dom';
+import { Menu, X, ShoppingCart } from 'lucide-react';
+import { useCart } from '../../context/CartContext';
 import { motion, AnimatePresence } from 'framer-motion';
 import logo from '../../assets/images/logo.png';
 
@@ -10,6 +11,7 @@ interface NavbarProps {
 
 const Navbar = ({ isScrolled }: NavbarProps) => {
   const [isOpen, setIsOpen] = useState(false);
+  const { count } = useCart();
   
   // Close mobile menu when screen size changes to desktop
   useEffect(() => {
@@ -53,6 +55,7 @@ const Navbar = ({ isScrolled }: NavbarProps) => {
             </span>
           </NavLink>
           
+          <div className="flex items-center gap-2 md:gap-6">
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center gap-8">
             {navItems.map((item) => (
@@ -73,7 +76,21 @@ const Navbar = ({ isScrolled }: NavbarProps) => {
               </NavLink>
             ))}
           </nav>
-          
+
+          {/* Carrello */}
+          <Link
+            to="/carrello"
+            className={`relative p-2 rounded-full transition-colors ${isScrolled ? 'text-gray-800 hover:bg-gray-100' : 'text-white hover:bg-white/10'}`}
+            aria-label={`Carrello, ${count} articoli`}
+          >
+            <ShoppingCart className="h-6 w-6" />
+            {count > 0 && (
+              <span className="absolute -top-0.5 -right-0.5 min-w-[1.25rem] h-5 px-1 rounded-full bg-accent-600 text-white text-xs font-bold flex items-center justify-center">
+                {count > 99 ? '99+' : count}
+              </span>
+            )}
+          </Link>
+
           {/* Mobile Menu Button */}
           <button 
             onClick={toggleMenu} 
@@ -86,6 +103,7 @@ const Navbar = ({ isScrolled }: NavbarProps) => {
               <Menu className={`h-6 w-6 ${isScrolled ? 'text-gray-800' : 'text-white'}`} />
             )}
           </button>
+          </div>
         </div>
       </div>
       

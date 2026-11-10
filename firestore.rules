@@ -1,0 +1,49 @@
+rules_version = '2';
+
+// Regole di sicurezza di Firestore per L'angolo del verde.
+// Da incollare in Firebase Console → Firestore Database → Regole → Pubblica.
+//
+// - Il pubblico può solo LEGGERE catalogo, spedizioni e prodotti visibili.
+// - Solo l'admin può scrivere prodotti, impostazioni e magazzino e leggere gli ordini.
+// - Gli ordini vengono creati SOLO dal server (funzioni Netlify con Firebase Admin),
+//   che non è soggetto a queste regole: nessun cliente può creare o leggere ordini.
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    function isAdmin() {
+      return request.auth != null
+        && request.auth.token.email in ['langolodelverde@admin.com'];
+    }
+
+    // public/catalog  → riepilogo di tutti i prodotti visibili + categorie
+    // public/shipping → metodi di spedizione
+    match /public/{docId} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    match /products/{productId} {
+      allow read: if isAdmin() || resource.data.visible == true;
+      allow write: if isAdmin();
+    }
+
+    match /orders/{orderId} {
+      allow read, update, delete: if isAdmin();
+      allow create: if false;
+    }
+
+    // Registro movimenti di magazzino: si aggiunge, non si modifica.
+    match /movements/{movementId} {
+      allow read, create: if isAdmin();
+      allow update, delete: if false;
+    }
+
+    match /counters/{counterId} {
+      allow read, write: if false;
+    }
+
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

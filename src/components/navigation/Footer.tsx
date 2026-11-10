@@ -125,7 +125,13 @@ const Footer = () => {
           <p className="text-primary-300 text-sm">
             &copy; {currentYear} L'angolo del verde. Tutti i diritti riservati.
           </p>
-          <div className="flex gap-4 md:gap-6 mt-4 md:mt-0">
+          <div className="flex flex-wrap gap-4 md:gap-6 mt-4 md:mt-0">
+            <NavLink 
+              to="/condizioni-di-vendita" 
+              className="text-primary-300 hover:text-white text-sm transition-colors"
+            >
+              Condizioni di vendita
+            </NavLink>
             <NavLink 
               to="/privacy-policy" 
               className="text-primary-300 hover:text-white text-sm transition-colors"
