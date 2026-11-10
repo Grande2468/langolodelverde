@@ -13,7 +13,7 @@
     "@cloudinary/react": "^1.13.0",
     "@cloudinary/url-gen": "^1.19.0",
     "firebase": "^13.2.0",
-    "firebase-admin": "^14.5.0",
+    "firebase-admin": "^13.10.0",
     "framer-motion": "^10.16.4",
     "leaflet": "^1.9.4",
     "lucide-react": "^0.292.0",

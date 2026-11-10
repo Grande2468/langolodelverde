@@ -95,7 +95,7 @@ const App = () => {
     <>
       <ScrollToTop />
       <div className="flex flex-col min-h-screen">
-        <Navbar isScrolled={isScrolled} />
+        <Navbar isScrolled={isScrolled || location.pathname !== '/'} />
         <main className="flex-grow">
           <Suspense fallback={<LoadingSpinner />}>
             <Routes>
