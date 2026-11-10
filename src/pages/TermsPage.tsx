@@ -1,7 +1,7 @@
 import { Helmet } from 'react-helmet';
 import PageHeader from '../components/ui/PageHeader';
 
-// ⚠️ Testo base da far verificare al titolare (dati aziendali, tempi, condizioni di reso).
+// Dati del venditore presi dall'informativa privacy. Far verificare al titolare tempi e condizioni di reso.
 const TermsPage = () => (
   <>
     <Helmet>
@@ -12,8 +12,8 @@ const TermsPage = () => (
       <section>
         <h2 className="text-xl font-semibold text-gray-900 mb-2">1. Venditore</h2>
         <p>
-          I prodotti sono venduti da L'angolo del verde, Caianello (CE) — tel. 320 665 8669, email
-          antoniogrande2014@gmail.com. [Ragione sociale, indirizzo completo e Partita IVA da inserire.]
+          I prodotti sono venduti da L'angolo del verde, Via Ceraselle 78, 81059 Caianello (CE) — Partita IVA
+          04874830617 — tel. 320 665 8669, email antoniogrande2014@gmail.com.
         </p>
       </section>
       <section>

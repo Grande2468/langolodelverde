@@ -1,4 +1,3 @@
-import React from 'react';
 import Section from '../components/ui/Section';
 import { Helmet } from 'react-helmet';
 
@@ -14,7 +13,7 @@ const PrivacyPolicyPage = () => {
         <div className="container mx-auto px-4 py-16 md:py-20">
           <div className="max-w-3xl">
             <h1 className="text-4xl md:text-5xl font-display font-bold mb-6">Informativa sulla Privacy</h1>
-            <p className="text-xl text-primary-100">Ultimo aggiornamento: 13 Marzo 2024</p>
+            <p className="text-xl text-primary-100">Ultimo aggiornamento: 10 Novembre 2026</p>
           </div>
         </div>
       </div>
@@ -51,6 +50,20 @@ const PrivacyPolicyPage = () => {
             <li>Numero di telefono (se fornito volontariamente)</li>
             <li>Dati di utilizzo e cookie (vedi la nostra <a href="/cookie-policy" className="text-primary-600 hover:underline">Cookie Policy</a> per i dettagli)</li>
           </ul>
+
+          <h4>Dati per gli Acquisti Online</h4>
+          <p>
+            Quando effettui un ordine nel nostro negozio online raccogliamo i dati necessari a gestirlo: nome e cognome, indirizzo email, numero di telefono, indirizzo di spedizione (se scegli la consegna a domicilio), eventuali note all'ordine, i prodotti acquistati e gli importi.
+          </p>
+          <p>
+            <strong>I dati della tua carta di pagamento non vengono mai raccolti né conservati da noi:</strong> il pagamento avviene sulla pagina sicura di Stripe, che tratta i dati di pagamento come titolare autonomo. Da Stripe riceviamo solo l'esito del pagamento e un identificativo della transazione.
+          </p>
+          <p>
+            Il contenuto del carrello viene salvato solo nel tuo browser (memoria locale del dispositivo) per non perderlo tra una visita e l'altra; non viene inviato a noi finché non completi l'ordine.
+          </p>
+          <p>
+            Finalità: gestione ed evasione dell'ordine, spedizione o ritiro in negozio, assistenza post-vendita, gestione di resi e garanzie, adempimento degli obblighi fiscali e contabili. Base giuridica: esecuzione del contratto di vendita (art. 6.1.b GDPR) e obblighi di legge (art. 6.1.c GDPR). Il conferimento dei dati è necessario: senza di essi non possiamo evadere l'ordine.
+          </p>
 
           <h4>Dati di Utilizzo</h4>
           <p>
@@ -105,6 +118,7 @@ const PrivacyPolicyPage = () => {
           <p>Pertanto:</p>
           <ul>
             <li>I Dati Personali raccolti per scopi collegati all'esecuzione di un contratto tra noi e te saranno conservati fino a quando tale contratto non sia stato completamente eseguito.</li>
+            <li>I dati degli ordini e la relativa documentazione contabile sono conservati per 10 anni, come previsto dalla normativa fiscale (art. 2220 Codice Civile).</li>
             <li>I Dati Personali raccolti per le finalità del nostro legittimo interesse saranno conservati per il tempo necessario a soddisfare tali finalità. Puoi trovare informazioni specifiche riguardo ai legittimi interessi da noi perseguiti nelle relative sezioni di questo documento o contattandoci.</li>
           </ul>
           <p>
@@ -144,16 +158,18 @@ const PrivacyPolicyPage = () => {
             Potremmo impiegare società e individui di terze parti per facilitare il nostro Sito ("Fornitori di Servizi"), per fornire il Sito per nostro conto, per eseguire servizi relativi al Sito o per assisterci nell'analisi di come viene utilizzato il nostro Sito.
           </p>
           <p>
-            Queste terze parti hanno accesso ai tuoi Dati Personali solo برای eseguire questi compiti per nostro conto e sono obbligate a non divulgarli o utilizzarli per altri scopi. Esempi includono:
+            Queste terze parti hanno accesso ai tuoi Dati Personali solo per eseguire questi compiti per nostro conto e sono obbligate a non divulgarli o utilizzarli per altri scopi. Esempi includono:
           </p>
           <ul>
-            <li><strong>Hosting Provider:</strong> Come Vercel, che ospita il nostro sito. Consulta la loro <a href="https://vercel.com/legal/privacy-policy" target="_blank" rel="noopener noreferrer" className="text-primary-600 hover:underline">Privacy Policy di Vercel</a>.</li>
+            <li><strong>Hosting:</strong> Netlify, che ospita il sito e le funzioni che elaborano gli ordini. Consulta la <a href="https://www.netlify.com/privacy/" target="_blank" rel="noopener noreferrer" className="text-primary-600 hover:underline">privacy policy di Netlify</a>.</li>
+            <li><strong>Database:</strong> Google Firebase (Cloud Firestore), dove sono conservati catalogo e ordini. Consulta la <a href="https://firebase.google.com/support/privacy" target="_blank" rel="noopener noreferrer" className="text-primary-600 hover:underline">informativa privacy di Firebase</a>.</li>
+            <li><strong>Pagamenti:</strong> Stripe Payments Europe Ltd., che gestisce i pagamenti con carta. Consulta la <a href="https://stripe.com/it/privacy" target="_blank" rel="noopener noreferrer" className="text-primary-600 hover:underline">informativa privacy di Stripe</a>.</li>
+            <li><strong>Spedizioni:</strong> il corriere incaricato della consegna, a cui comunichiamo nome, indirizzo e telefono del destinatario solo per effettuare la consegna.</li>
             <li><strong>Servizi di Mappe:</strong> Come OpenStreetMap.</li>
             <li><strong>Servizi di Font:</strong> Come Google Fonts.</li>
             <li><em>Google Fonts:</em> Per visualizzare caratteri personalizzati. Google potrebbe raccogliere il tuo indirizzo IP. Per maggiori informazioni, consulta la privacy policy di Google.</li>
             <li><em>OpenStreetMap (tramite React Leaflet):</em> Per visualizzare mappe interattive. I server di OpenStreetMap potrebbero registrare il tuo indirizzo IP per scopi tecnici.</li>
             <li><em>Cloudinary:</em> Per la gestione e l'ottimizzazione delle immagini del sito. Cloudinary potrebbe raccogliere informazioni tecniche come il tuo indirizzo IP e user agent per fornire il servizio di content delivery. Per maggiori informazioni, consulta la <a href="https://cloudinary.com/privacy" className="text-primary-600 hover:underline" target="_blank" rel="noopener noreferrer">privacy policy di Cloudinary</a>.</li>
-            <li><em>Vercel Analytics (se attivato):</em> Vercel potrebbe raccogliere dati analitici anonimizzati sull'utilizzo del sito. Controlla la documentazione di Vercel per i dettagli specifici sulla loro raccolta dati quando Vercel Analytics è abilitato.</li>
           </ul>
 
           <h2>Sicurezza dei Dati</h2>
