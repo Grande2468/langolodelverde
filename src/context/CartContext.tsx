@@ -1,5 +1,6 @@
 import { createContext, useCallback, useContext, useEffect, useMemo, useState, ReactNode } from 'react';
 import type { CatalogItem } from '../lib/types';
+import { maxOrderable } from '../lib/catalog';
 
 export interface CartLine {
   id: string;
@@ -9,6 +10,9 @@ export interface CartLine {
   image: string | null;
   pickupOnly: boolean;
   maxQty: number;
+  backorder?: boolean;
+  leadTime?: string;
+  stock?: number; // giacenza online al momento dell'aggiunta/verifica
 }
 
 interface CartCtx {
@@ -50,10 +54,10 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
 
   const add = useCallback((item: CatalogItem, qty = 1) => {
     setLines((prev) => {
-      const max = Math.max(0, item.stockOnline);
+      const max = maxOrderable(item);
       const existing = prev.find((l) => l.id === item.id);
       if (existing) {
-        return prev.map((l) => (l.id === item.id ? { ...l, qty: Math.min(max, l.qty + qty), maxQty: max } : l));
+        return prev.map((l) => (l.id === item.id ? { ...l, qty: Math.min(max, l.qty + qty), maxQty: max, stock: item.stockOnline } : l));
       }
       return [
         ...prev,
@@ -65,6 +69,9 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
           image: item.image,
           pickupOnly: item.pickupOnly,
           maxQty: max,
+          backorder: !!item.backorder,
+          leadTime: item.leadTime || '',
+          stock: item.stockOnline,
         },
       ];
     });
@@ -90,13 +97,14 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
           messages.push(`"${l.name}" non è più disponibile ed è stato rimosso dal carrello.`);
           continue;
         }
-        if (item.stockOnline <= 0) {
+        const max = maxOrderable(item);
+        if (max <= 0) {
           messages.push(`"${l.name}" è esaurito ed è stato rimosso dal carrello.`);
           continue;
         }
         if (item.price !== l.price) messages.push(`Il prezzo di "${l.name}" è stato aggiornato.`);
-        const qty = Math.min(l.qty, item.stockOnline);
-        if (qty < l.qty) messages.push(`Per "${l.name}" sono disponibili solo ${item.stockOnline} pezzi.`);
+        const qty = Math.min(l.qty, max);
+        if (qty < l.qty) messages.push(`Per "${l.name}" sono disponibili solo ${max} pezzi.`);
         next.push({
           ...l,
           qty,
@@ -104,7 +112,10 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
           price: item.price,
           image: item.image,
           pickupOnly: item.pickupOnly,
-          maxQty: item.stockOnline,
+          maxQty: max,
+          backorder: !!item.backorder,
+          leadTime: item.leadTime || '',
+          stock: item.stockOnline,
         });
       }
       return next;

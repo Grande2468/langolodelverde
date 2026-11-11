@@ -1,10 +1,11 @@
 import { useEffect, useState } from 'react';
 import { Plus, Trash2, RefreshCw, Truck, Store } from 'lucide-react';
-import { getCatalog, getShipping, rebuildCatalog, saveCategories, saveShipping } from '../api';
+import { getCatalog, getShipping, rebuildCatalog, saveCategories, savePayments, saveShipping } from '../api';
+import { fetchPayments } from '../../lib/catalog';
 import { Btn, Card, ErrorBox, Field, PageTitle, Spinner, errMsg, inputCls } from '../components/ui';
 import ImageUploader from '../components/ImageUploader';
 import { centsToInput, parseEuro, randomSuffix, slugify } from '../../lib/format';
-import type { CatalogDoc, Category, ShippingMethod, ShippingType } from '../../lib/types';
+import type { CatalogDoc, Category, PaymentsDoc, ShippingMethod, ShippingType } from '../../lib/types';
 
 interface MethodRow extends Omit<ShippingMethod, 'price' | 'freeAbove'> {
   price: string;
@@ -22,11 +23,21 @@ const SettingsAdmin = () => {
   const [rows, setRows] = useState<MethodRow[] | null>(null);
   const [catalog, setCatalog] = useState<CatalogDoc | null>(null);
   const [cats, setCats] = useState<Category[]>([]);
+  const [pay, setPay] = useState<PaymentsDoc | null>(null);
+  const [codFee, setCodFee] = useState('');
+  const [codMax, setCodMax] = useState('');
   const [error, setError] = useState<string | null>(null);
   const [msg, setMsg] = useState<string | null>(null);
   const [busy, setBusy] = useState(false);
 
   useEffect(() => {
+    fetchPayments()
+      .then((p) => {
+        setPay(p);
+        setCodFee(centsToInput(p.cod.fee));
+        setCodMax(centsToInput(p.cod.maxTotal));
+      })
+      .catch((e) => setError(errMsg(e)));
     Promise.all([getShipping(), getCatalog()])
       .then(([s, c]) => {
         setRows((s.methods.length ? s.methods : DEFAULT_METHODS).map(toRow));
@@ -74,6 +85,18 @@ const SettingsAdmin = () => {
       if (cats.some((c) => !c.name.trim())) throw new Error('Ogni categoria deve avere un nome');
       await saveCategories(cats.map((c) => ({ id: c.id, name: c.name.trim(), description: (c.description ?? '').trim(), imageId: c.imageId ?? '' })));
       flash('Categorie salvate.');
+    });
+
+  const savePay = () =>
+    run(async () => {
+      if (!pay) return;
+      const fee = codFee.trim() ? parseEuro(codFee) : 0;
+      if (fee == null) throw new Error('Commissione contrassegno non valida');
+      const max = codMax.trim() ? parseEuro(codMax) : null;
+      if (codMax.trim() && max == null) throw new Error('Importo massimo contrassegno non valido');
+      if (!pay.card && !pay.cod.enabled && !pay.payOnPickup.enabled) throw new Error('Serve almeno un metodo di pagamento attivo');
+      await savePayments({ card: pay.card, cod: { enabled: pay.cod.enabled, fee, maxTotal: max }, payOnPickup: { enabled: pay.payOnPickup.enabled } });
+      flash('Metodi di pagamento salvati.');
     });
 
   const repair = () =>
@@ -142,6 +165,60 @@ const SettingsAdmin = () => {
           </Btn>
         </div>
       </Card>
+
+      {pay && (
+        <Card className="p-5 space-y-4">
+          <div>
+            <h2 className="font-semibold mb-1">Metodi di pagamento</h2>
+            <p className="text-sm text-gray-500">Il cliente vede solo quelli adatti alla consegna scelta.</p>
+          </div>
+          <label className="flex items-start gap-3 p-3 border rounded-lg">
+            <input type="checkbox" className="mt-1" checked={pay.card} onChange={(e) => setPay({ ...pay, card: e.target.checked })} />
+            <span>
+              <span className="block text-sm font-medium">Carta (Stripe)</span>
+              <span className="block text-xs text-gray-500">Pagamento online immediato, con ricevuta automatica.</span>
+            </span>
+          </label>
+          <div className="p-3 border rounded-lg space-y-3">
+            <label className="flex items-start gap-3">
+              <input type="checkbox" className="mt-1" checked={pay.cod.enabled} onChange={(e) => setPay({ ...pay, cod: { ...pay.cod, enabled: e.target.checked } })} />
+              <span>
+                <span className="block text-sm font-medium">Contrassegno (solo con spedizione)</span>
+                <span className="block text-xs text-gray-500">
+                  Il cliente paga in contanti al corriere. Il corriere ti trattiene una commissione: impostala qui per farla pagare al cliente.
+                </span>
+              </span>
+            </label>
+            {pay.cod.enabled && (
+              <div className="grid sm:grid-cols-2 gap-3 pl-7">
+                <Field label="Commissione al cliente €">
+                  <input inputMode="decimal" className={inputCls} value={codFee} onChange={(e) => setCodFee(e.target.value)} placeholder="es. 4,00" />
+                </Field>
+                <Field label="Importo massimo ordine €" hint="Sopra questa cifra il contrassegno non è proposto (vuoto = nessun limite)">
+                  <input inputMode="decimal" className={inputCls} value={codMax} onChange={(e) => setCodMax(e.target.value)} placeholder="es. 500" />
+                </Field>
+              </div>
+            )}
+          </div>
+          <label className="flex items-start gap-3 p-3 border rounded-lg">
+            <input
+              type="checkbox"
+              className="mt-1"
+              checked={pay.payOnPickup.enabled}
+              onChange={(e) => setPay({ ...pay, payOnPickup: { enabled: e.target.checked } })}
+            />
+            <span>
+              <span className="block text-sm font-medium">Pagamento in negozio al ritiro</span>
+              <span className="block text-xs text-gray-500">Solo con "Ritiro in negozio": il cliente paga quando passa a prendere la merce.</span>
+            </span>
+          </label>
+          <div className="flex justify-end">
+            <Btn onClick={savePay} disabled={busy}>
+              Salva pagamenti
+            </Btn>
+          </div>
+        </Card>
+      )}
 
       <Card className="p-5">
         <h2 className="font-semibold mb-1">Categorie</h2>

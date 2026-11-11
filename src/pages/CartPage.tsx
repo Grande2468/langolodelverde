@@ -60,6 +60,9 @@ const CartPage = () => {
                       {l.name}
                     </Link>
                     <p className="text-sm text-gray-500">{euro(l.price)} cad.</p>
+                    {l.backorder && l.qty > (l.stock ?? 0) && (
+                      <p className="text-xs text-secondary-700 mt-1">Su ordinazione — consegna in {l.leadTime || 'alcuni giorni'}</p>
+                    )}
                     {l.pickupOnly && (
                       <p className="text-xs text-secondary-700 flex items-center gap-1 mt-1">
                         <Store className="h-3.5 w-3.5" /> Solo ritiro in negozio

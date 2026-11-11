@@ -4,12 +4,15 @@ import type { CatalogItem } from '../../lib/types';
 import { cld, cldSrcSet } from '../../lib/cloudinary';
 import { euro } from '../../lib/format';
 import { useCart } from '../../context/CartContext';
+import { maxOrderable } from '../../lib/catalog';
 
 const ProductCard = ({ product }: { product: CatalogItem }) => {
   const { add, lines } = useCart();
   const inCart = lines.find((l) => l.id === product.id)?.qty ?? 0;
-  const soldOut = product.stockOnline <= 0;
-  const canAdd = !soldOut && inCart < product.stockOnline;
+  const max = maxOrderable(product);
+  const soldOut = max <= 0;
+  const onOrder = !soldOut && product.stockOnline <= 0; // esaurito ma ordinabile su richiesta
+  const canAdd = !soldOut && inCart < max;
   const discounted = !!product.comparePrice && product.comparePrice > product.price;
 
   return (
@@ -30,7 +33,12 @@ const ProductCard = ({ product }: { product: CatalogItem }) => {
             Esaurito online
           </span>
         )}
-        {!soldOut && discounted && (
+        {onOrder && (
+          <span className="absolute top-3 left-3 bg-secondary-700 text-white text-xs font-semibold px-2 py-1 rounded">
+            Su ordinazione
+          </span>
+        )}
+        {!soldOut && !onOrder && discounted && (
           <span className="absolute top-3 left-3 bg-accent-600 text-white text-xs font-semibold px-2 py-1 rounded">
             -{Math.round((1 - product.price / (product.comparePrice as number)) * 100)}%
           </span>
@@ -48,6 +56,11 @@ const ProductCard = ({ product }: { product: CatalogItem }) => {
           <span className="text-xl font-bold text-primary-700">{euro(product.price)}</span>
           {discounted && <span className="text-sm text-gray-400 line-through">{euro(product.comparePrice)}</span>}
         </div>
+        {onOrder && (
+          <p className="text-xs text-secondary-700 mb-2">
+            Consegna in {product.leadTime || 'alcuni giorni'}
+          </p>
+        )}
         {product.pickupOnly && (
           <p className="text-xs text-secondary-700 flex items-center gap-1 mb-2">
             <Store className="h-3.5 w-3.5" /> Solo ritiro in negozio

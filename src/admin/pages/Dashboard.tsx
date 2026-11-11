@@ -6,7 +6,6 @@ import { Card, ErrorBox, PageTitle, Spinner, StatusBadge, errMsg } from '../comp
 import { dateTime, euro } from '../../lib/format';
 import type { Order, Product } from '../../lib/types';
 
-const PAID = ['pagato', 'in_preparazione', 'spedito', 'pronto_ritiro', 'completato'];
 
 const Dashboard = () => {
   const [orders, setOrders] = useState<Order[] | null>(null);
@@ -25,9 +24,12 @@ const Dashboard = () => {
   if (error) return <ErrorBox error={error} />;
   if (!orders) return <Spinner />;
 
-  const toShip = orders.filter((o) => o.status === 'pagato' || o.status === 'in_preparazione');
+  const toShip = orders.filter((o) => o.status === 'pagato' || o.status === 'da_pagare' || o.status === 'in_preparazione');
   const monthAgo = Date.now() - 30 * 864e5;
-  const revenue = orders.filter((o) => PAID.includes(o.status) && (o.paidAt ?? o.createdAt) > monthAgo).reduce((s, o) => s + o.total, 0);
+  // incassato = pagamenti ricevuti (carta, o contrassegno/ritiro segnati come incassati), al netto dei rimborsi
+  const revenue = orders
+    .filter((o) => o.paidAt && o.paidAt > monthAgo)
+    .reduce((s, o) => s + o.total - (o.refundedTotal ?? 0), 0);
   const soldOut = products.filter((p) => p.visible && (p.stock?.online ?? 0) <= 0);
   const low = products.filter((p) => p.visible && (p.stock?.online ?? 0) > 0 && (p.stock?.online ?? 0) <= 2);
 

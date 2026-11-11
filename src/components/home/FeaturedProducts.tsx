@@ -2,11 +2,12 @@ import Section, { SectionHeading } from '../ui/Section';
 import Button from '../ui/Button';
 import ProductCard from '../products/ProductCard';
 import { useCatalog } from '../../hooks/useCatalog';
+import { maxOrderable } from '../../lib/catalog';
 
 /** Prodotti segnati "in evidenza" dall'admin. Se non ce ne sono, mostra gli ultimi arrivi. */
 const FeaturedProducts = () => {
   const { catalog, loading } = useCatalog();
-  const available = catalog.items.filter((p) => p.stockOnline > 0);
+  const available = catalog.items.filter((p) => maxOrderable(p) > 0);
   const featured = available.filter((p) => p.featured);
   const list = (featured.length ? featured : available).slice(0, 8);
 

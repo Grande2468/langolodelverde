@@ -35,6 +35,7 @@ export const Field = ({ label, hint, children }: { label: string; hint?: string;
 
 const STATUS_COLORS: Record<OrderStatus, string> = {
   in_attesa_pagamento: 'bg-gray-100 text-gray-600',
+  da_pagare: 'bg-orange-100 text-orange-800',
   pagato: 'bg-amber-100 text-amber-800',
   in_preparazione: 'bg-blue-100 text-blue-800',
   spedito: 'bg-indigo-100 text-indigo-800',

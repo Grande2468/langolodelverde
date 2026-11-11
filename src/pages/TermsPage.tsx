@@ -19,16 +19,33 @@ const TermsPage = () => (
       <section>
         <h2 className="text-xl font-semibold text-gray-900 mb-2">2. Prezzi e pagamento</h2>
         <p>
-          Tutti i prezzi sono in euro e comprendono l'IVA. Le spese di consegna sono indicate prima della conferma
-          dell'ordine. Il pagamento avviene con carta tramite Stripe: i dati della carta non vengono mai registrati
-          sul nostro sito.
+          Tutti i prezzi sono in euro e comprendono l'IVA. Le spese di consegna ed eventuali commissioni sono indicate
+          prima della conferma dell'ordine. Puoi pagare, secondo le opzioni mostrate nel checkout:
+        </p>
+        <ul className="list-disc pl-6 mt-2 space-y-1">
+          <li>
+            <strong>con carta</strong> tramite Stripe: i dati della carta non vengono mai registrati sul nostro sito;
+          </li>
+          <li>
+            <strong>in contrassegno</strong> (solo con spedizione): paghi in contanti al corriere alla consegna. Può
+            essere prevista una commissione e un importo massimo per ordine, sempre indicati nel checkout;
+          </li>
+          <li>
+            <strong>in negozio al ritiro</strong> (solo con ritiro in negozio): paghi quando ritiri la merce.
+          </li>
+        </ul>
+        <p className="mt-2">
+          Se richiedi la fattura, inserisci i dati nel checkout: la fattura elettronica ti arriverà tramite il Sistema
+          di Interscambio.
         </p>
       </section>
       <section>
         <h2 className="text-xl font-semibold text-gray-900 mb-2">3. Conclusione del contratto</h2>
         <p>
-          Il contratto si conclude quando il pagamento è completato. Riceverai una conferma via email. In caso di
-          indisponibilità sopravvenuta di un prodotto ti contatteremo e ti rimborseremo l'importo pagato.
+          Con il pagamento con carta il contratto si conclude quando il pagamento è completato; con il contrassegno o
+          il pagamento al ritiro si conclude quando invii l'ordine. In ogni caso riceverai una email di conferma con il
+          riepilogo dell'ordine. In caso di indisponibilità sopravvenuta di un prodotto ti contatteremo e, se avevi già
+          pagato, ti rimborseremo l'importo.
         </p>
       </section>
       <section>
@@ -37,6 +54,13 @@ const TermsPage = () => (
           Puoi scegliere la spedizione all'indirizzo indicato oppure il ritiro in negozio, secondo le opzioni mostrate
           nel checkout. Alcuni prodotti ingombranti sono disponibili solo con ritiro in negozio. Al ricevimento
           controlla che l'imballo sia integro e segnala subito eventuali danni.
+        </p>
+        <p className="mt-2">
+          <strong>Prodotti su ordinazione.</strong> Alcuni prodotti possono essere ordinati anche se non sono
+          disponibili a magazzino: in questo caso li procuriamo dal fornitore e i tempi di consegna indicati nella
+          scheda del prodotto decorrono dalla conferma dell'ordine. Ti avvisiamo quando la merce è pronta per la
+          spedizione o il ritiro. Se il fornitore non riuscisse a consegnarla, ti informeremo subito e potrai annullare
+          l'ordine con il rimborso integrale di quanto eventualmente pagato.
         </p>
       </section>
       <section>

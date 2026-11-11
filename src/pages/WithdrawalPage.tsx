@@ -56,7 +56,9 @@ const WithdrawalPage = () => (
         <p>
           Ti rimborseremo tutti i pagamenti ricevuti, <strong>compresi i costi di consegna standard</strong>, entro 14
           giorni dal giorno in cui siamo informati del recesso. Il rimborso avviene con lo stesso metodo di pagamento
-          usato per l'acquisto (la tua carta, tramite Stripe), senza costi per te. Possiamo trattenere il rimborso
+          usato per l'acquisto (la tua carta, tramite Stripe), senza costi per te. Se hai pagato in contanti (contrassegno o
+          pagamento in negozio), ti rimborseremo con bonifico sul conto che ci indicherai, sempre senza costi, oppure in
+          contanti in negozio se preferisci. Possiamo trattenere il rimborso
           finché non abbiamo ricevuto i beni o finché non ci dimostri di averli spediti, se precede.
         </p>
 

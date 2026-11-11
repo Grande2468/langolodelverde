@@ -1,12 +1,12 @@
 import { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { ArrowLeft, Copy, Printer, Phone, Mail, AlertTriangle, ExternalLink } from 'lucide-react';
-import { cancelOrderAndRestock, getOrder, refundOrder, updateOrder } from '../api';
+import { cancelOrderAndRestock, getOrder, markCollected, refundOrder, updateOrder } from '../api';
 import { ADMIN_BASE } from '../base';
 import { Btn, Card, ErrorBox, Field, PageTitle, Spinner, StatusBadge, errMsg, inputCls } from '../components/ui';
 import { cld } from '../../lib/cloudinary';
 import { centsToInput, dateTime, euro, parseEuro } from '../../lib/format';
-import { ORDER_STATUS_LABELS, type Order, type OrderStatus } from '../../lib/types';
+import { ORDER_STATUS_LABELS, PAYMENT_LABELS, type Order, type OrderStatus } from '../../lib/types';
 
 const esc = (s: string) => s.replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' })[c]!);
 
@@ -24,7 +24,10 @@ const printSlip = (o: Order) => {
   <table><tr><th>Prodotto</th><th class="r">Qtà</th><th class="r">Prezzo</th></tr>${o.items
     .map((i) => `<tr><td>${esc(i.name)}</td><td class="r">${i.qty}</td><td class="r">${esc(euro(i.price * i.qty))}</td></tr>`)
     .join('')}<tr><td>Consegna</td><td></td><td class="r">${esc(euro(o.shippingCost))}</td></tr>
-  <tr><th>Totale pagato</th><th></th><th class="r">${esc(euro(o.total))}</th></tr></table>
+  ${o.codFee ? `<tr><td>Commissione contrassegno</td><td></td><td class="r">${esc(euro(o.codFee))}</td></tr>` : ''}
+  <tr><th>${o.paymentMethod && o.paymentMethod !== 'carta' ? 'Totale da pagare' : 'Totale pagato'}</th><th></th><th class="r">${esc(euro(o.total))}</th></tr></table>
+  ${o.paymentMethod === 'contrassegno' && !o.paymentCollected ? `<p style="font-size:20px;border:2px solid #111;padding:10px;display:inline-block"><b>CONTRASSEGNO: incassare ${esc(euro(o.total))}</b></p>` : ''}
+  ${o.paymentMethod === 'ritiro' && !o.paymentCollected ? `<p style="font-size:18px"><b>Da pagare al ritiro: ${esc(euro(o.total))}</b></p>` : ''}
   ${c.note ? `<p><b>Note cliente:</b> ${esc(c.note)}</p>` : ''}<script>window.print()</script></body></html>`);
   w.document.close();
 };
@@ -197,6 +200,7 @@ const OrderDetail = () => {
                   <Link to={`${ADMIN_BASE}/prodotti/${i.productId}`} className="flex-grow hover:text-primary-700">
                     {i.name}
                   </Link>
+                  {i.backorder && <span className="text-xs px-1.5 py-0.5 rounded bg-amber-100 text-amber-800">su ordinazione</span>}
                   <span className="text-sm text-gray-500">
                     {i.qty} × {euro(i.price)}
                   </span>
@@ -213,6 +217,12 @@ const OrderDetail = () => {
                 <span>{order.shippingMethod.name}</span>
                 <span>{euro(order.shippingCost)}</span>
               </div>
+              {(order.codFee ?? 0) > 0 && (
+                <div className="flex justify-between">
+                  <span>Commissione contrassegno</span>
+                  <span>{euro(order.codFee)}</span>
+                </div>
+              )}
               <div className="flex justify-between text-base font-bold">
                 <span>Totale</span>
                 <span>{euro(order.total)}</span>
@@ -222,6 +232,50 @@ const OrderDetail = () => {
         </div>
 
         <div className="space-y-6">
+          <Card className="p-5 space-y-3">
+            <h2 className="font-semibold">Pagamento</h2>
+            <p className="text-sm">
+              {PAYMENT_LABELS[order.paymentMethod ?? 'carta']}
+              {' — '}
+              {order.paymentMethod && order.paymentMethod !== 'carta' ? (
+                order.paymentCollected ? (
+                  <strong className="text-primary-700">incassato</strong>
+                ) : (
+                  <strong className="text-orange-700">da incassare {euro(order.total)}</strong>
+                )
+              ) : order.paidAt ? (
+                <strong className="text-primary-700">pagato</strong>
+              ) : (
+                <strong className="text-gray-500">non pagato</strong>
+              )}
+            </p>
+            {order.paymentMethod && order.paymentMethod !== 'carta' && !order.paymentCollected && order.status !== 'annullato' && (
+              <Btn
+                variant="secondary"
+                className="w-full"
+                disabled={saving}
+                onClick={async () => {
+                  setSaving(true);
+                  try {
+                    await markCollected(order.id);
+                    await load();
+                  } catch (e) {
+                    setError(errMsg(e));
+                  } finally {
+                    setSaving(false);
+                  }
+                }}
+              >
+                Segna come incassato
+              </Btn>
+            )}
+            {order.items.some((i) => i.backorder) && (
+              <p className="text-sm bg-amber-50 border border-amber-200 rounded p-2">
+                Contiene prodotti <strong>su ordinazione</strong>: ordinali al fornitore e avvisa il cliente dei tempi.
+              </p>
+            )}
+          </Card>
+
           <Card className="p-5 space-y-4">
             <h2 className="font-semibold">Gestione</h2>
             <Field label="Stato">

@@ -8,6 +8,7 @@ import { useCart } from '../context/CartContext';
 const OrderSuccessPage = () => {
   const [params] = useSearchParams();
   const number = params.get('ordine');
+  const pagamento = params.get('pagamento');
   const { clear } = useCart();
 
   useEffect(() => {
@@ -34,8 +35,13 @@ const OrderSuccessPage = () => {
           </p>
         )}
         <p className="text-gray-600 mb-8">
-          Il pagamento è andato a buon fine. Riceverai la ricevuta via email e ti contatteremo per la consegna o il
-          ritiro. Per qualsiasi domanda chiamaci al <a href="tel:3206658669" className="underline">320 665 8669</a>.
+          {pagamento === 'contrassegno'
+            ? 'Ordine confermato: pagherai in contanti al corriere al momento della consegna. '
+            : pagamento === 'ritiro'
+              ? 'Ordine confermato: pagherai in negozio quando ritiri la merce. Ti avvisiamo quando è pronta. '
+              : 'Il pagamento è andato a buon fine. '}
+          Riceverai la conferma dell'ordine via email. Per qualsiasi domanda chiamaci al{' '}
+          <a href="tel:3206658669" className="underline">320 665 8669</a>.
         </p>
         <Link to="/prodotti" className="bg-primary-600 text-white px-6 py-3 rounded-lg hover:bg-primary-700">
           Torna al negozio

@@ -21,6 +21,7 @@ import type {
   MovementType,
   Order,
   Product,
+  PaymentsDoc,
   ShippingDoc,
   StockLocation,
 } from '../lib/types';
@@ -266,3 +267,9 @@ export const getShipping = async (): Promise<ShippingDoc> => {
 };
 
 export const saveShipping = (s: ShippingDoc) => setDoc(doc(db, 'public', 'shipping'), s);
+
+export const savePayments = (p: PaymentsDoc) => setDoc(doc(db, 'public', 'payments'), p);
+
+/** Contrassegno / pagamento al ritiro: registra l'incasso. */
+export const markCollected = (id: string) =>
+  updateDoc(doc(db, 'orders', id), { paymentCollected: true, paidAt: Date.now(), updatedAt: Date.now() });

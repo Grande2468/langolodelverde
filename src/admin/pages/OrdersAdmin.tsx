@@ -8,7 +8,7 @@ import { dateTime, euro } from '../../lib/format';
 import type { Order, OrderStatus } from '../../lib/types';
 
 const TABS: { id: string; label: string; statuses: OrderStatus[] }[] = [
-  { id: 'da-evadere', label: 'Da evadere', statuses: ['pagato', 'in_preparazione'] },
+  { id: 'da-evadere', label: 'Da evadere', statuses: ['pagato', 'da_pagare', 'in_preparazione'] },
   { id: 'in-consegna', label: 'Spediti / da ritirare', statuses: ['spedito', 'pronto_ritiro'] },
   { id: 'completati', label: 'Completati', statuses: ['completato'] },
   { id: 'annullati', label: 'Annullati', statuses: ['annullato'] },
@@ -98,6 +98,12 @@ const OrdersAdmin = () => {
                       {o.items.reduce((s, i) => s + i.qty, 0)} articoli · {dateTime(o.createdAt)}
                     </span>
                   </span>
+                  {o.paymentMethod && o.paymentMethod !== 'carta' && (
+                    <span className="text-xs px-2 py-0.5 rounded bg-orange-50 text-orange-800">
+                      {o.paymentMethod === 'contrassegno' ? 'Contrassegno' : 'Paga al ritiro'}
+                      {o.paymentCollected ? ' ✓' : ''}
+                    </span>
+                  )}
                   {o.oversold && <AlertTriangle className="h-4 w-4 text-red-600" aria-label="Giacenza insufficiente" />}
                   <span className="font-semibold">{euro(o.total)}</span>
                   <StatusBadge status={o.status} />

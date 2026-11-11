@@ -6,6 +6,7 @@ import ProductCard from '../components/products/ProductCard';
 import Section from '../components/ui/Section';
 import BrandsBanner from '../components/products/BrandsBanner';
 import { useCatalog } from '../hooks/useCatalog';
+import { maxOrderable } from '../lib/catalog';
 
 const PAGE = 24;
 type Sort = 'recenti' | 'prezzo-asc' | 'prezzo-desc' | 'nome';
@@ -39,7 +40,7 @@ const ProductsPage = () => {
     else if (sort === 'prezzo-desc') list.sort((a, b) => b.price - a.price);
     else if (sort === 'nome') list.sort((a, b) => a.name.localeCompare(b.name, 'it'));
     // disponibili prima degli esauriti
-    return list.sort((a, b) => Number(b.stockOnline > 0) - Number(a.stockOnline > 0));
+    return list.sort((a, b) => Number(maxOrderable(b) > 0) - Number(maxOrderable(a) > 0));
   }, [catalog.items, selectedCategory, search, sort]);
 
   const pill = (active: boolean) =>

@@ -4,7 +4,7 @@ import { Helmet } from 'react-helmet';
 import { Minus, Plus, ShoppingCart, Store, Truck, MessageCircle, Check } from 'lucide-react';
 import Section from '../components/ui/Section';
 import ProductCard from '../components/products/ProductCard';
-import { fetchProduct, toCatalogItem } from '../lib/catalog';
+import { fetchProduct, maxOrderable, toCatalogItem } from '../lib/catalog';
 import { cld } from '../lib/cloudinary';
 import { euro } from '../lib/format';
 import type { Product } from '../lib/types';
@@ -61,7 +61,9 @@ const ProductDetailPage = () => {
   const item = toCatalogItem(product);
   const stock = product.stock?.online ?? 0;
   const inCart = lines.find((l) => l.id === product.id)?.qty ?? 0;
-  const maxAdd = Math.max(0, stock - inCart);
+  const orderable = maxOrderable(item);
+  const onOrder = orderable > 0 && stock <= 0;
+  const maxAdd = Math.max(0, orderable - inCart);
   const images = product.images?.length ? product.images : [null];
   const current = images[selected] ?? null;
   const discounted = !!product.comparePrice && product.comparePrice > product.price;
@@ -143,7 +145,11 @@ const ProductDetailPage = () => {
             {product.shortDescription && <p className="text-lg text-gray-700 mb-6">{product.shortDescription}</p>}
 
             <div className="rounded-lg border border-gray-200 p-4 mb-6 space-y-2 text-sm">
-              {stock > 0 ? (
+              {onOrder ? (
+                <p className="text-secondary-700 font-medium">
+                  ● Disponibile su ordinazione — consegna in {product.leadTime || 'alcuni giorni'}
+                </p>
+              ) : stock > 0 ? (
                 <p className="text-primary-700 font-medium">
                   ● Disponibile online{stock <= 3 ? ` — solo ${stock} pezz${stock === 1 ? 'o' : 'i'}` : ''}
                 </p>
@@ -161,7 +167,7 @@ const ProductDetailPage = () => {
               )}
             </div>
 
-            {stock > 0 ? (
+            {orderable > 0 ? (
               <div className="flex flex-col sm:flex-row gap-3 mb-4">
                 <div className="flex items-center border border-gray-300 rounded-lg w-fit">
                   <button className="p-3 disabled:opacity-30" onClick={() => setQty((q) => Math.max(1, q - 1))} disabled={qty <= 1} aria-label="Diminuisci">

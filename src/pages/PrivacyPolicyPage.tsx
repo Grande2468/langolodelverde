@@ -13,7 +13,7 @@ const PrivacyPolicyPage = () => {
         <div className="container mx-auto px-4 py-16 md:py-20">
           <div className="max-w-3xl">
             <h1 className="text-4xl md:text-5xl font-display font-bold mb-6">Informativa sulla Privacy</h1>
-            <p className="text-xl text-primary-100">Ultimo aggiornamento: 11 Novembre 2026</p>
+            <p className="text-xl text-primary-100">Ultimo aggiornamento: 12 Novembre 2026</p>
           </div>
         </div>
       </div>
@@ -54,6 +54,9 @@ const PrivacyPolicyPage = () => {
           <h4>Dati per gli Acquisti Online</h4>
           <p>
             Quando effettui un ordine nel nostro negozio online raccogliamo i dati necessari a gestirlo: nome e cognome, indirizzo email, numero di telefono, indirizzo di spedizione (se scegli la consegna a domicilio), eventuali note all'ordine, i prodotti acquistati e gli importi.
+          </p>
+          <p>
+            Se scegli il contrassegno o il pagamento in negozio al ritiro, non raccogliamo alcun dato di pagamento: registriamo solo il metodo scelto e, quando avviene, l'incasso. Ti inviamo un'email di conferma con il riepilogo dell'ordine.
           </p>
           <p>
             <strong>I dati della tua carta di pagamento non vengono mai raccolti né conservati da noi:</strong> il pagamento avviene sulla pagina sicura di Stripe, che tratta i dati di pagamento come titolare autonomo. Da Stripe riceviamo solo l'esito del pagamento e un identificativo della transazione.
@@ -164,7 +167,8 @@ const PrivacyPolicyPage = () => {
             <li><strong>Hosting:</strong> Netlify, che ospita il sito e le funzioni che elaborano gli ordini. Consulta la <a href="https://www.netlify.com/privacy/" target="_blank" rel="noopener noreferrer" className="text-primary-600 hover:underline">privacy policy di Netlify</a>.</li>
             <li><strong>Database:</strong> Google Firebase (Cloud Firestore), dove sono conservati catalogo e ordini. Consulta la <a href="https://firebase.google.com/support/privacy" target="_blank" rel="noopener noreferrer" className="text-primary-600 hover:underline">informativa privacy di Firebase</a>.</li>
             <li><strong>Pagamenti:</strong> Stripe Payments Europe Ltd., che gestisce i pagamenti con carta. Consulta la <a href="https://stripe.com/it/privacy" target="_blank" rel="noopener noreferrer" className="text-primary-600 hover:underline">informativa privacy di Stripe</a>.</li>
-            <li><strong>Spedizioni:</strong> il corriere incaricato della consegna, a cui comunichiamo nome, indirizzo e telefono del destinatario solo per effettuare la consegna.</li>
+            <li><strong>Spedizioni:</strong> il corriere incaricato della consegna, a cui comunichiamo nome, indirizzo e telefono del destinatario solo per effettuare la consegna (e, con il contrassegno, l'importo da incassare).</li>
+            <li><strong>Email:</strong> Resend, il servizio con cui inviamo le email di conferma dell'ordine. Consulta la <a href="https://resend.com/legal/privacy-policy" target="_blank" rel="noopener noreferrer" className="text-primary-600 hover:underline">privacy policy di Resend</a>.</li>
             <li><em>OpenStreetMap:</em> per la mappa nella pagina Contatti. La mappa si carica solo se clicchi su "Mostra la mappa"; in quel caso i server di OpenStreetMap ricevono il tuo indirizzo IP per scopi tecnici.</li>
             <li><em>Caratteri tipografici:</em> sono ospitati direttamente sul nostro sito, senza richieste a Google Fonts.</li>
             <li><em>Cloudinary:</em> Per la gestione e l'ottimizzazione delle immagini del sito. Cloudinary potrebbe raccogliere informazioni tecniche come il tuo indirizzo IP e user agent per fornire il servizio di content delivery. Per maggiori informazioni, consulta la <a href="https://cloudinary.com/privacy" className="text-primary-600 hover:underline" target="_blank" rel="noopener noreferrer">privacy policy di Cloudinary</a>.</li>

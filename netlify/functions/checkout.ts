@@ -1,5 +1,7 @@
 import Stripe from 'stripe';
 import { adminDb, json } from './_lib/firebaseAdmin';
+import { readOrderStock, writeOrderStock } from './_lib/stock';
+import { sendOrderEmails } from './_lib/email';
 
 // Crea l'ordine e la sessione di pagamento Stripe.
 // Prezzi, giacenze e spese di spedizione vengono ricalcolati QUI dal database:
@@ -10,16 +12,17 @@ interface Body {
   shippingMethodId?: string;
   customer?: Record<string, string>;
   invoice?: Record<string, string> | null;
+  paymentMethod?: string;
 }
+
+const BACKORDER_MAX = 20;
+const DEFAULT_PAYMENTS = { card: true, cod: { enabled: true, fee: 400, maxTotal: 50000 }, payOnPickup: { enabled: true } };
 
 const str = (v: unknown, max = 200) => (typeof v === 'string' ? v.trim().slice(0, max) : '');
 const CLOUD = process.env.CLOUDINARY_CLOUD_NAME || 'dut9zxpsq';
 
 const handle = async (req: Request) => {
   if (req.method !== 'POST') return json({ error: 'Metodo non consentito' }, 405);
-  const secret = process.env.STRIPE_SECRET_KEY;
-  if (!secret) return json({ error: 'Pagamenti non ancora configurati. Contattaci per ordinare.' }, 503);
-
   let body: Body;
   try {
     body = await req.json();
@@ -85,19 +88,20 @@ const handle = async (req: Request) => {
   const db = adminDb();
   const snaps = await db.getAll(...[...qtyById.keys()].map((id) => db.doc(`products/${id}`)));
 
-  const items: { productId: string; name: string; price: number; qty: number; image: string | null }[] = [];
+  const items: { productId: string; name: string; price: number; qty: number; image: string | null; backorder: boolean }[] = [];
   let pickupOnly = false;
   for (const snap of snaps) {
     const p = snap.data();
     const qty = qtyById.get(snap.id)!;
     if (!snap.exists || !p || !p.visible) return json({ error: 'Un prodotto nel carrello non è più disponibile. Aggiorna il carrello.' }, 409);
     const stock = Number(p.stock?.online ?? 0);
-    if (stock < qty) {
-      return json({ error: `"${p.name}": disponibili solo ${Math.max(0, stock)} pezzi. Aggiorna il carrello.` }, 409);
+    const max = p.backorder ? Math.max(BACKORDER_MAX, stock) : stock;
+    if (qty > max) {
+      return json({ error: `"${p.name}": disponibili solo ${Math.max(0, max)} pezzi. Aggiorna il carrello.` }, 409);
     }
     if (!Number.isInteger(p.price) || p.price <= 0) return json({ error: `Prezzo non valido per "${p.name}"` }, 409);
     if (p.pickupOnly) pickupOnly = true;
-    items.push({ productId: snap.id, name: p.name, price: p.price, qty, image: p.images?.[0] ?? null });
+    items.push({ productId: snap.id, name: p.name, price: p.price, qty, image: p.images?.[0] ?? null, backorder: qty > stock });
   }
   const subtotal = items.reduce((s, i) => s + i.price * i.qty, 0);
 
@@ -114,37 +118,81 @@ const handle = async (req: Request) => {
     return json({ error: "Compila l'indirizzo di spedizione completo." }, 400);
   }
   const shippingCost = method.freeAbove && subtotal >= method.freeAbove ? 0 : Math.max(0, Math.round(method.price || 0));
-  const total = subtotal + shippingCost;
 
-  // --- numero ordine progressivo + ordine "non pagato"
+  // --- metodo di pagamento
+  const pd = (await db.doc('public/payments').get()).data() ?? {};
+  const payments = {
+    card: pd.card ?? DEFAULT_PAYMENTS.card,
+    cod: { ...DEFAULT_PAYMENTS.cod, ...(pd.cod ?? {}) },
+    payOnPickup: { ...DEFAULT_PAYMENTS.payOnPickup, ...(pd.payOnPickup ?? {}) },
+  };
+  const paymentMethod = body.paymentMethod === 'contrassegno' || body.paymentMethod === 'ritiro' ? body.paymentMethod : 'carta';
+  let codFee = 0;
+  if (paymentMethod === 'carta' && !payments.card) return json({ error: 'Il pagamento con carta non è disponibile.' }, 400);
+  if (paymentMethod === 'contrassegno') {
+    if (!payments.cod.enabled) return json({ error: 'Il contrassegno non è disponibile.' }, 400);
+    if (method.type !== 'spedizione') return json({ error: 'Il contrassegno è disponibile solo con la spedizione a domicilio.' }, 400);
+    codFee = Math.max(0, Math.round(Number(payments.cod.fee) || 0));
+    const maxTotal = Number(payments.cod.maxTotal) || 0;
+    if (maxTotal > 0 && subtotal + shippingCost + codFee > maxTotal) {
+      return json({ error: `Il contrassegno è disponibile per ordini fino a ${(maxTotal / 100).toFixed(2).replace('.', ',')} €.` }, 400);
+    }
+  }
+  if (paymentMethod === 'ritiro') {
+    if (!payments.payOnPickup.enabled) return json({ error: 'Il pagamento al ritiro non è disponibile.' }, 400);
+    if (method.type !== 'ritiro') return json({ error: 'Il pagamento in negozio è disponibile solo con il ritiro in negozio.' }, 400);
+  }
+  const total = subtotal + shippingCost + codFee;
+  const secret = process.env.STRIPE_SECRET_KEY;
+  if (paymentMethod === 'carta' && !secret) return json({ error: 'Pagamenti non ancora configurati. Contattaci per ordinare.' }, 503);
+  const offline = paymentMethod !== 'carta';
+
+  // --- numero ordine progressivo + ordine
+  // Carta: ordine "non pagato" finché Stripe non conferma (lo scarico magazzino lo fa il webhook).
+  // Contrassegno / ritiro: ordine confermato subito "da pagare", con scarico immediato del magazzino online.
   const orderRef = db.collection('orders').doc();
   const now = Date.now();
+  const origin = new URL(req.url).origin;
+  const orderData = {
+    items,
+    subtotal,
+    shippingMethod: { id: method.id, name: method.name, type: method.type },
+    shippingCost,
+    codFee,
+    total,
+    paymentMethod,
+    customer,
+    invoice,
+  };
+  let oversold = false;
   const number = await db.runTransaction(async (tx) => {
     const counterRef = db.doc('counters/orders');
     const counter = await tx.get(counterRef);
+    const reads = offline ? await readOrderStock(tx, db, items) : null;
     const next = (counter.data()?.last ?? 1000) + 1;
-    tx.set(counterRef, { last: next }, { merge: true });
     const num = `ADV-${next}`;
+    tx.set(counterRef, { last: next }, { merge: true });
+    if (reads) oversold = writeOrderStock(tx, db, reads, items, { orderId: orderRef.id, orderNumber: num, by: paymentMethod, now }).oversold;
     tx.set(orderRef, {
       number: num,
-      status: 'in_attesa_pagamento',
-      items,
-      subtotal,
-      shippingMethod: { id: method.id, name: method.name, type: method.type },
-      shippingCost,
-      total,
-      customer,
-      invoice,
-      stockApplied: false,
+      ...orderData,
+      status: offline ? 'da_pagare' : 'in_attesa_pagamento',
+      stockApplied: offline,
+      oversold,
+      paymentCollected: false,
       createdAt: now,
       updatedAt: now,
     });
     return num;
   });
 
+  if (offline) {
+    await sendOrderEmails({ number, ...orderData });
+    return json({ url: `${origin}/ordine-completato?ordine=${encodeURIComponent(number)}&pagamento=${paymentMethod}`, number });
+  }
+
   // --- sessione Stripe (solo carta)
-  const origin = new URL(req.url).origin;
-  const stripe = new Stripe(secret);
+  const stripe = new Stripe(secret!);
   try {
     const session = await stripe.checkout.sessions.create({
       mode: 'payment',

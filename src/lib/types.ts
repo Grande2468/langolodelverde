@@ -26,6 +26,8 @@ export interface Product {
   visible: boolean;
   featured: boolean;
   pickupOnly: boolean; // solo ritiro in negozio (es. macchine ingombranti)
+  backorder?: boolean; // ordinabile anche se esaurito (su ordinazione dal fornitore)
+  leadTime?: string; // tempi di consegna per i prodotti su ordinazione, es. "7-10 giorni lavorativi"
   stock: StockLevels;
   createdAt: number;
   updatedAt: number;
@@ -44,6 +46,8 @@ export interface CatalogItem {
   stockOnline: number;
   featured: boolean;
   pickupOnly: boolean;
+  backorder?: boolean;
+  leadTime?: string;
   createdAt: number;
 }
 
@@ -69,8 +73,23 @@ export interface ShippingDoc {
   methods: ShippingMethod[];
 }
 
+export type PaymentMethod = 'carta' | 'contrassegno' | 'ritiro';
+
+export interface PaymentsDoc {
+  card: boolean;
+  cod: { enabled: boolean; fee: number; maxTotal?: number | null }; // contrassegno: commissione e importo massimo
+  payOnPickup: { enabled: boolean }; // pagamento in negozio al ritiro
+}
+
+export const DEFAULT_PAYMENTS: PaymentsDoc = {
+  card: true,
+  cod: { enabled: true, fee: 400, maxTotal: 50000 },
+  payOnPickup: { enabled: true },
+};
+
 export type OrderStatus =
   | 'in_attesa_pagamento'
+  | 'da_pagare'
   | 'pagato'
   | 'in_preparazione'
   | 'spedito'
@@ -84,6 +103,7 @@ export interface OrderItem {
   price: number;
   qty: number;
   image: string | null;
+  backorder?: boolean; // ordinato oltre la giacenza: da procurare dal fornitore
 }
 
 export interface Customer {
@@ -125,7 +145,10 @@ export interface Order {
   subtotal: number;
   shippingMethod: { id: string; name: string; type: ShippingType };
   shippingCost: number;
+  codFee?: number;
   total: number;
+  paymentMethod?: PaymentMethod;
+  paymentCollected?: boolean; // contrassegno / ritiro: incasso registrato
   customer: Customer;
   invoice?: InvoiceData | null;
   refundedTotal?: number;
@@ -163,12 +186,19 @@ export interface Movement {
 
 export const ORDER_STATUS_LABELS: Record<OrderStatus, string> = {
   in_attesa_pagamento: 'Non pagato',
+  da_pagare: 'Da preparare — paga alla consegna/ritiro',
   pagato: 'Pagato — da preparare',
   in_preparazione: 'In preparazione',
   spedito: 'Spedito',
   pronto_ritiro: 'Pronto per il ritiro',
   completato: 'Completato',
   annullato: 'Annullato',
+};
+
+export const PAYMENT_LABELS: Record<PaymentMethod, string> = {
+  carta: 'Carta (Stripe)',
+  contrassegno: 'Contrassegno',
+  ritiro: 'Pagamento al ritiro in negozio',
 };
 
 export const MOVEMENT_LABELS: Record<MovementType, string> = {

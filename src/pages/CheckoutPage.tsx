@@ -4,9 +4,10 @@ import { Helmet } from 'react-helmet';
 import { Lock, CreditCard } from 'lucide-react';
 import PageHeader from '../components/ui/PageHeader';
 import { useCart } from '../context/CartContext';
-import { fetchShipping } from '../lib/catalog';
+import { fetchPayments, fetchShipping } from '../lib/catalog';
 import { euro } from '../lib/format';
-import type { Customer, InvoiceData, ShippingMethod } from '../lib/types';
+import type { Customer, InvoiceData, PaymentMethod, PaymentsDoc, ShippingMethod } from '../lib/types';
+import { DEFAULT_PAYMENTS } from '../lib/types';
 
 const EMPTY_INVOICE: InvoiceData = { tipo: 'privato', codiceFiscale: '', ragioneSociale: '', partitaIva: '', codiceDestinatario: '', pec: '', indirizzo: '' };
 
@@ -18,6 +19,8 @@ export const shippingCostFor = (m: ShippingMethod, subtotal: number) =>
 const CheckoutPage = () => {
   const { lines, subtotal } = useCart();
   const [methods, setMethods] = useState<ShippingMethod[] | null>(null);
+  const [payments, setPayments] = useState<PaymentsDoc>(DEFAULT_PAYMENTS);
+  const [payMethod, setPayMethod] = useState<PaymentMethod>('carta');
   const [methodId, setMethodId] = useState('');
   const [c, setC] = useState<Customer>(EMPTY);
   const [accepted, setAccepted] = useState(false);
@@ -29,6 +32,7 @@ const CheckoutPage = () => {
   const hasPickupOnly = lines.some((l) => l.pickupOnly);
 
   useEffect(() => {
+    fetchPayments().then(setPayments).catch(() => undefined);
     fetchShipping()
       .then((s) => setMethods(s.methods.filter((m) => m.active)))
       .catch(() => setMethods([]));
@@ -47,6 +51,31 @@ const CheckoutPage = () => {
   const shipping = method ? shippingCostFor(method, subtotal) : 0;
   const isShipping = method?.type === 'spedizione';
 
+  // metodi di pagamento disponibili per la consegna scelta
+  const payOptions = useMemo(() => {
+    const opts: { id: PaymentMethod; label: string; hint: string }[] = [];
+    if (payments.card) opts.push({ id: 'carta', label: 'Carta di credito, debito o prepagata', hint: 'Pagamento sicuro con Stripe' });
+    const codTooHigh = !!payments.cod.maxTotal && subtotal + shipping + payments.cod.fee > payments.cod.maxTotal;
+    if (isShipping && payments.cod.enabled && !codTooHigh) {
+      opts.push({
+        id: 'contrassegno',
+        label: 'Contrassegno (contanti alla consegna)',
+        hint: payments.cod.fee ? `Paghi al corriere in contanti · commissione ${euro(payments.cod.fee)}` : 'Paghi al corriere in contanti',
+      });
+    }
+    if (method?.type === 'ritiro' && payments.payOnPickup.enabled) {
+      opts.push({ id: 'ritiro', label: 'Paga in negozio al ritiro', hint: 'Contanti o carta quando ritiri la merce' });
+    }
+    return opts;
+  }, [payments, isShipping, method, subtotal, shipping]);
+
+  useEffect(() => {
+    if (!payOptions.find((o) => o.id === payMethod)) setPayMethod(payOptions[0]?.id ?? 'carta');
+  }, [payOptions, payMethod]);
+
+  const codFee = payMethod === 'contrassegno' ? payments.cod.fee : 0;
+  const total = subtotal + shipping + codFee;
+
   if (lines.length === 0) return <Navigate to="/carrello" replace />;
 
   const set = (k: keyof Customer) => (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) =>
@@ -64,6 +93,7 @@ const CheckoutPage = () => {
         body: JSON.stringify({
           items: lines.map((l) => ({ id: l.id, qty: l.qty })),
           shippingMethodId: method.id,
+          paymentMethod: payMethod,
           customer: c,
           invoice: wantInvoice
             ? { ...inv, indirizzo: inv.indirizzo.trim() || (isShipping ? `${c.indirizzo}, ${c.cap} ${c.citta} (${c.provincia})` : '') }
@@ -71,8 +101,8 @@ const CheckoutPage = () => {
         }),
       });
       const data = await res.json().catch(() => ({}));
-      if (!res.ok || !data.url) throw new Error(data.error || 'Impossibile avviare il pagamento. Riprova.');
-      window.location.href = data.url; // pagina di pagamento sicura Stripe
+      if (!res.ok || !data.url) throw new Error(data.error || "Impossibile completare l'ordine. Riprova.");
+      window.location.href = data.url; // carta: pagina sicura Stripe · altri metodi: conferma ordine
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Errore imprevisto.');
       setSending(false);
@@ -179,6 +209,33 @@ const CheckoutPage = () => {
           )}
 
           <section>
+            <h2 className="text-xl font-semibold mb-4">Pagamento</h2>
+            {payOptions.length === 0 ? (
+              <p className="text-red-600 text-sm">Nessun metodo di pagamento disponibile per questa consegna.</p>
+            ) : (
+              <div className="space-y-3">
+                {payOptions.map((o) => (
+                  <label
+                    key={o.id}
+                    className={`flex items-start gap-3 border rounded-lg p-4 cursor-pointer ${
+                      o.id === payMethod ? 'border-primary-600 ring-1 ring-primary-600 bg-primary-50' : 'border-gray-300'
+                    }`}
+                  >
+                    <input type="radio" name="payment" checked={o.id === payMethod} onChange={() => setPayMethod(o.id)} className="mt-1" />
+                    <span>
+                      <span className="font-medium block">{o.label}</span>
+                      <span className="text-sm text-gray-600">{o.hint}</span>
+                    </span>
+                  </label>
+                ))}
+                {isShipping && payments.cod.enabled && !payOptions.some((o) => o.id === 'contrassegno') && payments.cod.maxTotal ? (
+                  <p className="text-xs text-gray-500">Il contrassegno è disponibile per ordini fino a {euro(payments.cod.maxTotal)}.</p>
+                ) : null}
+              </div>
+            )}
+          </section>
+
+          <section>
             <label className="flex items-center gap-2 font-medium cursor-pointer">
               <input type="checkbox" checked={wantInvoice} onChange={(e) => setWantInvoice(e.target.checked)} />
               Voglio la fattura
@@ -258,9 +315,15 @@ const CheckoutPage = () => {
               <span>Consegna</span>
               <span>{method ? (shipping === 0 ? 'Gratis' : euro(shipping)) : '—'}</span>
             </div>
+            {codFee > 0 && (
+              <div className="flex justify-between">
+                <span>Commissione contrassegno</span>
+                <span>{euro(codFee)}</span>
+              </div>
+            )}
             <div className="flex justify-between text-lg font-bold pt-2">
               <span>Totale</span>
-              <span>{euro(subtotal + shipping)}</span>
+              <span>{euro(total)}</span>
             </div>
             <p className="text-xs text-gray-500">IVA inclusa</p>
           </div>
@@ -292,14 +355,15 @@ const CheckoutPage = () => {
 
           <button
             type="submit"
-            disabled={sending || !method}
+            disabled={sending || !method || payOptions.length === 0}
             className="mt-6 w-full inline-flex items-center justify-center gap-2 bg-primary-600 text-white py-3 rounded-lg font-semibold hover:bg-primary-700 disabled:opacity-60"
           >
             <CreditCard className="h-5 w-5" />
-            {sending ? 'Apro il pagamento…' : `Ordina con obbligo di pagamento · ${euro(subtotal + shipping)}`}
+            {sending ? 'Invio l\'ordine…' : `Ordina con obbligo di pagamento · ${euro(total)}`}
           </button>
           <p className="mt-3 text-xs text-gray-500 flex items-center justify-center gap-1">
-            <Lock className="h-3.5 w-3.5" /> Pagamento sicuro gestito da Stripe
+            <Lock className="h-3.5 w-3.5" />
+            {payMethod === 'carta' ? 'Pagamento sicuro gestito da Stripe' : 'Riceverai la conferma dell\'ordine via email'}
           </p>
         </aside>
       </form>

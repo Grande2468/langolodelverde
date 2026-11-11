@@ -1,60 +1,26 @@
 import Stripe from 'stripe';
 import { adminDb, json } from './_lib/firebaseAdmin';
+import { readOrderStock, writeOrderStock } from './_lib/stock';
+import { sendOrderEmails } from './_lib/email';
 
 // Stripe chiama questo indirizzo quando un pagamento va a buon fine (o scade).
 // Qui l'ordine diventa "pagato" e la merce viene scaricata dal magazzino ONLINE.
 // È idempotente: se Stripe ripete l'evento, la merce non viene scaricata due volte.
 
-interface CatalogItem {
-  id: string;
-  stockOnline: number;
-  [k: string]: unknown;
-}
-
 const markPaid = async (orderId: string, session: Stripe.Checkout.Session) => {
   const db = adminDb();
+  const orderRef = db.doc(`orders/${orderId}`);
+  let justPaid = false;
   await db.runTransaction(async (tx) => {
-    const orderRef = db.doc(`orders/${orderId}`);
     const orderSnap = await tx.get(orderRef);
     const order = orderSnap.data();
     if (!orderSnap.exists || !order) return;
     if (order.stockApplied) return; // già elaborato
 
     const items: { productId: string; name: string; qty: number }[] = order.items ?? [];
-    const productRefs = items.map((i) => db.doc(`products/${i.productId}`));
-    const products = productRefs.length ? await tx.getAll(...productRefs) : [];
-    const catalogRef = db.doc('public/catalog');
-    const catalogSnap = await tx.get(catalogRef);
-
+    const reads = await readOrderStock(tx, db, items);
     const now = Date.now();
-    let oversold = false;
-    const catalogItems: CatalogItem[] = catalogSnap.data()?.items ?? [];
-
-    items.forEach((it, idx) => {
-      const p = products[idx];
-      if (!p?.exists) return;
-      const current = Number(p.data()?.stock?.online ?? 0);
-      const next = current - it.qty;
-      if (next < 0) oversold = true;
-      tx.update(p.ref, { 'stock.online': next, updatedAt: now });
-      tx.set(db.collection('movements').doc(), {
-        productId: it.productId,
-        productName: it.name,
-        location: 'online',
-        type: 'vendita_online',
-        qty: -it.qty,
-        stockAfter: next,
-        orderId,
-        orderNumber: order.number,
-        note: `Ordine ${order.number}`,
-        by: 'stripe',
-        createdAt: now,
-      });
-      const ci = catalogItems.find((c) => c.id === it.productId);
-      if (ci) ci.stockOnline = next;
-    });
-
-    if (catalogSnap.exists) tx.update(catalogRef, { items: catalogItems, updatedAt: now });
+    const { oversold } = writeOrderStock(tx, db, reads, items, { orderId, orderNumber: order.number, by: 'stripe', now });
 
     tx.update(orderRef, {
       status: order.status === 'in_attesa_pagamento' || order.status === 'annullato' ? 'pagato' : order.status,
@@ -62,10 +28,17 @@ const markPaid = async (orderId: string, session: Stripe.Checkout.Session) => {
       oversold,
       cancelReason: null,
       paidAt: now,
+      paymentCollected: true,
       paymentIntent: typeof session.payment_intent === 'string' ? session.payment_intent : session.payment_intent?.id ?? null,
       updatedAt: now,
     });
+    justPaid = true;
   });
+  // email di conferma solo la prima volta (Stripe può ripetere l'evento)
+  if (justPaid) {
+    const fresh = (await orderRef.get()).data();
+    if (fresh) await sendOrderEmails(fresh as Parameters<typeof sendOrderEmails>[0]);
+  }
 };
 
 const markExpired = async (orderId: string) => {

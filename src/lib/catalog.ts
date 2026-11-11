@@ -1,6 +1,7 @@
 import { doc, getDoc } from 'firebase/firestore/lite';
 import { db } from './firebase';
-import type { CatalogDoc, CatalogItem, Category, Product, ShippingDoc } from './types';
+import type { CatalogDoc, CatalogItem, Category, PaymentsDoc, Product, ShippingDoc } from './types';
+import { DEFAULT_PAYMENTS } from './types';
 
 // Categorie di partenza (le stesse del sito originale). L'admin può cambiarle dalle Impostazioni.
 export const DEFAULT_CATEGORIES: Category[] = [
@@ -92,6 +93,16 @@ export const fetchShipping = async (): Promise<ShippingDoc> => {
   return snap.exists() ? (snap.data() as ShippingDoc) : { methods: [] };
 };
 
+export const fetchPayments = async (): Promise<PaymentsDoc> => {
+  const snap = await getDoc(doc(db, 'public', 'payments'));
+  const d = (snap.exists() ? snap.data() : {}) as Partial<PaymentsDoc>;
+  return {
+    card: d.card ?? DEFAULT_PAYMENTS.card,
+    cod: { ...DEFAULT_PAYMENTS.cod, ...(d.cod ?? {}) },
+    payOnPickup: { ...DEFAULT_PAYMENTS.payOnPickup, ...(d.payOnPickup ?? {}) },
+  };
+};
+
 /** Prodotto completo → voce del catalogo pubblico */
 export const toCatalogItem = (p: Product): CatalogItem => ({
   id: p.id,
@@ -105,8 +116,16 @@ export const toCatalogItem = (p: Product): CatalogItem => ({
   stockOnline: p.stock?.online ?? 0,
   featured: !!p.featured,
   pickupOnly: !!p.pickupOnly,
+  backorder: !!p.backorder,
+  leadTime: p.leadTime || '',
   createdAt: p.createdAt,
 });
+
+/** Quantità massima ordinabile: la giacenza online, oppure fino a 20 pezzi se il prodotto è su ordinazione. */
+export const BACKORDER_MAX = 20;
+export const maxOrderable = (i: Pick<CatalogItem, 'stockOnline' | 'backorder'>) =>
+  Math.max(0, i.stockOnline) > 0 && !i.backorder ? i.stockOnline : i.backorder ? Math.max(BACKORDER_MAX, i.stockOnline) : 0;
+export const isOnBackorder = (i: Pick<CatalogItem, 'stockOnline' | 'backorder'>, qty = 1) => !!i.backorder && i.stockOnline < qty;
 
 /** Inserisce/aggiorna/rimuove un prodotto nella lista del catalogo, ordinata dal più recente. */
 export const upsertCatalogItems = (items: CatalogItem[], product: Product | null, removeId?: string) => {

@@ -31,6 +31,8 @@ const ProductForm = () => {
   const [visible, setVisible] = useState(true);
   const [featured, setFeatured] = useState(false);
   const [pickupOnly, setPickupOnly] = useState(false);
+  const [backorder, setBackorder] = useState(false);
+  const [leadTime, setLeadTime] = useState('7-10 giorni lavorativi');
   const [stockOnline, setStockOnline] = useState('1');
   const [stockShop, setStockShop] = useState('0');
 
@@ -58,6 +60,8 @@ const ProductForm = () => {
         setVisible(p.visible);
         setFeatured(p.featured);
         setPickupOnly(p.pickupOnly);
+        setBackorder(!!p.backorder);
+        setLeadTime(p.leadTime || '7-10 giorni lavorativi');
       })
       .catch((e) => setError(errMsg(e)))
       .finally(() => setLoading(false));
@@ -85,6 +89,8 @@ const ProductForm = () => {
       visible,
       featured,
       pickupOnly,
+      backorder,
+      leadTime: backorder ? leadTime.trim() || '7-10 giorni lavorativi' : '',
     };
     setSaving(true);
     try {
@@ -192,6 +198,17 @@ const ProductForm = () => {
           {check('Visibile sul sito', visible, setVisible, 'Se disattivato il prodotto resta in magazzino ma non compare nel negozio')}
           {check('In evidenza in home page', featured, setFeatured, 'Compare nella sezione "Prodotti in evidenza"')}
           {check('Solo ritiro in negozio', pickupOnly, setPickupOnly, 'Per prodotti ingombranti: il cliente non potrà sceglierne la spedizione')}
+          {check(
+            'Ordinabile anche se esaurito (su ordinazione)',
+            backorder,
+            setBackorder,
+            'Il cliente può ordinarlo anche con giacenza online a zero: lo procuri tu dal fornitore'
+          )}
+          {backorder && (
+            <Field label="Tempi di consegna per gli ordini su richiesta" hint="Viene mostrato al cliente, es. 7-10 giorni lavorativi">
+              <input className={inputCls} value={leadTime} onChange={(e) => setLeadTime(e.target.value)} />
+            </Field>
+          )}
         </Card>
 
         <Card className="p-5">

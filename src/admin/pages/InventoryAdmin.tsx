@@ -140,8 +140,12 @@ const InventoryAdmin = () => {
                       <td className="px-3 py-2">
                         <span className="font-medium">{p.name}</span>
                         {p.sku && <span className="text-xs text-gray-400"> · {p.sku}</span>}
+                        {p.backorder && <span className="ml-1 text-[11px] text-secondary-700">(su ordinazione)</span>}
                       </td>
-                      <td className={`px-3 py-2 text-right font-semibold ${on <= 0 ? 'text-red-600' : on <= 2 ? 'text-amber-600' : ''}`}>{on}</td>
+                      <td className={`px-3 py-2 text-right font-semibold ${on <= 0 ? 'text-red-600' : on <= 2 ? 'text-amber-600' : ''}`}>
+                        {on}
+                        {on < 0 && <span className="block text-[11px] font-normal">da ordinare: {-on}</span>}
+                      </td>
                       <td className="px-3 py-2 text-right">{sh}</td>
                       <td className="px-3 py-2 text-right text-gray-500">{on + sh}</td>
                     </tr>
