@@ -28,7 +28,7 @@ const Dashboard = () => {
   const monthAgo = Date.now() - 30 * 864e5;
   // incassato = pagamenti ricevuti (carta, o contrassegno/ritiro segnati come incassati), al netto dei rimborsi
   const revenue = orders
-    .filter((o) => o.paidAt && o.paidAt > monthAgo)
+    .filter((o) => o.paidAt && o.paidAt > monthAgo && !(o.status === 'annullato' && o.paymentMethod && o.paymentMethod !== 'carta'))
     .reduce((s, o) => s + o.total - (o.refundedTotal ?? 0), 0);
   const soldOut = products.filter((p) => p.visible && (p.stock?.online ?? 0) <= 0);
   const low = products.filter((p) => p.visible && (p.stock?.online ?? 0) > 0 && (p.stock?.online ?? 0) <= 2);
