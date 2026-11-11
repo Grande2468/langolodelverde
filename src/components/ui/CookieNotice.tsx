@@ -32,7 +32,7 @@ const CookieNotice = () => {
 
   return (
     <div role="region" aria-label="Informativa cookie" className="fixed bottom-0 inset-x-0 z-50 bg-gray-900 text-white">
-      <div className="container mx-auto px-4 py-4 flex flex-col sm:flex-row items-start sm:items-center gap-3 sm:gap-6">
+      <div className="container mx-auto px-4 py-4 pb-16 sm:pb-4 sm:pr-56 flex flex-col sm:flex-row items-start sm:items-center gap-3 sm:gap-6">
         <p className="text-sm flex-grow">
           Questo sito usa solo cookie e strumenti tecnici necessari al funzionamento (ad esempio per ricordare il
           carrello). Nessun cookie di profilazione o di statistica.{' '}

@@ -121,7 +121,7 @@ const Footer = () => {
           </div>
         </div>
         
-        <div className="border-t border-primary-800 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
+        <div className="border-t border-primary-800 mt-12 pt-8 pb-14 flex flex-col md:flex-row justify-between items-center md:pr-52">
           <p className="text-primary-300 text-sm">
             &copy; {currentYear} L'angolo del verde — Via Ceraselle 78, 81059 Caianello (CE) — P.IVA 04874830617
           </p>
