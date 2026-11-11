@@ -1,4 +1,7 @@
 User-agent: *
 Allow: /
+Disallow: /checkout
+Disallow: /carrello
+Disallow: /ordine-completato
 
-Sitemap: https://antoniogrande.vercel.app/sitemap.xml 
+Sitemap: https://www.langolodelverde.it/sitemap.xml
